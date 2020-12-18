@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="instructorQuizListButton"
-        android:text="Instructor quiz list"
+        android:text="Instructor Quiz List"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -20,7 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="QuizBankListButton"
-        android:text="Quiz bank"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Quiz Bank"
+        app:layout_constraintTop_toBottomOf="@id/instructor_quiz_list_button" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/teacher_feedback_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="InstructorFeedbackButton"
+        android:text="Instructor Quiz Feedback"
+        app:layout_constraintTop_toBottomOf="@id/quiz_bank_list_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,4 +23,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuizBankListActivity.class);
         startActivity(intent);
     }
+
+    public void InstructorFeedbackButton(View view) {
+        Intent intent = new Intent(this, InstructorQuizFeedbackActivity.class);
+        startActivity(intent);
+    }
 }
