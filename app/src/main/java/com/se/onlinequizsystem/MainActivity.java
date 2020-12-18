@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InstructorQuizFeedbackActivity.class);
         startActivity(intent);
     }
+
+    public void InstructorAddEditQuestionButton(View view) {
+        Intent intent = new Intent(this, InstructorAddEditQuestion.class);
+        startActivity(intent);
+    }
 }
