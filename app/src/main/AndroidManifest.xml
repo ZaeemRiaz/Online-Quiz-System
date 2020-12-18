@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineQuizSystem">
-        <activity android:name=".InstructorQuizFeedbackActivity"></activity>
+        <activity android:name=".InstructorQuizListActivity" />
+        <activity android:name=".InstructorQuizBankListActivity" />
+        <activity android:name=".InstructorQuizFeedbackActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,9 +1,9 @@
 package com.se.onlinequizsystem;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class InstructorQuizListActivity extends AppCompatActivity {
 
@@ -14,6 +14,5 @@ public class InstructorQuizListActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: init");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_quiz_list);
-
     }
 }

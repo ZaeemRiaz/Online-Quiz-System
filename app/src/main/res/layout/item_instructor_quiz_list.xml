@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/item_layout"
         android:layout_width="match_parent"
@@ -21,15 +22,23 @@
             tools:ignore="RtlSymmetry">
 
             <TextView
-                android:id="@+id/name_item_instructor_quiz_list"
+                android:id="@+id/quiz_name_item_instructor_quiz_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Quiz 1"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/class_name_item_instructor_quiz_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SE-E" />
 
             <TextView
                 android:id="@+id/date_item_instructor_quiz_list"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="21/12/2020 5:00PM" />
         </LinearLayout>
 
         <TextView
@@ -46,6 +55,6 @@
         android:id="@+id/button_item_transaction_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent" />
 
 </RelativeLayout>

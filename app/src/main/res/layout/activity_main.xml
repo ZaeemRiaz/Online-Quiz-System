@@ -19,8 +19,8 @@
         android:id="@+id/quiz_bank_list_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="QuizBankListButton"
-        android:text="Quiz Bank"
+        android:onClick="InstructorQuizBankListButton"
+        android:text="Instructor Quiz Bank"
         app:layout_constraintTop_toBottomOf="@id/instructor_quiz_list_button" />
 
     <androidx.appcompat.widget.AppCompatButton
