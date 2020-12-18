@@ -33,4 +33,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InstructorAddEditQuestion.class);
         startActivity(intent);
     }
+
+    public void LoginButton(View view) {
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 }
