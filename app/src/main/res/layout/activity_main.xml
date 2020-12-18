@@ -10,7 +10,7 @@
         android:id="@+id/instructor_quiz_list_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="instructorQuizListButton"
+        android:onClick="InstructorQuizListButton"
         android:text="Instructor Quiz List"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,10 +33,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teacher_add_edit_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="InstructorAddEditQuestionButton"
         android:text="Instructor Add/Edit Question"
-        app:layout_constraintTop_toBottomOf="@id/instructor_feedback_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@id/instructor_feedback_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

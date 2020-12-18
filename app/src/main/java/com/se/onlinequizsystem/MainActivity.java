@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void instructorQuizListButton(View view) {
+    public void InstructorQuizListButton(View view) {
         Intent intent = new Intent(this, InstructorQuizListActivity.class);
         startActivity(intent);
     }
