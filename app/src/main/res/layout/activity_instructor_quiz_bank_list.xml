@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InstructorQuizBankListActivity2">
+    tools:context=".InstructorQuizBankListActivity">
 
     <RelativeLayout
-        android:id="@+id/item_quiz_bank_list_layout1"
+        android:id="@+id/item_instructor_bank_quiz_list_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,33 +29,210 @@
                 tools:ignore="RtlSymmetry">
 
                 <TextView
-                    android:id="@+id/name_item_quiz_bank_list1"
+                    android:id="@+id/question_item_instructor_quiz_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="List down..."
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/question_type_item_instructor_quiz_bank_list1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subjective" />
+
+                <TextView
+                    android:id="@+id/objective_type_item_instructor_quiz_bank_list1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/marks_item_instructor_quiz_bank_list1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="5"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/date_item_quiz_bank_list1"
+                    android:id="@+id/difficulty_item_instructor_quiz_bank_list1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:text="Difficult"
+                    android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/blah_quiz_bank_list1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingEnd="10dp"
-                android:textSize="20sp"
-                tools:ignore="RtlSymmetry" />
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_quiz_bank_list1"
+            android:id="@+id/button_item_instructor_quiz_bank_list1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/transparent" />
-
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_instructor_bank_quiz_list_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/item_instructor_bank_quiz_list_layout1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/question_item_instructor_quiz_bank_list2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose..."
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/question_type_item_instructor_quiz_bank_list2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Objective" />
+
+                <TextView
+                    android:id="@+id/objective_type_item_instructor_quiz_bank_list2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MCQ" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/marks_item_instructor_quiz_bank_list2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="1"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/difficulty_item_instructor_quiz_bank_list2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_item_instructor_quiz_bank_list2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_instructor_bank_quiz_list_layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/item_instructor_bank_quiz_list_layout2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/question_item_instructor_quiz_bank_list3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fill in..."
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/question_type_item_instructor_quiz_bank_list3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Objective" />
+
+                <TextView
+                    android:id="@+id/objective_type_item_instructor_quiz_bank_list3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="One Word" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/marks_item_instructor_quiz_bank_list3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="1"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/difficulty_item_instructor_quiz_bank_list3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Easy"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_item_instructor_quiz_bank_list3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent" />
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
