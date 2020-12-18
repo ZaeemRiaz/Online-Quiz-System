@@ -10,11 +10,24 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Save Question to Question Bank"
+        android:layout_marginStart="15dp"
+        android:onClick="InstructorAddEditQuestionSubjectiveBack"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:onClick="SaveQuestiontoQuestionBank"
+        app:layout_constraintHorizontal_weight="0.2"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:onClick="InstructorAddEditQuestionSubjectiveSave"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintRight_toRightOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
