@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class InstructorAddEditQuestion extends AppCompatActivity {
 
@@ -14,5 +15,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_add_edit_question);
+    }
+
+    public void SaveQuestiontoQuestionBank(View view) {
     }
 }
