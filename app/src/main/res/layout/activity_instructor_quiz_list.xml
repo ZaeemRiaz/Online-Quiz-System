@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <RelativeLayout
-        android:id="@+id/item_layout1"
+        android:id="@+id/item_instructor_quiz_list_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,7 +49,7 @@
                 tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_item_transaction_list1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,10 +58,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/item_layout2"
+        android:id="@+id/item_instructor_quiz_list_layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/item_layout1">
+        app:layout_constraintTop_toBottomOf="@id/item_instructor_quiz_list_layout1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,7 +101,7 @@
                 tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_item_transaction_list2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,10 +110,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/item_layout3"
+        android:id="@+id/item_instructor_quiz_list_layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/item_layout2">
+        app:layout_constraintTop_toBottomOf="@id/item_instructor_quiz_list_layout2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,7 +153,7 @@
                 tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_item_transaction_list3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

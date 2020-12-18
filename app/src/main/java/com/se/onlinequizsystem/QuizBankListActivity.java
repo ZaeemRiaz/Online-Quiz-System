@@ -5,15 +5,15 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InstructorQuizListActivity extends AppCompatActivity {
+public class QuizBankListActivity extends AppCompatActivity {
 
-    private static final String TAG = "=== InstructorQuizListActivity ===";
+    private static final String TAG = "=== QuizBankListActivity ===";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: init");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_instructor_quiz_list);
+        setContentView(R.layout.activity_quiz_bank_list);
 
     }
 }
