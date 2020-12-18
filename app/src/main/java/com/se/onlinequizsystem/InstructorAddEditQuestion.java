@@ -1,10 +1,12 @@
 package com.se.onlinequizsystem;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InstructorAddEditQuestion extends AppCompatActivity {
@@ -27,6 +29,21 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
         if (radioButtonSubjective.isChecked()) {
             setContentView(R.layout.activity_instructor_add_edit_question_subjective);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Going Back to Main Screen")
+                .setMessage("You will lose all your progress. Are you sure?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     public void InstructorAddEditQuestionSubjectiveBack(View view) {
