@@ -105,6 +105,7 @@
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="0.2"
+        android:onClick="InstructorAddEditQuestionNext"
         app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

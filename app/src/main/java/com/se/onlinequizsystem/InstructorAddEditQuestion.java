@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
 
 public class InstructorAddEditQuestion extends AppCompatActivity {
 
@@ -17,6 +18,13 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_instructor_add_edit_question);
     }
 
-    public void SaveQuestiontoQuestionBank(View view) {
+    public void InstructorAddEditQuestionNext(View view) {
+        
+    }
+
+    public void InstructorAddEditQuestionSubjectiveBack(View view) {
+    }
+
+    public void InstructorAddEditQuestionSubjectiveSave(View view) {
     }
 }

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">OnlineQuizSystem</string>
     <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
     <string-array name="temp_array">
         <item>Question 1:    39s</item>
         <item>Question 2:    21s</item>
