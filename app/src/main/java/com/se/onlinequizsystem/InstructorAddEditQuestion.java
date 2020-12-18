@@ -31,6 +31,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
 
     public void InstructorAddEditQuestionSubjectiveBack(View view) {
         setContentView(R.layout.activity_instructor_add_edit_question);
+        RadioButton radioButtonSubjective = findViewById(R.id.radio_button_question_type_subjective);
+        radioButtonSubjective.setChecked(true);
     }
 
     public void InstructorAddEditQuestionSubjectiveSave(View view) {
@@ -48,13 +50,17 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
             setContentView(R.layout.activity_instructor_add_edit_question_tf);
         }
         if (radioButtonSingle.isChecked()) {
+            setContentView(R.layout.activity_instructor_add_edit_question_mcq_s);
         }
         if (radioButtonMultiple.isChecked()) {
+            setContentView(R.layout.activity_instructor_add_edit_question_mcq_m);
         }
     }
 
     public void InstructorAddEditQuestionObjectiveBack(View view) {
         setContentView(R.layout.activity_instructor_add_edit_question);
+        RadioButton radioButtonObjective = findViewById(R.id.radio_button_question_type_objective);
+        radioButtonObjective.setChecked(true);
     }
 
     public void InstructorAddEditQuestionTfSave(View view) {
@@ -62,6 +68,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
 
     public void InstructorAddEditQuestionTfBack(View view) {
         setContentView(R.layout.activity_instructor_add_edit_question_objective);
+        RadioButton radioButtonTf = findViewById(R.id.radio_button_objective_type_tf);
+        radioButtonTf.setChecked(true);
     }
 
     public void InstructorAddEditQuestionOwSave(View view) {
@@ -69,5 +77,25 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
 
     public void InstructorAddEditQuestionOwBack(View view) {
         setContentView(R.layout.activity_instructor_add_edit_question_objective);
+        RadioButton radioButtonOw = findViewById(R.id.radio_button_objective_type_ow);
+        radioButtonOw.setChecked(true);
+    }
+
+    public void InstructorAddEditQuestionMcqSSave(View view) {
+    }
+
+    public void InstructorAddEditQuestionMcqSBack(View view) {
+        setContentView(R.layout.activity_instructor_add_edit_question_objective);
+        RadioButton radioButtonSingle = findViewById(R.id.radio_button_objective_type_single);
+        radioButtonSingle.setChecked(true);
+    }
+
+    public void InstructorAddEditQuestionMcqMSave(View view) {
+    }
+
+    public void InstructorAddEditQuestionMcqMBack(View view) {
+        setContentView(R.layout.activity_instructor_add_edit_question_objective);
+        RadioButton radioButtonMultiple = findViewById(R.id.radio_button_objective_type_multiple);
+        radioButtonMultiple.setChecked(true);
     }
 }

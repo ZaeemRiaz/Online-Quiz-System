@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:text="@string/save"
+        android:onClick="InstructorAddEditQuestionMcqSSave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintRight_toRightOf="parent" />
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:text="@string/back"
+        android:onClick="InstructorAddEditQuestionMcqSBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintLeft_toLeftOf="parent" />
