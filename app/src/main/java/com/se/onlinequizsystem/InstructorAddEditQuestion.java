@@ -19,7 +19,6 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
     }
 
     public void InstructorAddEditQuestionNext(View view) {
-        
     }
 
     public void InstructorAddEditQuestionSubjectiveBack(View view) {
