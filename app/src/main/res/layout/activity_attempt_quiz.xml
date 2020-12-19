@@ -7,7 +7,7 @@
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/start_button"
         android:layout_width="202dp"
         android:layout_height="103dp"
         android:layout_marginStart="104dp"
@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/start_button" />
 
     <TextView
         android:id="@+id/textView2"
@@ -53,5 +53,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editTextTime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/start_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
