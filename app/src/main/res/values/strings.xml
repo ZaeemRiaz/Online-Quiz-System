@@ -21,4 +21,35 @@
         <item>Question 15:   33s</item>
         <item>Question 16:   24s</item>
     </string-array>
+
+    <string-array name="subjects">
+        <item>SE- E</item>
+        <item>CA- D</item>
+        <item>SE- E</item>
+    </string-array>
+
+    <string-array name="durations">
+        <item>25 mins</item>
+        <item>90 mins</item>
+        <item>90 mins</item>
+    </string-array>
+
+    <string-array name="total_times">
+        <item>Attempted</item>
+        <item>Graded</item>
+        <item>Active</item>
+    </string-array>
+
+    <string-array name="marks">
+        <item>50</item>
+        <item>90</item>
+        <item>100</item>
+    </string-array>
+
+    <string-array name="timeleft">
+        <item>25 mins</item>
+        <item>90 mins</item>
+        <item>90 mins</item>
+    </string-array>
+
 </resources>
