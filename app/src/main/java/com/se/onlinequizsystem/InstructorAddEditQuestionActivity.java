@@ -1,6 +1,7 @@
 package com.se.onlinequizsystem;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InstructorAddEditQuestion extends AppCompatActivity {
+public class InstructorAddEditQuestionActivity extends AppCompatActivity {
 
     private static final String TAG = "=== InstructorAddEditQuestion ===";
 
@@ -48,6 +49,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
     }
 
     public void InstructorAddEditQuestionSubjectiveSave(View view) {
+        Intent intent = new Intent(this, InstructorQuestionBankListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorAddEditQuestionObjectiveNext(View view) {
@@ -76,6 +79,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
     }
 
     public void InstructorAddEditQuestionTfSave(View view) {
+        Intent intent = new Intent(this, InstructorQuestionBankListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorAddEditQuestionTfBack(View view) {
@@ -85,6 +90,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
     }
 
     public void InstructorAddEditQuestionOwSave(View view) {
+        Intent intent = new Intent(this, InstructorQuestionBankListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorAddEditQuestionOwBack(View view) {
@@ -94,6 +101,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
     }
 
     public void InstructorAddEditQuestionMcqSSave(View view) {
+        Intent intent = new Intent(this, InstructorQuestionBankListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorAddEditQuestionMcqSBack(View view) {
@@ -103,6 +112,8 @@ public class InstructorAddEditQuestion extends AppCompatActivity {
     }
 
     public void InstructorAddEditQuestionMcqMSave(View view) {
+        Intent intent = new Intent(this, InstructorQuestionBankListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorAddEditQuestionMcqMBack(View view) {

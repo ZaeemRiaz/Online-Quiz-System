@@ -9,20 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineQuizSystem">
-        <activity android:name=".InstructorQuizGrade" />
-        <activity android:name=".InstructorQuizGeneration" />
-        <activity android:name=".Login" />
-        <activity android:name=".InstructorAddEditQuestion" />
-        <activity android:name=".InstructorQuizListActivity" />
-        <activity android:name=".InstructorQuizBankListActivity" />
-        <activity android:name=".InstructorQuizFeedbackActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".InstructorQuizGradeActivity" />
+        <activity android:name=".InstructorQuizGenerationActivity" />
+        <activity android:name=".Login">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+        <activity android:name=".InstructorAddEditQuestionActivity" />
+        <activity android:name=".InstructorQuizListActivity" />
+        <activity android:name=".InstructorQuestionBankListActivity" />
+        <activity android:name=".InstructorQuizFeedbackActivity" />
     </application>
 
 </manifest>

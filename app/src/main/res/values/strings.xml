@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OnlineQuizSystem</string>
+    <string name="app_name">QMS</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="save">Save</string>

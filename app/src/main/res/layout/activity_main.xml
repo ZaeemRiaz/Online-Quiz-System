@@ -16,10 +16,10 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/quiz_bank_list_button"
+        android:id="@+id/question_bank_list_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="InstructorQuizBankListButton"
+        android:onClick="InstructorQuestionBankListButton"
         android:text="Instructor Quiz Bank"
         app:layout_constraintTop_toBottomOf="@id/instructor_quiz_list_button" />
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:onClick="InstructorFeedbackButton"
         android:text="Instructor Quiz Feedback"
-        app:layout_constraintTop_toBottomOf="@id/quiz_bank_list_button" />
+        app:layout_constraintTop_toBottomOf="@id/question_bank_list_button" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teacher_add_edit_question"

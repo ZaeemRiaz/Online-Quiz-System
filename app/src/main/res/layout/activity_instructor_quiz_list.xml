@@ -62,6 +62,7 @@
             android:id="@+id/button_item_instructor_quiz_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="InstructorQuizItem1Button"
             android:background="@color/transparent" />
     </RelativeLayout>
 
@@ -244,5 +245,15 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent" />
     </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:onClick="InstructorQuizListAddButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_plus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
