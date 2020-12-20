@@ -40,12 +40,20 @@
         app:layout_constraintTop_toBottomOf="@id/instructor_feedback_button" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/Login"
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="LoginButton"
         android:text="Login"
         app:layout_constraintTop_toBottomOf="@+id/teacher_add_edit_question" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/instructor_quiz_generation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="InstructorQuizGeneration"
+        android:text="Instructor Quiz Generation"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

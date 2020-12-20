@@ -38,4 +38,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
+
+    public void InstructorQuizGeneration(View view) {
+        Intent intent = new Intent(this, InstructorQuizGeneration.class);
+        startActivity(intent);
+    }
 }
