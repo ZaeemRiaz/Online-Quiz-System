@@ -10,24 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineQuizSystem">
         <activity
-            android:name=".InstructorMainMenuActivity"
-            android:parentActivityName=".Login" />
-        <activity
             android:name=".InstructorQuizGradeActivity"
             android:parentActivityName=".InstructorQuizListActivity" />
         <activity
             android:name=".InstructorQuizGenerationActivity"
-            android:parentActivityName=".InstructorMainMenuActivity" />
+            android:parentActivityName=".InstructorQuizListActivity" />
         <activity android:name=".Login" />
         <activity
             android:name=".InstructorAddEditQuestionActivity"
             android:parentActivityName=".InstructorQuestionBankListActivity" />
-        <activity
-            android:name=".InstructorQuizListActivity"
-            android:parentActivityName=".InstructorMainMenuActivity" />
-        <activity
-            android:name=".InstructorQuestionBankListActivity"
-            android:parentActivityName=".InstructorMainMenuActivity" />
+        <activity android:name=".InstructorQuizListActivity" />
+        <activity android:name=".InstructorQuestionBankListActivity" />
         <activity
             android:name=".InstructorQuizFeedbackActivity"
             android:parentActivityName=".InstructorQuizListActivity" />

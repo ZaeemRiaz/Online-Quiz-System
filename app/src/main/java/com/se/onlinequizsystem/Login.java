@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
         EditText password = findViewById(R.id.editTextTextPassword);
         if(emailAddress.getText().toString().equals("Ins")&&password.getText().toString().equals("123")){
             Log.d(TAG, "LoginButton: Login Match");
-            Intent intent = new Intent(this, InstructorMainMenuActivity.class);
+            Intent intent = new Intent(this, InstructorQuizListActivity.class);
             startActivity(intent);
         }
         Log.d(TAG, "LoginButton: Login Func");

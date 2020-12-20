@@ -47,4 +47,9 @@ public class InstructorQuizListActivity extends AppCompatActivity {
                 })
                 .show();
     }
+
+    public void InstructorQuizListAddButton(View view) {
+        Intent intent = new Intent(this, InstructorQuizGenerationActivity.class);
+        startActivity(intent);
+    }
 }
