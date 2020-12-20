@@ -27,7 +27,7 @@
         android:hint="Password"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:onClick="LoginButton"
         android:layout_marginTop="470dp"
         android:text="Submit" />
 </RelativeLayout>

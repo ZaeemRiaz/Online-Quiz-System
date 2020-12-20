@@ -28,20 +28,20 @@
                 android:paddingStart="10dp"
                 tools:ignore="RtlSymmetry">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/question_item_instructor_quiz_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="List down..."
                     android:textSize="18sp" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/question_type_item_instructor_quiz_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subjective" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/objective_type_item_instructor_quiz_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:paddingEnd="10dp"
                 tools:ignore="RtlSymmetry">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/marks_item_instructor_quiz_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                     android:text="5"
                     android:textSize="20sp" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/difficulty_item_instructor_quiz_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,20 +104,20 @@
                 android:paddingStart="10dp"
                 tools:ignore="RtlSymmetry">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/question_item_instructor_quiz_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Choose..."
                     android:textSize="18sp" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/question_type_item_instructor_quiz_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Objective" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/objective_type_item_instructor_quiz_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 android:paddingEnd="10dp"
                 tools:ignore="RtlSymmetry">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/marks_item_instructor_quiz_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                     android:text="1"
                     android:textSize="20sp" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/difficulty_item_instructor_quiz_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -180,20 +180,20 @@
                 android:paddingStart="10dp"
                 tools:ignore="RtlSymmetry">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/question_item_instructor_quiz_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fill in..."
                     android:textSize="18sp" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/question_type_item_instructor_quiz_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Objective" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/objective_type_item_instructor_quiz_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
                 android:paddingEnd="10dp"
                 tools:ignore="RtlSymmetry">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/marks_item_instructor_quiz_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -217,7 +217,7 @@
                     android:text="1"
                     android:textSize="20sp" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/difficulty_item_instructor_quiz_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

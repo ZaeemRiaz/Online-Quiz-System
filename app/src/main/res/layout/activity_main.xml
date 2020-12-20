@@ -55,5 +55,13 @@
         android:text="Instructor Quiz Generation"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/instructor_quiz_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="InstructorQuizGrade"
+        android:text="Instructor Quiz Grade"
+        app:layout_constraintTop_toBottomOf="@+id/instructor_quiz_generation" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
