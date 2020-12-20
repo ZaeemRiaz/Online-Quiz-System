@@ -34,13 +34,16 @@ public class InstructorQuestionBankListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle item selection
+         Intent intent;
         switch (item.getItemId()) {
             case R.id.quiz_list_menu_button:
-                // TODO: 20/12/2020 add navigation for quiz list here
+                intent = new Intent(this, InstructorQuizListActivity.class);
+                startActivity(intent);
 
                 return true;
             case R.id.qb_log_out:
-                // TODO: 20/12/2020 add navigation for log out here
+                intent = new Intent(this, Login.class);
+                startActivity(intent);
 
                 return true;
             default:

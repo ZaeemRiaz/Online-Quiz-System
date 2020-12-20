@@ -15,15 +15,19 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
-
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        // Not calling super, disables back button in current screen.
+    }
     public void LoginButton(View view) {
-        EditText emailAddress = findViewById(R.id.editTextTextEmailAddress);
-        EditText password = findViewById(R.id.editTextTextPassword);
-        if(emailAddress.getText().toString().equals("Ins")&&password.getText().toString().equals("123")){
-            Log.d(TAG, "LoginButton: Login Match");
+        EditText emailAddress = findViewById(R.id.input_email);
+        EditText password = findViewById(R.id.input_password);
+        if(emailAddress.getText().toString().equals("ins")&&password.getText().toString().equals("123")){
             Intent intent = new Intent(this, InstructorQuizListActivity.class);
             startActivity(intent);
         }
-        Log.d(TAG, "LoginButton: Login Func");
+        if(emailAddress.getText().toString().equals("stu")&&password.getText().toString().equals("123")){
+        }
     }
 }
