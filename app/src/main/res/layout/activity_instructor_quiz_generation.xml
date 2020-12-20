@@ -7,49 +7,65 @@
     tools:context=".InstructorQuizGeneration">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/start_date_instructor_quiz_generation"
+        android:id="@+id/date_instructor_quiz_generation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Quiz Start Date and Time"
+        android:hint="Enter Quiz  Date"
         app:hintTextColor="@color/black"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="datetime"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/end_date_instructor_quiz_generation"
+        android:id="@+id/start_time_instructor_quiz_generation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Quiz End Date and Time"
+        android:hint="Enter Quiz Start Time"
         app:hintTextColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/start_date_instructor_quiz_generation">
+        app:layout_constraintTop_toBottomOf="@id/date_instructor_quiz_generation">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="datetime"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:inputType="time" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/end_time_instructor_quiz_generation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Quiz End Time"
+        app:hintTextColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/start_time_instructor_quiz_generation">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:inputType="time" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/duration_instructor_quiz_generation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Quiz Duration"
         app:hintTextColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/end_date_instructor_quiz_generation">
+        app:layout_constraintTop_toBottomOf="@id/end_time_instructor_quiz_generation">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="time"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:inputType="time" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
+    
     <RadioGroup
         android:id="@+id/radio_quiz_generation_type"
         android:layout_width="match_parent"
