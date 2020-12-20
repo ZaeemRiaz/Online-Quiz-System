@@ -19,4 +19,23 @@ public class ListOfQuizesStudentSide extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(new StudentQuizListdapter(this));
     }
+
+    public void AttemptListener(View view)
+    {
+        Intent intent = new Intent(this, Attempt_Quiz_2.class);
+        startActivity(intent);
+    }
+    public void ViewQuiztListener(View view)
+    {
+        Intent intent = new Intent(this, View_Quiz_Mcq_single_ans.class);
+        startActivity(intent);
+    }
+
+    public void FeedbackQuiztListener(View view)
+    {
+        Intent intent = new Intent(this, Student_Feedback.class);
+        startActivity(intent);
+    }
+
+
 }

@@ -41,7 +41,7 @@
 
 
             <Button
-                android:id="@+id/MCQ_mul_Next_button"
+                android:id="@+id/MCQ_mul_Next_button1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="170dp"
@@ -52,20 +52,32 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/MCQ_mul_button4" />
 
-
             <TextView
-                android:id="@+id/MCQ_mul_timer"
+                android:id="@+id/MCQ_single_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
                 android:text="00:01:00"
-                android:textColor="#C62828"
+                android:textColor="@color/purple_200"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_question"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.895"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent" >
+
+            </TextView>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="238dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:text="Time Left"
+                app:layout_constraintEnd_toStartOf="@+id/MCQ_single_timer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.457" />
+                app:layout_constraintTop_toTopOf="parent" ></TextView>
 
             <Button
                 android:id="@+id/MCQ_mul_button4"
@@ -74,10 +86,10 @@
                 android:layout_marginStart="15dp"
 
                 android:text="Back"
-                app:layout_constraintEnd_toStartOf="@+id/MCQ_mul_Next_button"
+                app:layout_constraintEnd_toStartOf="@+id/MCQ_mul_Next_button1"
                 app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/MCQ_mul_Next_button" />
+                app:layout_constraintTop_toTopOf="@+id/MCQ_mul_Next_button1" />
 
             <CheckBox
                 android:id="@+id/MCQ_mul_checkBox"

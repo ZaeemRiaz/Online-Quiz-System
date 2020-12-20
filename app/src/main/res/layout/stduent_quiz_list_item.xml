@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="222dp">
 
 
             <TextView
@@ -26,10 +26,10 @@
                 android:text="Subject:"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.038"
+                app:layout_constraintHorizontal_bias="0.046"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.218" />
+                app:layout_constraintVertical_bias="0.147" />
 
             <TextView
                 android:id="@+id/Active_duration"
@@ -39,41 +39,35 @@
                 android:text="Active Duration: "
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.044"
+                app:layout_constraintHorizontal_bias="0.048"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/subject"
-                app:layout_constraintVertical_bias="0.083" />
+                app:layout_constraintVertical_bias="0.046" />
 
             <Button
                 android:id="@+id/attempt_quiz"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="130dp"
+                android:layout_height="43dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginBottom="15dp"
                 android:onClick="AttemptListener"
                 android:text="Attempt"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.465" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="87dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="mins left"
-                app:layout_constraintBottom_toTopOf="@+id/attempt_quiz"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.9"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                android:layout_marginEnd="18dp"
+                android:text="time left"
+                app:layout_constraintEnd_toStartOf="@+id/time_left"
+                app:layout_constraintStart_toEndOf="@+id/subject"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/total_time"
@@ -109,20 +103,20 @@
                 android:text="Marks:"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintHorizontal_bias="0.045"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/total_time"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintVertical_bias="0.142" />
 
             <TextView
                 android:id="@+id/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
+                android:layout_marginStart="31dp"
                 android:layout_marginTop="11dp"
-                android:layout_marginEnd="81dp"
+                android:layout_marginEnd="41dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toStartOf="@+id/attempt_quiz"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
                 app:layout_constraintStart_toEndOf="@+id/Active_duration"
                 app:layout_constraintTop_toBottomOf="@+id/subject" />
 
@@ -143,25 +137,50 @@
                 android:id="@+id/marks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginEnd="248dp"
-                android:layout_marginBottom="23dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="96dp"
+                android:layout_marginBottom="76dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button"
                 app:layout_constraintStart_toEndOf="@+id/orderdate" />
 
             <TextView
                 android:id="@+id/time_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="60"
-                app:layout_constraintBottom_toBottomOf="@+id/left"
-                app:layout_constraintEnd_toStartOf="@+id/left"
-                app:layout_constraintHorizontal_bias="0.98"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.98" />
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:text="01:34:00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="130dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="49dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="3dp"
+                android:onClick="ViewQuiztListener"
+                android:text="View Quiz"
+                app:layout_constraintBottom_toTopOf="@+id/attempt_quiz"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/duration" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="130dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="16dp"
+                android:text="Feedback"
+                android:onClick="FeedbackQuiztListener"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/time"
+                app:layout_constraintTop_toBottomOf="@+id/left" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

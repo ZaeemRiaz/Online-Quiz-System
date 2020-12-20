@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,7 @@ public class StudentQuizListdapter extends RecyclerView.Adapter<StudentQuizListd
         Resources res=c.getResources();
         String[]subjects=res.getStringArray(R.array.subjects);
         String[]durations=res.getStringArray(R.array.durations);
-        String[]times=res.getStringArray(R.array.total_times);
+        String[]times=res.getStringArray(R.array.total_times); //totaltime->status
         String[]markss=res.getStringArray(R.array.marks);
         String[]time_lefts=res.getStringArray(R.array.timeleft);
 
@@ -72,6 +73,8 @@ public class StudentQuizListdapter extends RecyclerView.Adapter<StudentQuizListd
         holder.txt3.setText(quizzes.get(position).total_time);
         holder.txt4.setText(quizzes.get(position).marks);
         holder.txt5.setText(quizzes.get(position).time_left);
+
+
     }
 
     @Override

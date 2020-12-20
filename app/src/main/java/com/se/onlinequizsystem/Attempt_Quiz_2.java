@@ -2,19 +2,20 @@ package com.se.onlinequizsystem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class AttemptQuiz extends AppCompatActivity {
+public class Attempt_Quiz_2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attempt_quiz);
+        setContentView(R.layout.activity_attempt__quiz_2);
 
-        Button B= findViewById(R.id.start_button);
-        String Qtype= "MCQ1";
+        Button B= findViewById(R.id.start_button2);
+        String Qtype= "MCQ2";
 
         B.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -41,5 +42,8 @@ public class AttemptQuiz extends AppCompatActivity {
             }
         });
 
+
     }
+
+
 }
