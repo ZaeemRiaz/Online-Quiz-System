@@ -28,20 +28,20 @@
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/question_item_instructor_quiz_bank_list1"
+                    android:id="@+id/question_item_instructor_question_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="List down..."
                     android:textSize="18sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/question_type_item_instructor_quiz_bank_list1"
+                    android:id="@+id/question_type_item_instructor_question_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subjective" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/objective_type_item_instructor_quiz_bank_list1"
+                    android:id="@+id/objective_type_item_instructor_question_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="" />
@@ -57,7 +57,7 @@
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/marks_item_instructor_quiz_bank_list1"
+                    android:id="@+id/marks_item_instructor_question_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -65,7 +65,7 @@
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/difficulty_item_instructor_quiz_bank_list1"
+                    android:id="@+id/difficulty_item_instructor_question_bank_list1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Difficult"
@@ -102,20 +102,20 @@
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/question_item_instructor_quiz_bank_list2"
+                    android:id="@+id/question_item_instructor_question_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Choose..."
                     android:textSize="18sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/question_type_item_instructor_quiz_bank_list2"
+                    android:id="@+id/question_type_item_instructor_question_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Objective" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/objective_type_item_instructor_quiz_bank_list2"
+                    android:id="@+id/objective_type_item_instructor_question_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MCQ" />
@@ -131,7 +131,7 @@
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/marks_item_instructor_quiz_bank_list2"
+                    android:id="@+id/marks_item_instructor_question_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -139,7 +139,7 @@
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/difficulty_item_instructor_quiz_bank_list2"
+                    android:id="@+id/difficulty_item_instructor_question_bank_list2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Medium"
@@ -176,20 +176,20 @@
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/question_item_instructor_quiz_bank_list3"
+                    android:id="@+id/question_item_instructor_question_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fill in..."
                     android:textSize="18sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/question_type_item_instructor_quiz_bank_list3"
+                    android:id="@+id/question_type_item_instructor_question_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Objective" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/objective_type_item_instructor_quiz_bank_list3"
+                    android:id="@+id/objective_type_item_instructor_question_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="One Word" />
@@ -205,7 +205,7 @@
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/marks_item_instructor_quiz_bank_list3"
+                    android:id="@+id/marks_item_instructor_question_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -213,7 +213,7 @@
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/difficulty_item_instructor_quiz_bank_list3"
+                    android:id="@+id/difficulty_item_instructor_question_bank_list3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Easy"

@@ -9,7 +9,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InstructorAddEditQuestion extends AppCompatActivity {
+public class InstructorAddEditQuestionActivity extends AppCompatActivity {
 
     private static final String TAG = "=== InstructorAddEditQuestion ===";
 

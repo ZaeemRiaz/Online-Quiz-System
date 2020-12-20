@@ -7,7 +7,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InstructorQuizGeneration extends AppCompatActivity {
+public class InstructorQuizGenerationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

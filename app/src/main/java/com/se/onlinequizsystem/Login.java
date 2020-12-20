@@ -19,7 +19,7 @@ public class Login extends AppCompatActivity {
         EditText emailAddress = findViewById(R.id.editTextTextEmailAddress);
         EditText password = findViewById(R.id.editTextTextPassword);
 
-        if(emailAddress.toString() == "I"){
+        if((emailAddress.toString() == "Instructor")&&(password.toString() == "123")){
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

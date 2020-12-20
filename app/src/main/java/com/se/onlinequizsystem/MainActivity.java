@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void InstructorQuizBankListButton(View view) {
-        Intent intent = new Intent(this, InstructorQuizBankListActivity.class);
+    public void InstructorQuestionBankListButton(View view) {
+        Intent intent = new Intent(this, InstructorQuestionBankListActivity.class);
         startActivity(intent);
     }
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void InstructorAddEditQuestionButton(View view) {
-        Intent intent = new Intent(this, InstructorAddEditQuestion.class);
+        Intent intent = new Intent(this, InstructorAddEditQuestionActivity.class);
         startActivity(intent);
     }
 
@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void InstructorQuizGeneration(View view) {
-        Intent intent = new Intent(this, InstructorQuizGeneration.class);
+        Intent intent = new Intent(this, InstructorQuizGenerationActivity.class);
         startActivity(intent);
     }
 
     public void InstructorQuizGrade(View view) {
-        Intent intent = new Intent(this, InstructorQuizGrade.class);
+        Intent intent = new Intent(this, InstructorQuizGradeActivity.class);
         startActivity(intent);
 
     }
