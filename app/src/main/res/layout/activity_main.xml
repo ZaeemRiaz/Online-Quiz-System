@@ -47,13 +47,5 @@
         android:text="Login"
         app:layout_constraintTop_toBottomOf="@+id/teacher_add_edit_question" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/AttemptQuizbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="AttemptQuiz"
-        android:text="AttemptQuizbtn"
-        app:layout_constraintTop_toBottomOf="@+id/Login" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

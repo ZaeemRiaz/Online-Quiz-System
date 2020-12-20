@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".InstructorQuizBankListActivity">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/item_instructor_bank_quiz_list_layout1"
@@ -71,15 +70,13 @@
                     android:layout_height="wrap_content"
                     android:text="Difficult"
                     android:textSize="15sp" />
-
             </LinearLayout>
-        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_item_instructor_quiz_bank_list1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent" />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_item_instructor_quiz_generation_manual_list1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -147,15 +144,13 @@
                     android:layout_height="wrap_content"
                     android:text="Medium"
                     android:textSize="15sp" />
-
             </LinearLayout>
-        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_item_instructor_quiz_bank_list2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent" />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_item_instructor_quiz_generation_manual_list2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -223,16 +218,33 @@
                     android:layout_height="wrap_content"
                     android:text="Easy"
                     android:textSize="15sp" />
-
             </LinearLayout>
-        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_item_instructor_quiz_bank_list3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent" />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_item_instructor_quiz_generation_manual_list3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </RelativeLayout>
 
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:onClick="InstructorQuizGenerationManualGenerate"
+        android:text="Generate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="0.2"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:onClick="InstructorQuizGenerationManualBack"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="0.2"
+        app:layout_constraintLeft_toLeftOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

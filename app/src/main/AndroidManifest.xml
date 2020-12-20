@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineQuizSystem">
-        <activity android:name=".AttemptQuiz" />
-        <activity android:name=".ListOfQuizesStudentSide" />
+        <activity android:name=".InstructorQuizGrade" />
+        <activity android:name=".InstructorQuizGeneration" />
         <activity android:name=".Login" />
         <activity android:name=".InstructorAddEditQuestion" />
         <activity android:name=".InstructorQuizListActivity" />

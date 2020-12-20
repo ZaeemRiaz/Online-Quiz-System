@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".InstructorQuizFeedbackActivity">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/quiz_feedback_quiz_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,14 +26,14 @@
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@id/quiz_feedback_quiz_title">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".7"
             android:text="Total Students:"
             android:textSize="20dp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".3"
@@ -50,14 +50,14 @@
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@id/quiz_feedback_ll1">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".7"
             android:text="Quizzes Attempted:"
             android:textSize="20dp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".3"
@@ -74,14 +74,14 @@
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@id/quiz_feedback_ll2">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".7"
             android:text="Average Time Taken:"
             android:textSize="20dp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".3"
@@ -90,7 +90,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/quiz_feedback_quiz_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".InstructorAddEditQuestion">
+    android:layout_height="match_parent">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_edit_question_statement_layout_ow"
+        android:id="@+id/instructor_quiz_generation_automatic_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Question Statement Here"
+        android:hint="Enter Total Marks Here"
         app:hintTextColor="@color/black"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_edit_answer_statement_layout_ow"
+        android:id="@+id/instructor_quiz_generation_automatic_layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter One Word Answer Here"
+        android:hint="Enter Number of Questions Here"
         app:hintTextColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/add_edit_question_statement_layout_ow">
+        app:layout_constraintTop_toBottomOf="@id/instructor_quiz_generation_automatic_layout1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890" />
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,8 +40,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
-        android:onClick="InstructorAddEditQuestionOwSave"
-        android:text="@string/save"
+        android:onClick="InstructorQuizGenerationAutomaticGenerate"
+        android:text="Generate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintRight_toRightOf="parent" />
@@ -51,7 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:onClick="InstructorAddEditQuestionOwBack"
+        android:onClick="InstructorQuizGenerationAutomaticBack"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="0.2"
