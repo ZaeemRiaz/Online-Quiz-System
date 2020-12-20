@@ -9,14 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineQuizSystem">
-        <activity android:name=".InstructorMainMenuActivity"></activity>
-        <activity android:name=".InstructorQuizGradeActivity" />
-        <activity android:name=".InstructorQuizGenerationActivity" />
+        <activity
+            android:name=".InstructorMainMenuActivity"
+            android:parentActivityName=".Login" />
+        <activity
+            android:name=".InstructorQuizGradeActivity"
+            android:parentActivityName=".InstructorQuizListActivity" />
+        <activity
+            android:name=".InstructorQuizGenerationActivity"
+            android:parentActivityName=".InstructorMainMenuActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".InstructorAddEditQuestionActivity" />
-        <activity android:name=".InstructorQuizListActivity" />
-        <activity android:name=".InstructorQuestionBankListActivity" />
-        <activity android:name=".InstructorQuizFeedbackActivity" />
+        <activity
+            android:name=".InstructorAddEditQuestionActivity"
+            android:parentActivityName=".InstructorQuestionBankListActivity" />
+        <activity
+            android:name=".InstructorQuizListActivity"
+            android:parentActivityName=".InstructorMainMenuActivity" />
+        <activity
+            android:name=".InstructorQuestionBankListActivity"
+            android:parentActivityName=".InstructorMainMenuActivity" />
+        <activity
+            android:name=".InstructorQuizFeedbackActivity"
+            android:parentActivityName=".InstructorQuizListActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

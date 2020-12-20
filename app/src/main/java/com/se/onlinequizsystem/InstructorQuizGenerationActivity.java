@@ -1,5 +1,6 @@
 package com.se.onlinequizsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -41,6 +42,8 @@ public class InstructorQuizGenerationActivity extends AppCompatActivity {
     }
 
     public void InstructorQuizGenerationManualGenerate(View view) {
+        Intent intent = new Intent(this, InstructorQuizListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorQuizGenerationManualBack(View view) {
@@ -50,6 +53,8 @@ public class InstructorQuizGenerationActivity extends AppCompatActivity {
     }
 
     public void InstructorQuizGenerationAutomaticGenerate(View view) {
+        Intent intent = new Intent(this, InstructorQuizListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorQuizGenerationAutomaticBack(View view) {
@@ -59,6 +64,8 @@ public class InstructorQuizGenerationActivity extends AppCompatActivity {
     }
 
     public void InstructorQuizGenerationAutomaticDifficultyGenerate(View view) {
+        Intent intent = new Intent(this, InstructorQuizListActivity.class);
+        startActivity(intent);
     }
 
     public void InstructorAddEditQuestionObjectiveDifficultyBack(View view) {

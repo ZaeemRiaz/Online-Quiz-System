@@ -24,4 +24,8 @@ public class InstructorMainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void InstructorQuizGenerationButton(View view) {
+        Intent intent = new Intent(this, InstructorQuizGenerationActivity.class);
+        startActivity(intent);
+    }
 }

@@ -14,7 +14,6 @@
         android:text="Instructor Quiz List"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/question_bank_list_button"
         android:layout_width="match_parent"
@@ -22,5 +21,13 @@
         android:onClick="InstructorQuestionBankListButton"
         android:text="Instructor Quiz Bank"
         app:layout_constraintTop_toBottomOf="@id/instructor_quiz_list_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/instructor_quiz_generation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="InstructorQuizGenerationButton"
+        android:text="Instructor Quiz Generation"
+        app:layout_constraintTop_toBottomOf="@+id/question_bank_list_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
