@@ -30,4 +30,9 @@ public class Login extends AppCompatActivity {
         if(emailAddress.getText().toString().equals("stu")&&password.getText().toString().equals("123")){
         }
     }
+    public void LoginButtontest(View view) {
+        Intent intent = new Intent(this, View_Quiz_Mcq_single_ans.class);
+        startActivity(intent);
+    }
+
 }
