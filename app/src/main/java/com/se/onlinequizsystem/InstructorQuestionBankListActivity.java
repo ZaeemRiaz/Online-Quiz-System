@@ -25,6 +25,12 @@ public class InstructorQuestionBankListActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        // Not calling super, disables back button in current screen.
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_question_bank, menu);
@@ -34,7 +40,7 @@ public class InstructorQuestionBankListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle item selection
-         Intent intent;
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.quiz_list_menu_button:
                 intent = new Intent(this, InstructorQuizListActivity.class);

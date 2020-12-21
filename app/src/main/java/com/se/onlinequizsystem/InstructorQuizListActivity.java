@@ -53,6 +53,12 @@ public class InstructorQuizListActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        // Not calling super, disables back button in current screen.
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_quiz_list, menu);
