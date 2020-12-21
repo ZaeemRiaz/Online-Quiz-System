@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 public class View_Quiz_Mcq_single_ans extends AppCompatActivity {
     private static final String TAG = "View_Quiz_Mcq_single_an";
@@ -13,6 +14,7 @@ public class View_Quiz_Mcq_single_ans extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view__quiz__mcq_single_ans);
+
     }
 
     public void ViewQuizSANext(View view) {
@@ -54,4 +56,10 @@ public class View_Quiz_Mcq_single_ans extends AppCompatActivity {
     public void ViewQuizOWBack(View view) {
         setContentView(R.layout.view_quiz_subjective_multiple_words);
     }
+
+
+
+
+
+
 }

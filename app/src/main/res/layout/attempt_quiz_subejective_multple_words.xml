@@ -15,6 +15,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
+
+
         android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,18 +83,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"></TextView>
 
-            <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="367dp"
-                android:layout_height="158dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/sub_words_Next_button"
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="360dp"
+                android:layout_height="154dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="14dp"
+                android:text="Here is your answer"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sub_words_question" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
