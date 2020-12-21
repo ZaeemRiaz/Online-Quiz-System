@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".Attempt_Quiz_2">
-    <Spinner
 
+    <Spinner
         android:id="@+id/spinner5"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="146dp"
+        android:layout_marginTop="60dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" ></Spinner>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="230dp"
@@ -31,7 +31,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/spinner5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" ></TextView>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -99,8 +99,7 @@
                 android:text="Submit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.842"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="15dp"
                 app:layout_constraintTop_toBottomOf="@+id/mcq_tf_myRadioGroup"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -116,7 +115,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView"
@@ -128,7 +127,7 @@
                 android:text="Time Left"
                 app:layout_constraintEnd_toStartOf="@+id/MCQ_single_timer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/mcq_tf_button4"
@@ -136,8 +135,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="StudentAttemptQuizObjectiveTFBackButton"
                 android:text="Back"
-                app:layout_constraintEnd_toStartOf="@+id/mcq_tf_Next_button"
-                app:layout_constraintHorizontal_bias="0.08"
+                android:layout_marginStart="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/mcq_tf_Next_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -149,11 +147,10 @@
         android:layout_height="64dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="246dp"
-        android:layout_marginBottom="160dp"
-
+        android:layout_marginBottom="10dp"
         android:onClick="StudentAttemptQuizStartButton"
         android:text="Go to First Question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></Button>
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

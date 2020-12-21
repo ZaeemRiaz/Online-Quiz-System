@@ -7,22 +7,20 @@
     android:orientation="horizontal"
     tools:context=".Attempt_Quiz_2">
 
-
     <Spinner
-
         android:id="@+id/spinner3"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="146dp"
+        android:layout_marginTop="60dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" ></Spinner>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="230dp"
@@ -33,7 +31,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/spinner3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" ></TextView>
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,8 +40,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-
-
         android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:layout_marginBottom="10dp">
-
 
             <TextView
                 android:id="@+id/sub_words_question"
@@ -69,12 +65,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.208" />
 
-
             <Button
                 android:id="@+id/sub_words_Next_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="169dp"
+                android:layout_marginEnd="15dp"
                 android:onClick="StudentAttemptQuizSubjectiveNextButton"
                 android:text="Next"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,9 +88,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView"
@@ -107,7 +100,7 @@
                 android:text="Time Left"
                 app:layout_constraintEnd_toStartOf="@+id/MCQ_single_timer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
@@ -118,27 +111,22 @@
                 android:layout_marginEnd="17dp"
                 android:ems="10"
                 android:gravity="top"
-                android:inputType="textPersonName"
                 android:hint="Give your answer here"
+                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sub_words_question" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="151dp"
         android:layout_height="64dp"
-        android:onClick="StudentAttemptQuizObjectiveSANextButton"
-
         android:layout_marginStart="246dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="StudentAttemptQuizObjectiveSANextButton"
         android:text="Go to last question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
