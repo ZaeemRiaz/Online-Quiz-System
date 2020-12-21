@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:padding="10dp"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    tools:context=".View_Quiz_Mcq_single_ans">
 
 
     <androidx.cardview.widget.CardView
@@ -34,12 +36,13 @@
                 android:layout_marginTop="19dp"
                 android:layout_marginEnd="43dp"
                 android:padding="2dp"
-                android:textSize="15sp"
                 android:text="0/1"
                 android:textColor="@color/black"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/sub_ow_question"
                 android:layout_width="wrap_content"
@@ -59,7 +62,8 @@
                 android:id="@+id/sub_ow_Next_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Next"
+                android:onClick="ViewQuizOWSubmit"
+                android:text="Submit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.842"
@@ -70,6 +74,7 @@
                 android:id="@+id/sub_ow_button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="ViewQuizOWBack"
                 android:text="Back"
 
                 app:layout_constraintEnd_toStartOf="@+id/sub_ow_Next_button"
@@ -104,7 +109,8 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4" >
+        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -114,11 +120,11 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Correct Answer:"
                 android:background="@color/purple_500"
+                android:padding="2dp"
+                android:text="Correct Answer:"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:padding="2dp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
