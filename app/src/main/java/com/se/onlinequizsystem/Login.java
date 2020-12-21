@@ -28,6 +28,8 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
         }
         if(emailAddress.getText().toString().equals("stu")&&password.getText().toString().equals("123")){
+            Intent intent = new Intent(this, ListOfQuizesStudentSide.class);
+            startActivity(intent);
         }
     }
     public void LoginButtontest(View view) {
