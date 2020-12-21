@@ -15,6 +15,7 @@ public class View_Quiz_Mcq_single_ans extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view__quiz__mcq_single_ans);
 
+
     }
 
     public void ViewQuizSANext(View view) {

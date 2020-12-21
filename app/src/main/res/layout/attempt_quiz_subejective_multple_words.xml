@@ -8,6 +8,32 @@
     tools:context=".Attempt_Quiz_2">
 
 
+    <Spinner
+
+        android:id="@+id/spinner3"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="146dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" ></Spinner>
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="230dp"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="5dp"
+        android:text="Jump to question:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" ></TextView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,7 +119,7 @@
                 android:ems="10"
                 android:gravity="top"
                 android:inputType="textPersonName"
-                android:text="Give your answer here"
+                android:hint="Give your answer here"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sub_words_question" />
@@ -103,5 +129,19 @@
 
 
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="151dp"
+        android:layout_height="64dp"
+        android:onClick="StudentAttemptQuizObjectiveSANextButton"
+
+        android:layout_marginStart="246dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="132dp"
+        android:text="Go to last question"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
