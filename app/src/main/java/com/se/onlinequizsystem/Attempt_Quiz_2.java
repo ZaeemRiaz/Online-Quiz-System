@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,7 +16,7 @@ public class Attempt_Quiz_2 extends AppCompatActivity {
         setContentView(R.layout.activity_attempt__quiz_2);
 
         Button B= findViewById(R.id.start_button2);
-        String Qtype= "MCQ2";
+        final String  Qtype= "MCQ2";
 
         B.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -41,6 +42,11 @@ public class Attempt_Quiz_2 extends AppCompatActivity {
                 }
             }
         });
+
+
+        //final LayoutInflater inflater=  getLayoutInflater();
+        //View view = inflater.inflate(R.layout.attempt_quiz_mcq_multiple_ans, null);
+
 
 
     }
