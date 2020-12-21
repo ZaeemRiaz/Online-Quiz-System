@@ -2,18 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".Attempt_Quiz_2">
 
     <androidx.cardview.widget.CardView
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:paddingBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
-
 
             <TextView
                 android:id="@+id/MCQ_single_question"
@@ -42,10 +42,9 @@
             <RadioGroup
                 android:id="@+id/MCQ_single_myRadioGroup"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:checkedButton="@+id/sound"
+                android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -70,13 +69,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choice 3" />
-
             </RadioGroup>
 
             <Button
                 android:id="@+id/MCQ_single_Next_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:onClick="StudentAttemptQuizObjectiveSANextButton"
                 android:text="Next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,8 +102,8 @@
                 android:id="@+id/MCQ_single_button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="StudentAttemptQuizObjectiveSABackButton"
                 android:text="Back"
-
                 app:layout_constraintEnd_toStartOf="@+id/MCQ_single_Next_button"
                 app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,10 +120,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/MCQ_single_timer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

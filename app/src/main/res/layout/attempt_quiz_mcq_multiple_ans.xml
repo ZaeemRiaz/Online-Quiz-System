@@ -2,18 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".Attempt_Quiz_2">
 
     <androidx.cardview.widget.CardView
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:paddingBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:layout_marginBottom="10dp">
-
 
             <TextView
                 android:id="@+id/MCQ_mul_question"
@@ -39,19 +39,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.208" />
 
-
             <Button
                 android:id="@+id/MCQ_mul_Next_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="170dp"
-
                 android:layout_marginEnd="15dp"
+                android:onClick="StudentAttemptQuizObjectiveMANextButton"
                 android:text="Next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/MCQ_mul_button4" />
-
 
             <TextView
                 android:id="@+id/MCQ_mul_timer"
@@ -72,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-
+                android:onClick="StudentAttemptQuizObjectiveMABackButton"
                 android:text="Back"
                 app:layout_constraintEnd_toStartOf="@+id/MCQ_mul_Next_button"
                 app:layout_constraintHorizontal_bias="0.08"
@@ -115,10 +113,6 @@
                 app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_button4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

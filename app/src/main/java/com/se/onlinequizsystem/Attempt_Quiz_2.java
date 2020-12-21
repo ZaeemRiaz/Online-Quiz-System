@@ -14,34 +14,34 @@ public class Attempt_Quiz_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attempt__quiz_2);
-
-        Button B= findViewById(R.id.start_button2);
-        final String  Qtype= "MCQ2";
-
-        B.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(Qtype=="MCQ1")
-                {
-                    setContentView(R.layout.attempt_quiz_mcq_single_ans);
-                }
-                else if(Qtype=="MCQ2")
-                {
-                    setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
-                }
-                else if(Qtype=="MCQ3")
-                {
-                    setContentView(R.layout.attempt_quiz_truefalse);
-                }
-                else if(Qtype=="S1")
-                {
-                    setContentView(R.layout.attempt_quiz_subjective_ow);
-                }
-                else if(Qtype=="S2")
-                {
-                    setContentView(R.layout.attempt_quiz_subejective_multple_words);
-                }
-            }
-        });
+//
+//        Button B= findViewById(R.id.start_button2);
+//        final String  Qtype= "MCQ2";
+//
+//        B.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                if(Qtype=="MCQ1")
+//                {
+//                    setContentView(R.layout.attempt_quiz_mcq_single_ans);
+//                }
+//                else if(Qtype=="MCQ2")
+//                {
+//                    setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
+//                }
+//                else if(Qtype=="MCQ3")
+//                {
+//                    setContentView(R.layout.attempt_quiz_truefalse);
+//                }
+//                else if(Qtype=="S1")
+//                {
+//                    setContentView(R.layout.attempt_quiz_subjective_ow);
+//                }
+//                else if(Qtype=="S2")
+//                {
+//                    setContentView(R.layout.attempt_quiz_subejective_multple_words);
+//                }
+//            }
+//        });
 
 
         //final LayoutInflater inflater=  getLayoutInflater();
@@ -52,4 +52,44 @@ public class Attempt_Quiz_2 extends AppCompatActivity {
     }
 
 
+    public void StudentAttemptQuizStartButton(View view) {
+        setContentView(R.layout.attempt_quiz_subejective_multple_words);
+    }
+
+    public void StudentAttemptQuizSubjectiveNextButton(View view) {
+        setContentView(R.layout.attempt_quiz_subjective_ow);
+    }
+
+    public void StudentAttemptQuizObjectiveOWNextButton(View view) {
+        setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
+    }
+
+    public void StudentAttemptQuizObjectiveOWBackButton(View view) {
+        setContentView(R.layout.attempt_quiz_subejective_multple_words);
+    }
+
+    public void StudentAttemptQuizObjectiveMANextButton(View view) {
+        setContentView(R.layout.attempt_quiz_mcq_single_ans);
+    }
+
+    public void StudentAttemptQuizObjectiveMABackButton(View view) {
+        setContentView(R.layout.attempt_quiz_subjective_ow);
+    }
+
+    public void StudentAttemptQuizObjectiveSANextButton(View view) {
+        setContentView(R.layout.attempt_quiz_truefalse);
+    }
+
+    public void StudentAttemptQuizObjectiveSABackButton(View view) {
+        setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
+    }
+
+    public void StudentAttemptQuizObjectiveTFSubmitButton(View view) {
+        Intent intent = new Intent(this, ListOfQuizesStudentSide.class);
+        startActivity(intent);
+    }
+
+    public void StudentAttemptQuizObjectiveTFBackButton(View view) {
+        setContentView(R.layout.attempt_quiz_mcq_single_ans);
+    }
 }

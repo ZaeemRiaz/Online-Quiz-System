@@ -46,7 +46,7 @@ public class View_Quiz_Mcq_single_ans extends AppCompatActivity {
         setContentView(R.layout.view_quiz_mcq_mul_ans);
     }
 
-    public void ViewQuizOWSubmit(View view) {
+    public void ViewQuizOWCloseButton(View view) {
         Intent intent = new Intent(this, ListOfQuizesStudentSide.class);
         startActivity(intent);
     }
