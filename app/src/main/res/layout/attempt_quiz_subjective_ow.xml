@@ -81,7 +81,7 @@
                 android:id="@+id/sub_ow_button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Back"
+                android:text="Previous"
 
                 app:layout_constraintEnd_toStartOf="@+id/sub_ow_Next_button"
                 app:layout_constraintHorizontal_bias="0.08"

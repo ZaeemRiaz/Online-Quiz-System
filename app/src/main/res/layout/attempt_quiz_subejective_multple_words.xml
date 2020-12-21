@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
 
-                android:text="Back"
+                android:text="Previous"
                 app:layout_constraintEnd_toStartOf="@+id/sub_words_Next_button"
                 app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"

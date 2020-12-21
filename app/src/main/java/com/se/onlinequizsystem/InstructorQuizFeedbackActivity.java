@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class InstructorQuizFeedbackActivity extends AppCompatActivity {
 
     private static final String TAG = "=== InstructorQuizFeedback ===";

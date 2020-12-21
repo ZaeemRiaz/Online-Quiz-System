@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LoginButton(View view) {
-        Intent intent = new Intent(this, View_Quiz_Mcq_single_ans.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 
