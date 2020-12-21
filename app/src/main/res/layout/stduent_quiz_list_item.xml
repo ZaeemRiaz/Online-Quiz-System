@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Subject:"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.046"
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textStyle="bold"
                 android:text="Active Duration: "
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,13 +50,13 @@
                 android:id="@+id/attempt_quiz"
                 android:layout_width="130dp"
                 android:layout_height="43dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginEnd="244dp"
+                android:layout_marginBottom="16dp"
                 android:onClick="AttemptListener"
                 android:text="Attempt"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -64,7 +66,8 @@
                 android:layout_marginStart="87dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="18dp"
-                android:text="time left"
+                android:text="Time left"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/time_left"
                 app:layout_constraintStart_toEndOf="@+id/subject"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="8dp"
+                android:textStyle="bold"
                 android:layout_marginEnd="20dp"
                 android:text="Status: "
                 app:layout_constraintEnd_toStartOf="@+id/time"
@@ -87,11 +91,11 @@
                 android:id="@+id/subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="137dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toStartOf="@+id/time_left"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/sub"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
@@ -101,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Marks:"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.045"
@@ -112,24 +117,25 @@
                 android:id="@+id/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="31dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="41dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="62dp"
+                android:layout_marginEnd="200dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/Active_duration"
-                app:layout_constraintTop_toBottomOf="@+id/subject" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/time"
                 android:layout_width="97dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="28dp"
                 android:layout_marginTop="9dp"
-                android:layout_marginEnd="200dp"
                 android:layout_marginBottom="5dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/marks"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/total_time"
                 app:layout_constraintTop_toBottomOf="@+id/Active_duration"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -137,13 +143,13 @@
                 android:id="@+id/marks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="96dp"
-                android:layout_marginBottom="76dp"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="111dp"
                 android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button"
-                app:layout_constraintStart_toEndOf="@+id/orderdate" />
+                app:layout_constraintStart_toEndOf="@+id/orderdate"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
 
             <TextView
                 android:id="@+id/time_left"
@@ -159,28 +165,15 @@
                 android:id="@+id/button"
                 android:layout_width="130dp"
                 android:layout_height="43dp"
-                android:layout_marginStart="49dp"
+                android:layout_marginStart="99dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="16dp"
                 android:onClick="ViewQuiztListener"
                 android:text="View Quiz"
-                app:layout_constraintBottom_toTopOf="@+id/attempt_quiz"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/duration" />
+                app:layout_constraintStart_toEndOf="@+id/attempt_quiz" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="130dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="27dp"
-                android:layout_marginEnd="16dp"
-                android:text="Feedback"
-                android:onClick="FeedbackQuiztListener"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/time"
-                app:layout_constraintTop_toBottomOf="@+id/left" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

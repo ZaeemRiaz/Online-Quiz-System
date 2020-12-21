@@ -40,10 +40,7 @@ public class ListOfQuizesStudentSide extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void FeedbackQuiztListener(View view) {
-        Intent intent = new Intent(this, Student_Feedback.class);
-        startActivity(intent);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

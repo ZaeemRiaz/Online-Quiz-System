@@ -96,7 +96,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/MCQ_single_Next_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" ></TextView>
 
             <Button
                 android:id="@+id/MCQ_single_button4"
@@ -119,7 +119,7 @@
                 android:text="Time Left"
                 app:layout_constraintEnd_toStartOf="@+id/MCQ_single_timer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" ></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

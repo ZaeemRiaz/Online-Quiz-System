@@ -24,7 +24,6 @@
         <activity android:name=".InstructorQuestionBankListActivity" />
         <activity android:name=".InstructorQuizFeedbackActivity" />
         <activity android:name=".ListOfQuizesStudentSide" />
-        <activity android:name=".Student_Feedback" />
         <activity android:name=".Attempt_Quiz_2" />
     </application>
 
