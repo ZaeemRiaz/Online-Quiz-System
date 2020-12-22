@@ -17,41 +17,41 @@ import java.util.ArrayList;
 
 class AttemptRow
 {
-    String subject;
-    String duration;
-    String total_time;
+    String course;
+    String totaltime;
+    String status;
     String marks;
-    String time_left;
+    String remaining_time;
     String ButtonTxt;
 
 
 
-    public AttemptRow(String r, String o, String or, String b, String t) {
+    public AttemptRow(String x, String y, String z, String a, String b) {
 
-        subject=r;
-        duration=o;
-        total_time=or;
-        marks=b;
-        time_left=t;
+        course=x;
+        totaltime=y;
+        status=z;
+        marks=a;
+        remaining_time=b;
     }
 }
 public class StudentQuizListdapter extends RecyclerView.Adapter<StudentQuizListdapter.AttemptQuizHolder> {
-    protected ArrayList<AttemptRow> quizzes;
+    protected ArrayList<AttemptRow> quizzList;
     private AttemptQuizHolder holder;
     private int position;
 
     public StudentQuizListdapter(Context c) {
-        this.quizzes= new ArrayList<AttemptRow>();
+        this.quizzList= new ArrayList<AttemptRow>();
         Resources res=c.getResources();
-        String[]subjects=res.getStringArray(R.array.subjects);
-        String[]durations=res.getStringArray(R.array.durations);
-        String[]times=res.getStringArray(R.array.total_times); //totaltime->status
+        String[]coursess=res.getStringArray(R.array.subjects);
+        String[]totaltimes=res.getStringArray(R.array.durations);
+        String[]statuss=res.getStringArray(R.array.Status);
         String[]markss=res.getStringArray(R.array.marks);
-        String[]time_lefts=res.getStringArray(R.array.timeleft);
+        String[]Remaining_time=res.getStringArray(R.array.timeleft);
 
-        for(int i=0;i<subjects.length;i++)
+        for(int i=0;i<coursess.length;i++)
         {
-            quizzes.add(new AttemptRow(subjects[i], durations[i], times[i], markss[i], time_lefts[i]));
+            quizzList.add(new AttemptRow(coursess[i], totaltimes[i], statuss[i], markss[i], Remaining_time[i]));
         }
     }
     @NonNull
@@ -68,39 +68,39 @@ public class StudentQuizListdapter extends RecyclerView.Adapter<StudentQuizListd
     @Override
     public void onBindViewHolder(@NonNull StudentQuizListdapter.AttemptQuizHolder holder, int position) {
 
-        holder.txt1.setText(quizzes.get(position).subject);
-        holder.txt2.setText(quizzes.get(position).duration);
-        holder.txt3.setText(quizzes.get(position).total_time);
-        holder.txt4.setText(quizzes.get(position).marks);
-        holder.txt5.setText(quizzes.get(position).time_left);
+        holder.t1.setText(quizzList.get(position).course);
+        holder.t2.setText(quizzList.get(position).totaltime);
+        holder.t3.setText(quizzList.get(position).status);
+        holder.t4.setText(quizzList.get(position).marks);
+        holder.t5.setText(quizzList.get(position).remaining_time);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return quizzes.size();
+        return quizzList.size();
     }
 
     public class AttemptQuizHolder extends RecyclerView.ViewHolder
     {
 
-        TextView txt1;
-        TextView txt2;
-        TextView txt3;
-        TextView txt4;
-        TextView txt5;
+        TextView t1;
+        TextView t2;
+        TextView t3;
+        TextView t4;
+        TextView t5;
 
         public AttemptQuizHolder (@NonNull View itemView) {
 
             super(itemView);
 
-            txt1=itemView.findViewById(R.id.subject);
+            t1=itemView.findViewById(R.id.subject);
 
-            txt2=itemView.findViewById(R.id.duration);
-            txt3=itemView.findViewById(R.id.time);
-            txt4=itemView.findViewById(R.id.marks);
-            txt5=itemView.findViewById(R.id.time_left);
+            t2=itemView.findViewById(R.id.duration);
+            t3=itemView.findViewById(R.id.time);
+            t4=itemView.findViewById(R.id.marks);
+            t5=itemView.findViewById(R.id.time_left);
 
         }
     }

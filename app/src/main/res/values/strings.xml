@@ -38,7 +38,7 @@
         <item>90 mins</item>
     </string-array>
 
-    <string-array name="total_times">
+    <string-array name="Status">
         <item>Attempted</item>
         <item>Graded</item>
         <item>Active</item>
