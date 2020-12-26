@@ -21,7 +21,7 @@ public class ListOfQuizesStudentSide extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_quizes_student_side);
         RecyclerView list = findViewById(R.id.recyclerViewActiveQuizzes);
         list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new StudentQuizListdapter(this));
+        list.setAdapter(new StudentQuizListAdapter(this));
     }
 
     @Override

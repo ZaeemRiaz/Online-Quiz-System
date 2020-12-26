@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,12 +34,12 @@ class AttemptRow
         remaining_time=b;
     }
 }
-public class StudentQuizListdapter extends RecyclerView.Adapter<StudentQuizListdapter.AttemptQuizHolder> {
+public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizListAdapter.AttemptQuizHolder> {
     protected ArrayList<AttemptRow> quizzList;
     private AttemptQuizHolder holder;
     private int position;
 
-    public StudentQuizListdapter(Context c) {
+    public StudentQuizListAdapter(Context c) {
         this.quizzList= new ArrayList<AttemptRow>();
         Resources res=c.getResources();
         String[]coursess=res.getStringArray(R.array.subjects);
@@ -56,17 +55,17 @@ public class StudentQuizListdapter extends RecyclerView.Adapter<StudentQuizListd
     }
     @NonNull
     @Override
-    public StudentQuizListdapter.AttemptQuizHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public StudentQuizListAdapter.AttemptQuizHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View view=inflater.inflate(R.layout.stduent_quiz_list_item, parent,false);
-        return new StudentQuizListdapter.AttemptQuizHolder(view);
+        return new StudentQuizListAdapter.AttemptQuizHolder(view);
 
     }
 
 
 
     @Override
-    public void onBindViewHolder(@NonNull StudentQuizListdapter.AttemptQuizHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StudentQuizListAdapter.AttemptQuizHolder holder, int position) {
 
         holder.t1.setText(quizzList.get(position).course);
         holder.t2.setText(quizzList.get(position).totaltime);
