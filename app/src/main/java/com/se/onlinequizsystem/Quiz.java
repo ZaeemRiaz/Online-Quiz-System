@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 public class Quiz implements Serializable {
@@ -38,9 +36,6 @@ public class Quiz implements Serializable {
     }
 
     public static ArrayList<Quiz> getAllQuiz(Context context) {
-//        Connection c = null;
-//        PreparedStatement stmt = null;
-//        String sql;
         int quizID;
         String quizName;
         int difficulty;
@@ -60,7 +55,6 @@ public class Quiz implements Serializable {
             Log.d(TAG, "getAllQuiz: select all from quiz");
             String query = "select * from quiz";
             Cursor cursor = db.rawQuery(query, null);
-//            if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
             while (cursor.moveToNext()) {
                 quizID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("quizID")));
                 quizName = cursor.getString(cursor.getColumnIndex("quizName"));
@@ -78,7 +72,6 @@ public class Quiz implements Serializable {
                 listOfQuiz.add(new Quiz(quizID, quizName, difficulty, openTime_epoch, closeTime_epoch, TotalTime,
                         totalQuestions, totalMarks, instructions, listOfQuestions));
             }
-//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -105,51 +98,6 @@ public class Quiz implements Serializable {
                 question.updateQuestion(context);
             }
         }
-
-//
-//        try {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:testq.db");
-//            c.setAutoCommit(false);
-//            System.out.println("Opened database successfully");
-//            sql = "select * from quiz";
-//            stmt = c.prepareStatement(sql);
-//
-//            ResultSet res = stmt.executeQuery();
-//            while (res.next()) {
-//                quizID = res.getInt("quizID");
-//                quizName = res.getString("quizName");
-//                difficulty = res.getInt("difficulty");
-//                openTime_epoch = res.getLong("openTime");
-//                closeTime_epoch = res.getLong("closeTime");
-//                TotalTime = res.getInt("totalTimeInSeconds");
-//                totalQuestions = res.getInt("totalQuestions");
-//                totalMarks = res.getInt("totalMarks");
-//                instructions = res.getString("instructions");
-//
-//
-//                //get all questions
-//                PreparedStatement prep = c.prepareStatement("select * from quizQuestions where quizID = ?;");
-//                prep.setInt(1, quizID);
-//                ResultSet quizQuestionIDs = prep.executeQuery();
-//                ArrayList<Question> listOfQuestions = new ArrayList<Question>();
-//
-//                while (quizQuestionIDs.next()) {
-//                    questionID = quizQuestionIDs.getInt("questionID");
-//                    listOfQuestions.add(new Question(questionID));
-//                }
-//
-//                listOfQuiz.add(new Quiz(quizID, quizName, difficulty, openTime_epoch, closeTime_epoch, TotalTime,
-//                        totalQuestions, totalMarks, instructions, listOfQuestions));
-//
-//
-//            }
-//            stmt.close();
-//            c.commit();
-//            c.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
         Log.d(TAG, "getAllQuiz: quiz list generated ");
         return listOfQuiz;

@@ -25,41 +25,16 @@ public class Login {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-//            c.setAutoCommit(false);
-//            System.out.println("Opened database successfully");
             String query = "select * from users where userName=? and uPassword=?";
-            Cursor cursor = db.rawQuery(query, new String[] { id, password });
-            if( cursor != null && cursor.moveToFirst() ){                   // Always one row returned.
+            Cursor cursor = db.rawQuery(query, new String[]{id, password});
+            if (cursor != null && cursor.moveToFirst()) {                   // Always one row returned.
                 type = Integer.parseInt(cursor.getString(cursor.getColumnIndex("uType")));
                 Log.d(TAG, "loginUser: login successful");
-            }
-            else{
+            } else {
                 Log.d(TAG, "loginUser: login unsuccessful   nothing returned");
             }
             db.close();
 
-//            sql = "select * from users where userName=? and uPassword=?";
-//            stmt = c.prepareStatement(sql);
-            // Parameters
-//            stmt.bindString(1, id);
-//            stmt.bindString(2, password);
-            // Execute
-//            ResultSet res = stmt.executeQuery();
-//            if (res.next()) {
-////            System.out.println("Login successful!");
-//
-//                Log.d(TAG, "loginUser: login successful");
-//                type = res.getInt("uType");
-//
-//                exists = 1;
-//            }
-//            Log.d(TAG, "loginUser: login unsuccessful");
-//
-//            stmt.close();
-//            c.commit();
-//            c.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -225,18 +200,4 @@ public class Login {
         }
     }
 
-    public static void main(String[] args) {
-        // DBmanager.createDB();
-        // DBmanager.bogusEntries();
-        Question temp = fetchMCQ(1);
-//      System.out.println(temp.qText);
-        int[] arr = {4, 2};
-//      System.out.println(checkObjective(temp.qId, arr));
-        // System.out.println("Hello, World!");
-        // String loginID = "Dev student #1";
-        // String loginPassword = "password";
-        // int [] res = loginUser(loginID, loginPassword);
-        // System.out.println(res[0]); //exists (0/1)
-        // System.out.println(res[1]); //userType (0-> student/1-> instructor)
-    }
 }
