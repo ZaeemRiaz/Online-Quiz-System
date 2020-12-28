@@ -38,9 +38,9 @@ public class Quiz implements Serializable {
     }
 
     public static ArrayList<Quiz> getAllQuiz(Context context) {
-        Connection c = null;
-        PreparedStatement stmt = null;
-        String sql;
+//        Connection c = null;
+//        PreparedStatement stmt = null;
+//        String sql;
         int quizID;
         String quizName;
         int difficulty;
@@ -60,25 +60,25 @@ public class Quiz implements Serializable {
             Log.d(TAG, "getAllQuiz: select all from quiz");
             String query = "select * from quiz";
             Cursor cursor = db.rawQuery(query, null);
-            if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
-                while (cursor.moveToNext()) {
-                    quizID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("quizID")));
-                    quizName = cursor.getString(cursor.getColumnIndex("quizName"));
-                    difficulty = Integer.parseInt(cursor.getString(cursor.getColumnIndex("difficulty")));
-                    openTime_epoch = Long.parseLong(cursor.getString(cursor.getColumnIndex("openTime")));
-                    closeTime_epoch = Long.parseLong(cursor.getString(cursor.getColumnIndex("closeTime")));
-                    TotalTime = Integer.parseInt(cursor.getString(cursor.getColumnIndex("totalTimeInSeconds")));
-                    totalQuestions = Integer.parseInt(cursor.getString(cursor.getColumnIndex("totalQuestions")));
-                    totalMarks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("totalMarks")));
-                    instructions = cursor.getString(cursor.getColumnIndex("instructions"));
+//            if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
+            while (cursor.moveToNext()) {
+                quizID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("quizID")));
+                quizName = cursor.getString(cursor.getColumnIndex("quizName"));
+                difficulty = Integer.parseInt(cursor.getString(cursor.getColumnIndex("difficulty")));
+                openTime_epoch = Long.parseLong(cursor.getString(cursor.getColumnIndex("openTime")));
+                closeTime_epoch = Long.parseLong(cursor.getString(cursor.getColumnIndex("closeTime")));
+                TotalTime = Integer.parseInt(cursor.getString(cursor.getColumnIndex("totalTimeInSeconds")));
+                totalQuestions = Integer.parseInt(cursor.getString(cursor.getColumnIndex("totalQuestions")));
+                totalMarks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("totalMarks")));
+                instructions = cursor.getString(cursor.getColumnIndex("instructions"));
 
-                    Log.d(TAG, "getAllQuiz: quizId: " + quizID);
-                    ArrayList<Question> listOfQuestions = new ArrayList<Question>();
+                Log.d(TAG, "getAllQuiz: quizId: " + quizID);
+                ArrayList<Question> listOfQuestions = new ArrayList<Question>();
 
-                    listOfQuiz.add(new Quiz(quizID, quizName, difficulty, openTime_epoch, closeTime_epoch, TotalTime,
-                            totalQuestions, totalMarks, instructions, listOfQuestions));
-                }
+                listOfQuiz.add(new Quiz(quizID, quizName, difficulty, openTime_epoch, closeTime_epoch, TotalTime,
+                        totalQuestions, totalMarks, instructions, listOfQuestions));
             }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -151,7 +151,7 @@ public class Quiz implements Serializable {
 //            e.printStackTrace();
 //        }
 
-
+        Log.d(TAG, "getAllQuiz: quiz list generated ");
         return listOfQuiz;
     }
 }

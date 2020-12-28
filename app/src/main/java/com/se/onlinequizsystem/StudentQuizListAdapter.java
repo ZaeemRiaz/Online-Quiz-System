@@ -68,11 +68,11 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder quizViewHolder, int position) {
         quizViewHolder.quizName.setText(quizList.get(position).quizName);
-        quizViewHolder.duration.setText(quizList.get(position).totalTime);
+        quizViewHolder.duration.setText(String.valueOf(quizList.get(position).totalTime));
         quizViewHolder.status.setText("TODO");
         // TODO: 28-Dec-20 check status
-        quizViewHolder.marks.setText(quizList.get(position).totalMarks);
-        quizViewHolder.timeLeft.setText(quizList.get(position).totalTime);
+        quizViewHolder.marks.setText(String.valueOf(quizList.get(position).totalMarks));
+        quizViewHolder.timeLeft.setText(String.valueOf(quizList.get(position).totalTime));
         quizViewHolder.attemptQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

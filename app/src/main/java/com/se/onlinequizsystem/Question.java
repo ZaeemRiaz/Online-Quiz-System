@@ -25,6 +25,14 @@ public class Question {
         qId = questionID;
     }
 
+    public Question(Integer qId, Integer qType, String qText, Integer qMarks) {
+        this.qId = qId;
+        this.qType = qType;
+        this.qText = qText;
+        this.qMarks = qMarks;
+        // Add possible answers incase of an MCQ/TF
+    }
+
     //takes questionID as int, gets and populates object from DB
     public void updateQuestion(Context context) {
 
@@ -35,31 +43,31 @@ public class Question {
             String query = "select * from Question where qID = " + qId;
             Cursor cursor = db.rawQuery(query, null);
 
-            if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
-                while (cursor.moveToNext()) {
+//            if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
+            while (cursor.moveToNext()) {
 
 //                    this.qId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qID")));
-                    this.qType = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qType")));
-                    this.qText = cursor.getString(cursor.getColumnIndex("qText"));
-                    this.qMarks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qMarks")));
+                this.qType = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qType")));
+                this.qText = cursor.getString(cursor.getColumnIndex("qText"));
+                this.qMarks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qMarks")));
 
-                    if (this.qType == 1 || this.qType == 2) {
-                        this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns1")));
-                        this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns2")));
-                        this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns3")));
-                        this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns4")));
-                        this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns1"))));
-                        this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns2"))));
-                        this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns3"))));
-                        this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns4"))));
-                    } else if (this.qType == 3) {
-                        this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns1")));
-                        this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns2")));
-                        this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns1"))));
-                        this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns2"))));
-                    }
-
+                if (this.qType == 1 || this.qType == 2) {
+                    this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns1")));
+                    this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns2")));
+                    this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns3")));
+                    this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns4")));
+                    this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns1"))));
+                    this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns2"))));
+                    this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns3"))));
+                    this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns4"))));
+                } else if (this.qType == 3) {
+                    this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns1")));
+                    this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns2")));
+                    this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns1"))));
+                    this.trueAnswers.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns2"))));
                 }
+
+//                }
             }
 
         } catch (Exception e) {
@@ -115,14 +123,6 @@ public class Question {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-    }
-
-    public Question(Integer qId, Integer qType, String qText, Integer qMarks) {
-        this.qId = qId;
-        this.qType = qType;
-        this.qText = qText;
-        this.qMarks = qMarks;
-        // Add possible answers incase of an MCQ/TF
     }
 
     public void AddOptions(List<String> temp) {

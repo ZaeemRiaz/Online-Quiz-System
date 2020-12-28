@@ -29,16 +29,16 @@ public class StudentQuizListActivity extends AppCompatActivity {
         // super.onBackPressed();
         // Not calling super, disables back button in current screen.
     }
-
-    public void AttemptListener(View view) {
-        Intent intent = new Intent(this, StudentAttemptQuiz.class);
-        startActivity(intent);
-    }
-
-    public void ViewQuiztListener(View view) {
-        Intent intent = new Intent(this, StudentViewQuiz.class);
-        startActivity(intent);
-    }
+//
+//    public void AttemptListener(View view) {
+//        Intent intent = new Intent(this, StudentAttemptQuiz.class);
+//        startActivity(intent);
+//    }
+//
+//    public void ViewQuiztListener(View view) {
+//        Intent intent = new Intent(this, StudentViewQuiz.class);
+//        startActivity(intent);
+//    }
 
 
 
