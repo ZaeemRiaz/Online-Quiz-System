@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class View_Quiz_Mcq_single_ans extends AppCompatActivity {
+public class StudentViewQuiz extends AppCompatActivity {
     private static final String TAG = "View_Quiz_Mcq_single_an";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

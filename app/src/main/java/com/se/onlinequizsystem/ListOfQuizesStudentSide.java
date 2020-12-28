@@ -31,12 +31,12 @@ public class ListOfQuizesStudentSide extends AppCompatActivity {
     }
 
     public void AttemptListener(View view) {
-        Intent intent = new Intent(this, Attempt_Quiz_2.class);
+        Intent intent = new Intent(this, StudentAttemptQuiz.class);
         startActivity(intent);
     }
 
     public void ViewQuiztListener(View view) {
-        Intent intent = new Intent(this, View_Quiz_Mcq_single_ans.class);
+        Intent intent = new Intent(this, StudentViewQuiz.class);
         startActivity(intent);
     }
 
@@ -55,7 +55,7 @@ public class ListOfQuizesStudentSide extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.student_ql_log_out:
-                intent = new Intent(this, Login.class);
+                intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 return true;
             default:

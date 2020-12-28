@@ -8,7 +8,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Attempt_Quiz_2 extends AppCompatActivity {
+public class StudentAttemptQuiz extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

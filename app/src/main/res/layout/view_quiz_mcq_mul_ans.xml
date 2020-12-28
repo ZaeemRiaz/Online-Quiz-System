@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="10dp"
-    tools:context=".View_Quiz_Mcq_single_ans">
+    tools:context=".StudentViewQuiz">
 
 
     <androidx.cardview.widget.CardView

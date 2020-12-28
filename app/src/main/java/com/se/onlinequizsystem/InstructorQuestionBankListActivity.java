@@ -48,7 +48,7 @@ public class InstructorQuestionBankListActivity extends AppCompatActivity {
 
                 return true;
             case R.id.qb_log_out:
-                intent = new Intent(this, Login.class);
+                intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
 
                 return true;

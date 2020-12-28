@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineQuizSystem">
-        <activity android:name=".View_Quiz_Mcq_single_ans"></activity>
+        <activity android:name=".StudentViewQuiz"></activity>
         <activity android:name=".InstructorQuizGradeActivity" />
         <activity android:name=".InstructorQuizGenerationActivity" />
-        <activity android:name=".Login">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
         <activity android:name=".InstructorQuestionBankListActivity" />
         <activity android:name=".InstructorQuizFeedbackActivity" />
         <activity android:name=".ListOfQuizesStudentSide" />
-        <activity android:name=".Attempt_Quiz_2" />
+        <activity android:name=".StudentAttemptQuiz" />
     </application>
 
 </manifest>
