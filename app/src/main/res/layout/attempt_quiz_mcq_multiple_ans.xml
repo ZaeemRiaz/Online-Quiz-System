@@ -104,9 +104,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="26dp"
-                android:layout_marginEnd="246dp"
+                android:layout_marginEnd="105dp"
                 android:layout_marginBottom="7dp"
-                android:text="CheckBox"
+                android:text="No flowers and poor root growth"
                 app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,23 +117,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
-                android:layout_marginEnd="246dp"
-                android:layout_marginBottom="9dp"
-                android:text="CheckBox"
-                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox3"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="105dp"
+                android:text="No flowers and poor root growth"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/MCQ_mul_checkBox" />
 
             <CheckBox
                 android:id="@+id/MCQ_mul_checkBox3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="51dp"
-                android:layout_marginEnd="246dp"
-                android:text="CheckBox"
-                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_button4"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="105dp"
+                android:text="No flowers and poor root growth"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/MCQ_mul_checkBox2" />
 
             <TextView
                 android:id="@+id/AttemptQuizMCQ_mul_qno"

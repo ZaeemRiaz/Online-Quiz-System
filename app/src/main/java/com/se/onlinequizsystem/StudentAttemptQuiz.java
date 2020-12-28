@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +36,9 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
 
         Question q= questionsList.get(Qno);
+        TextView QuestionTxt;
+        TextView QuesNo;
+        q.qType=2;
 
         if(q.qType==1)// MCQ single
         {
@@ -46,6 +52,29 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
             //set the spinners adapter to the previously created one.
             dropdown.setAdapter(adapter);
+
+            // add question
+            QuestionTxt= findViewById(R.id.MCQ_single_question);
+            QuestionTxt.setText(q.qText);
+
+            //add qno
+            QuesNo= findViewById(R.id.AttemptQuizMCQ_single_qno);
+            QuesNo.setText(String.valueOf(Qno+1));
+
+            //add options
+            RadioButton RB1;
+            RadioButton RB2;
+            RadioButton RB3;
+
+            RB1= findViewById(R.id.MCQ_single_sound);
+            RB1.setText(q.qAnsPossible.get(0));
+
+            RB2= findViewById(R.id.MCQ_single_vibration);
+            RB2.setText(q.qAnsPossible.get(1));
+
+            RB3= findViewById(R.id.MCQ_single_silent);
+            RB3.setText(q.qAnsPossible.get(2));
+
         }
 
         else if(q.qType==2) //MCQ multiple
@@ -60,6 +89,32 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
             //set the spinners adapter to the previously created one.
             dropdown.setAdapter(adapter);
+
+
+
+            // add question
+            QuestionTxt= findViewById(R.id.MCQ_mul_question);
+            QuestionTxt.setText(q.qText);
+
+            //add qno
+            QuesNo= findViewById(R.id.AttemptQuizMCQ_mul_qno);
+            QuesNo.setText(String.valueOf(Qno+1));
+
+            //add options
+            CheckBox RB1;
+            CheckBox RB2;
+            CheckBox RB3;
+
+            RB1= findViewById(R.id.MCQ_mul_checkBox);
+            RB1.setText(q.qAnsPossible.get(0));
+
+            RB2= findViewById(R.id.MCQ_mul_checkBox2);
+            RB2.setText(q.qAnsPossible.get(1));
+
+            RB3= findViewById(R.id.MCQ_mul_checkBox3);
+            RB3.setText(q.qAnsPossible.get(2));
+
+
         }
 
         else if(q.qType==3) //true false
