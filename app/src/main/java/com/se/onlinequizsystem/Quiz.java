@@ -50,6 +50,7 @@ public class Quiz implements Serializable {
         ArrayList<Quiz> listOfQuiz = new ArrayList<Quiz>();
 
         try {
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:testq.db");
             c.setAutoCommit(false);

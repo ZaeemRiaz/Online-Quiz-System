@@ -1,7 +1,9 @@
 package com.se.onlinequizsystem;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,9 +12,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Login {
-    static int[] loginUser(Context context, String id, String password) {
-        Connection c = null;
-        PreparedStatement stmt = null;
+    private static final String TAG = "=== Login ===";
+
+    static int loginUser(Context context, String id, String password) {
+//        Connection c = null;
+//        PreparedStatement stmt = null;
         String sql;
         int exists = 0;
         int type = -1;
@@ -25,29 +29,44 @@ public class Login {
 //            c = DriverManager.getConnection("jdbc:sqlite:test.db");
 //            c.setAutoCommit(false);
 //            System.out.println("Opened database successfully");
-
-
-            sql = "select * from users where userName=? and uPassword=?";
-            stmt = c.prepareStatement(sql);
-            // Parameters
-            stmt.setString(1, id);
-            stmt.setString(2, password);
-            // Execute
-            ResultSet res = stmt.executeQuery();
-            if (res.next()) {
-//            System.out.println("Login successful!");
-                type = res.getInt("uType");
-
-                exists = 1;
+            String query = "select * from users where userName=? and uPassword=?";
+            Cursor cursor = db.rawQuery(query, new String[] { id, password });
+            if( cursor != null && cursor.moveToFirst() ){                   // Always one row returned.
+                type = Integer.parseInt(cursor.getString(cursor.getColumnIndex("uType")));
+                Log.d(TAG, "loginUser: login successful");
             }
-            db.execSQL(sql);
+            else{
+                Log.d(TAG, "loginUser: login unsuccessful   nothing returned");
+            }
+            db.close();
+
+//            sql = "select * from users where userName=? and uPassword=?";
+//            stmt = c.prepareStatement(sql);
+            // Parameters
+//            stmt.bindString(1, id);
+//            stmt.bindString(2, password);
+            // Execute
+//            ResultSet res = stmt.executeQuery();
+//            if (res.next()) {
+////            System.out.println("Login successful!");
+//
+//                Log.d(TAG, "loginUser: login successful");
+//                type = res.getInt("uType");
+//
+//                exists = 1;
+//            }
+//            Log.d(TAG, "loginUser: login unsuccessful");
+//
 //            stmt.close();
 //            c.commit();
 //            c.close();
+
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d(TAG, "loginUser: login unsuccessful");
         }
-        return new int[]{exists, type};
+//        return new int[]{exists, type};
+        return type;
     }
 
     static Question fetchMCQ(Integer id) {
