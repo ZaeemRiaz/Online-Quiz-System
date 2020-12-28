@@ -3,11 +3,14 @@ package com.se.onlinequizsystem;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question {
+public class Question implements Serializable {
+    private static final String TAG = "=== Question ===";
     public Integer qId;
     public Integer qType; // 1 MCQ single, 2 MCQ multiple, 3 TF, 4 Obj, 5 Sbj
     public String qText;
@@ -40,11 +43,12 @@ public class Question {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
+            Log.d(TAG, "updateQuestion: questionID: " + qId);
             String query = "select * from Question where qID = " + qId;
             Cursor cursor = db.rawQuery(query, null);
 
-//            if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
-            while (cursor.moveToNext()) {
+            if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
+//            while (cursor.moveToNext()) {
 
 //                    this.qId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qID")));
                 this.qType = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qType")));

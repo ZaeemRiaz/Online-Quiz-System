@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             String sql = "insert into question (qID, qType, qText, qMarks, posAns1, posAns2, posAns3, posAns4, valAns1, valAns2, valAns3, valAns4) "
-                    + "values (1, 1, 'Which signs show that a plant has been grown in soil deficient in magnesium ions', 10, 'no flowers and poor root growth','small leaves and ore roots','white upper leaves and no flowers','yellow stem and yellow leaves',0,0,0,1)";
+                    + "values (1, 1, 'Which signs show that a plant has been grown in soil deficient in magnesium ions', 10, 'no flowers and poor root growth','small leaves and ore roots','white upper leaves and no flowers','yellow stem and yellow leaves',0,1,0,0)";
             db.execSQL(sql);
             Log.d(TAG, "bogusEntries: fifth statement");
 

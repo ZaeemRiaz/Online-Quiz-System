@@ -77,24 +77,25 @@ public class Quiz implements Serializable {
         }
 
         try {
-            Log.d(TAG, "getAllQuiz: get questions for quiz");
             for (Quiz quiz : listOfQuiz) {
+                Log.d(TAG, "getAllQuiz: get questions for quiz: " + String.valueOf(quiz.quizID));
                 String query = "select * from quizQuestions where quizID = " + quiz.quizID;
                 Cursor cursor = db.rawQuery(query, null);
-                if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
-                    while (cursor.moveToNext()) {
-                        questionID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("questionID")));
-                        quiz.listOfQuestions.add(new Question(questionID));
-                    }
+//                if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
+                while (cursor.moveToNext()) {
+                    questionID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("questionID")));
+                    quiz.listOfQuestions.add(new Question(questionID));
                 }
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         db.close();
-        Log.d(TAG, "getAllQuiz: get details for question");
         for (Quiz quiz : listOfQuiz) {
+            Log.d(TAG, "getAllQuiz: get details for quiz: " + String.valueOf(quiz.quizID));
             for (Question question : quiz.listOfQuestions) {
+                Log.d(TAG, "getAllQuiz: get details for question: " + String.valueOf(question.qId));
                 question.updateQuestion(context);
             }
         }
