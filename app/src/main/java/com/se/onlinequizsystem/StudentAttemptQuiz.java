@@ -13,7 +13,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attempt__quiz_2);
+        setContentView(R.layout.activity_student_attempt_quiz);
     }
 
 
@@ -135,7 +135,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
     }
 
     public void StudentAttemptQuizObjectiveTFSubmitButton(View view) {
-        Intent intent = new Intent(this, ListOfQuizesStudentSide.class);
+        Intent intent = new Intent(this, StudentQuizListActivity.class);
         startActivity(intent);
     }
 

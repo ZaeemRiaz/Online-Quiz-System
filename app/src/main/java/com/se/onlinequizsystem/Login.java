@@ -80,12 +80,12 @@ public class Login {
       return q;
    }
 
-   static Boolean checkSingularMCQ(Integer qId, Integer choice) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
+   static boolean checkSingularMCQ(Integer qId, Integer choice) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
    {
       Connection c = null;
       PreparedStatement stmt = null;
       String sql;
-      Boolean check = false;
+      boolean check = false;
       try {
          Class.forName("org.sqlite.JDBC");
          c = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -123,12 +123,12 @@ public class Login {
       return check;
    }
 
-   static Boolean checkObjective(Integer qId, int[] choices) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
+   static boolean checkObjective(Integer qId, int[] choices) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
    {
       Connection c = null;
       PreparedStatement stmt = null;
       String sql;
-      Boolean check = true;
+      boolean check = true;
       try {
          Class.forName("org.sqlite.JDBC");
          c = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -194,7 +194,7 @@ public class Login {
       }
    }
 
-   public static void main(String args[]) {
+   public static void main(String[] args) {
       // DBmanager.createDB();
       // DBmanager.bogusEntries();
       Question temp = fetchMCQ(1);

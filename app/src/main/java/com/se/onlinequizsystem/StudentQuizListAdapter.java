@@ -35,12 +35,12 @@ class AttemptRow
     }
 }
 public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizListAdapter.AttemptQuizHolder> {
-    protected ArrayList<AttemptRow> quizzList;
+    protected ArrayList<AttemptRow> quizList;
     private AttemptQuizHolder holder;
     private int position;
 
     public StudentQuizListAdapter(Context c) {
-        this.quizzList= new ArrayList<AttemptRow>();
+        this.quizList = new ArrayList<AttemptRow>();
         Resources res=c.getResources();
         String[]coursess=res.getStringArray(R.array.subjects);
         String[]totaltimes=res.getStringArray(R.array.durations);
@@ -50,14 +50,14 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
 
         for(int i=0;i<coursess.length;i++)
         {
-            quizzList.add(new AttemptRow(coursess[i], totaltimes[i], statuss[i], markss[i], Remaining_time[i]));
+            quizList.add(new AttemptRow(coursess[i], totaltimes[i], statuss[i], markss[i], Remaining_time[i]));
         }
     }
     @NonNull
     @Override
     public StudentQuizListAdapter.AttemptQuizHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View view=inflater.inflate(R.layout.stduent_quiz_list_item, parent,false);
+        View view=inflater.inflate(R.layout.student_quiz_list_item, parent,false);
         return new StudentQuizListAdapter.AttemptQuizHolder(view);
 
     }
@@ -67,18 +67,18 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
     @Override
     public void onBindViewHolder(@NonNull StudentQuizListAdapter.AttemptQuizHolder holder, int position) {
 
-        holder.t1.setText(quizzList.get(position).course);
-        holder.t2.setText(quizzList.get(position).totaltime);
-        holder.t3.setText(quizzList.get(position).status);
-        holder.t4.setText(quizzList.get(position).marks);
-        holder.t5.setText(quizzList.get(position).remaining_time);
+        holder.t1.setText(quizList.get(position).course);
+        holder.t2.setText(quizList.get(position).totaltime);
+        holder.t3.setText(quizList.get(position).status);
+        holder.t4.setText(quizList.get(position).marks);
+        holder.t5.setText(quizList.get(position).remaining_time);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return quizzList.size();
+        return quizList.size();
     }
 
     public class AttemptQuizHolder extends RecyclerView.ViewHolder

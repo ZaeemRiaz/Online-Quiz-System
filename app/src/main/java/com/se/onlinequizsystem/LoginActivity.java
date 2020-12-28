@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             } else if (ret[1] == 1) {
                 // TODO: 28-Dec-20 start appropriate user activity
-                Intent intent = new Intent(this, ListOfQuizesStudentSide.class);
+                Intent intent = new Intent(this, StudentQuizListActivity.class);
                 startActivity(intent);
             }
         } else {

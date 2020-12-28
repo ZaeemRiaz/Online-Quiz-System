@@ -23,7 +23,7 @@
         <activity android:name=".InstructorQuizListActivity" />
         <activity android:name=".InstructorQuestionBankListActivity" />
         <activity android:name=".InstructorQuizFeedbackActivity" />
-        <activity android:name=".ListOfQuizesStudentSide" />
+        <activity android:name=".StudentQuizListActivity" />
         <activity android:name=".StudentAttemptQuiz" />
     </application>
 

@@ -12,13 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ListOfQuizesStudentSide extends AppCompatActivity {
+public class StudentQuizListActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_quizes_student_side);
+        setContentView(R.layout.activity_student_quiz_list);
         RecyclerView list = findViewById(R.id.recyclerViewActiveQuizzes);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(new StudentQuizListAdapter(this));
