@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 public class StudentAttemptQuiz extends AppCompatActivity {
 
+    int quizid;
     private ArrayList<Question> questionsList;
+    int Qno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,24 +23,74 @@ public class StudentAttemptQuiz extends AppCompatActivity {
         Intent intent = getIntent();
         Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
         questionsList = quiz.listOfQuestions;
+        Qno=0;
 
         setContentView(R.layout.activity_student_attempt_quiz);
     }
 
 
     public void StudentAttemptQuizStartButton(View view) {
-        setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
-        //get the spinner from the xml.
-        Spinner dropdown = findViewById(R.id.spinner3);
-        //create a list of items for the spinner.
-        String[] items = new String[]{"1", "2", "3"};
-        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-        //There are multiple variations of this, but this is the basic variant.
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        //set the spinners adapter to the previously created one.
-        dropdown.setAdapter(adapter);
 
+        Question q= questionsList.get(Qno);
+
+        if(q.qType==1)// MCQ single
+        {
+            setContentView(R.layout.attempt_quiz_mcq_single_ans);
+            //get the spinner from the xml.
+            Spinner dropdown = findViewById(R.id.spinner2);
+            //create a list of items for the spinner.
+            String[] items = new String[]{"1", "2", "3"};
+            //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+            //There are multiple variations of this, but this is the basic variant.
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+            //set the spinners adapter to the previously created one.
+            dropdown.setAdapter(adapter);
+        }
+
+        else if(q.qType==2) //MCQ multiple
+        {
+            setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
+            //get the spinner from the xml.
+            Spinner dropdown = findViewById(R.id.spinner1);
+            //create a list of items for the spinner.
+            String[] items = new String[]{"1", "2", "3"};
+            //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+            //There are multiple variations of this, but this is the basic variant.
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+            //set the spinners adapter to the previously created one.
+            dropdown.setAdapter(adapter);
+        }
+
+        else if(q.qType==3) //true false
+        {
+            setContentView(R.layout.attempt_quiz_truefalse);
+
+            //get the spinner from the xml.
+            Spinner dropdown = findViewById(R.id.spinner5);
+            //create a list of items for the spinner.
+            String[] items = new String[]{"1", "2", "3"};
+            //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+            //There are multiple variations of this, but this is the basic variant.
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+            //set the spinners adapter to the previously created one.
+            dropdown.setAdapter(adapter);
+        }
+
+        else {
+            //setContentView(R.layout.attempt_quiz_subejective_multple_words);
+
+            //get the spinner from the xml.
+            //Spinner dropdown = findViewById(R.id.spinner3);
+            //create a list of items for the spinner.
+            //String[] items = new String[]{"1", "2", "3"};
+            //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+            //There are multiple variations of this, but this is the basic variant.
+            //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+            //set the spinners adapter to the previously created one.
+            //dropdown.setAdapter(adapter);
+
+        }
     }
 
     public void StudentAttemptQuizSubjectiveNextButton(View view) {
