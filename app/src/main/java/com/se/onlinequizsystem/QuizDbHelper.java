@@ -52,6 +52,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 + "primary key (userID, quizID, questionID)" + ")";
         db.execSQL(sql);
 //            Log.i(TAG, "onCreate: sql:" + sql);
+        bogusEntries();
     }
 
     @Override

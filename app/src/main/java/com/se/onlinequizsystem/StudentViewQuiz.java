@@ -1,16 +1,25 @@
 package com.se.onlinequizsystem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+
 public class StudentViewQuiz extends AppCompatActivity {
     private static final String TAG = "View_Quiz_Mcq_single_an";
+    private ArrayList<Question> questionsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+        questionsList = quiz.listOfQuestions;
+
         setContentView(R.layout.activity_student_view_quiz);
 
 
@@ -55,10 +64,6 @@ public class StudentViewQuiz extends AppCompatActivity {
     public void ViewQuizOWBack(View view) {
         setContentView(R.layout.view_quiz_subjective_multiple_words);
     }
-
-
-
-
 
 
 }

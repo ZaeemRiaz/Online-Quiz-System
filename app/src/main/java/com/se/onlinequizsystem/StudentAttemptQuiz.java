@@ -8,11 +8,20 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class StudentAttemptQuiz extends AppCompatActivity {
+
+    private ArrayList<Question> questionsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+        questionsList = quiz.listOfQuestions;
+
         setContentView(R.layout.activity_student_attempt_quiz);
     }
 

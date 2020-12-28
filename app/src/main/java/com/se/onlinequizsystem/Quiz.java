@@ -1,31 +1,32 @@
 package com.se.onlinequizsystem;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class Quiz {
+public class Quiz implements Serializable {
     int quizID;
     String quizName;
     int difficulty;
     long openTime;
     long closeTime;
-    int TotalTime;
+    int totalTime;
     int totalQuestions;
     int totalMarks;
     String instructions;
     ArrayList<Question> listOfQuestions;
 
-    public Quiz(int quizID_, String quizName_, int difficulty_, Long openTime_, Long closeTime_, int TotalTime_,
+    public Quiz(int quizID_, String quizName_, int difficulty_, Long openTime_, Long closeTime_, int totalTime_,
                 int totalQuestions_, int totalMarks_, String instructions_, ArrayList<Question> listOfQuestions_) {
         quizID = quizID_;
         quizName = quizName_;
         difficulty = difficulty_;
         openTime = openTime_;
         closeTime = closeTime_;
-        TotalTime = TotalTime_;
+        totalTime = totalTime_;
         totalQuestions = totalQuestions_;
         totalMarks = totalMarks_;
         instructions = instructions_;
