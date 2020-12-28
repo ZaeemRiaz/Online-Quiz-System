@@ -22,7 +22,7 @@ android:fitsSystemWindows="true">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Email: ins/stu" />
+            android:hint="Email: instructor/student 1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Password Label -->
@@ -35,7 +35,7 @@ android:fitsSystemWindows="true">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="Password: 123"/>
+            android:hint="Password: pass"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

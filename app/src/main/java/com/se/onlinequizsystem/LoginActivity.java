@@ -55,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
             SQLiteStatement prep = db.compileStatement(sql);
 
             prep.bindLong(1, 1);
-            prep.bindString(2, "Dev student #1");
-            prep.bindString(3, "password");
+            prep.bindString(2, "student 1");
+            prep.bindString(3, "pass");
             prep.bindLong(4, 0);
             prep.execute();
             long rowId = prep.executeInsert();
@@ -69,8 +69,8 @@ public class LoginActivity extends AppCompatActivity {
             String sql = "insert into users values(?,?,?,?);";
             SQLiteStatement prep = db.compileStatement(sql);
             prep.bindLong(1, 2);
-            prep.bindString(2, "Dev instructor");
-            prep.bindString(3, "password");
+            prep.bindString(2, "instructor");
+            prep.bindString(3, "pass");
             prep.bindLong(4, 1);
             prep.execute();
             Log.d(TAG, "bogusEntries: second statement");

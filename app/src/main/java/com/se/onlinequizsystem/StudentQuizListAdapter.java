@@ -41,7 +41,7 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
 
     public StudentQuizListAdapter(Context context) {
 //        this.quizList = new ArrayList<AttemptRow>();
-        this.quizList = Quiz.getAllQuiz();
+        this.quizList = Quiz.getAllQuiz(context);
         this.context = context;
 
 //        Resources res = c.getResources();
