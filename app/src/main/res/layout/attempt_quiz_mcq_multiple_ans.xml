@@ -116,25 +116,24 @@
                 android:id="@+id/MCQ_mul_checkBox2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="105dp"
+                android:layout_marginStart="33dp"
+                android:layout_marginEnd="124dp"
                 android:text="No flowers and poor root growth"
+                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MCQ_mul_checkBox" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <CheckBox
                 android:id="@+id/MCQ_mul_checkBox3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="105dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginEnd="101dp"
+                android:layout_marginBottom="4dp"
                 android:text="No flowers and poor root growth"
+                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_Next_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MCQ_mul_checkBox2" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/AttemptQuizMCQ_mul_qno"
