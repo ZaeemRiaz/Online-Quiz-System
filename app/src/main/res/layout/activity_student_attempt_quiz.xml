@@ -15,7 +15,7 @@
         android:layout_marginEnd="105dp"
         android:layout_marginBottom="388dp"
         android:text="Start Quiz"
-        android:onClick="StudentAttemptQuizStartButton"
+        android:onClick="StudentAttemptNextQuestion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

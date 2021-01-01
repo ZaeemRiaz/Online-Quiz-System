@@ -56,7 +56,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
-                android:onClick="StudentAttemptQuizObjectiveMANextButton"
+                android:onClick="StudentAttemptNextQuestion"
                 android:text="Next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -92,48 +92,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:onClick="StudentAttemptQuizObjectiveMABackButton"
+                android:onClick="StudentAttemptPrevQuestion"
                 android:text="Back"
                 app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/MCQ_mul_Next_button" />
-
-            <CheckBox
-                android:id="@+id/MCQ_mul_checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginEnd="105dp"
-                android:layout_marginBottom="7dp"
-                android:text="No flowers and poor root growth"
-                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MCQ_mul_question" />
-
-            <CheckBox
-                android:id="@+id/MCQ_mul_checkBox2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="33dp"
-                android:layout_marginEnd="124dp"
-                android:text="No flowers and poor root growth"
-                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <CheckBox
-                android:id="@+id/MCQ_mul_checkBox3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="56dp"
-                android:layout_marginEnd="101dp"
-                android:layout_marginBottom="4dp"
-                android:text="No flowers and poor root growth"
-                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_Next_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/AttemptQuizMCQ_mul_qno"
@@ -149,6 +112,39 @@
                 app:layout_constraintEnd_toStartOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/MCQ_mul_checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="CheckBox"
+                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.053"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/MCQ_mul_checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="CheckBox"
+                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.053"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/MCQ_mul_checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:text="CheckBox"
+                app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_button4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.053"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -159,7 +155,7 @@
         android:layout_marginStart="45dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="10dp"
-        android:onClick="StudentAttemptQuizObjectiveSANextButton"
+        android:onClick="StudentAttemptGotToLastQues"
         android:text="Go to last question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,11 +168,11 @@
         android:layout_marginStart="14dp"
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="10dp"
-        android:onClick="StudentAttemptQuizStartButton"
+        android:onClick="StudentAttemptGotToFirstQues"
         android:text="Go to First Question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" ></Button>
 
     <TextView
         android:id="@+id/textView9"

@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             String sql = "insert into question (qID, qType, qText, qMarks, posAns1, posAns2, posAns3, posAns4, valAns1, valAns2, valAns3, valAns4) "
-                    + "values (3, 1, 'How many legs does a human have', 10, '1','2','3','8',0,1,0,0);";
+                    + "values (3, 2, 'How many legs does a human have', 10, '1','2','3','8',0,1,0,0);";
             db.execSQL(sql);
             Log.d(TAG, "bogusEntries: statement 9");
 
@@ -143,13 +143,52 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             String sql = "insert into question (qID, qType, qText, qMarks, posAns1, posAns2, posAns3, posAns4, valAns1, valAns2, valAns3, valAns4) "
-                    + "values (4, 1, 'What is the square root of 36', 10, '2','3','5','6 leaves',0,0,0,1);";
+                    + "values (4, 3, 'What is the square root of 36', 10, '2','3','5','6 leaves',0,0,0,1);";
             db.execSQL(sql);
             Log.d(TAG, "bogusEntries: statement 10");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+///////////////////////////// new question ///////////////////////////////////////////
+        try {
+            String sql = "insert into question (qID, qType, qText, qMarks, posAns1, posAns2, posAns3, posAns4, valAns1, valAns2, valAns3, valAns4) "
+                    + "values (5, 4, 'Is 49 a squre number?', 10, '2','3','5','6 leaves',0,0,0,1);";
+            db.execSQL(sql);
+            Log.d(TAG, "bogusEntries: statement 10");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String sql = "insert into quizQuestions(quizID, questionID)" + "values (1, 5)";
+            db.execSQL(sql);
+            Log.d(TAG, "bogusEntries: statement 4");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String sql = "insert into question (qID, qType, qText, qMarks, posAns1, posAns2, posAns3, posAns4, valAns1, valAns2, valAns3, valAns4) "
+                    + "values (6, 5, 'Explain what is a square number.', 10, '2','3','5','6 leaves',0,0,0,1);";
+            db.execSQL(sql);
+            Log.d(TAG, "bogusEntries: statement 10");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            String sql = "insert into quizQuestions(quizID, questionID)" + "values (1, 6)";
+            db.execSQL(sql);
+            Log.d(TAG, "bogusEntries: statement 4");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+ //////////////////////////////////////////////////////////////////////////////////////////
         try {
             String sql = "insert into quizQuestions(quizID, questionID)" + "values (2, 3), (3, 2), (1, 4), (1, 3)";
             db.execSQL(sql);

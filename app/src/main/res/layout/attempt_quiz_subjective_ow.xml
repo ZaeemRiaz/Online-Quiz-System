@@ -88,7 +88,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
-                android:onClick="StudentAttemptQuizObjectiveOWNextButton"
+                android:onClick="StudentAttemptNextQuestion"
                 android:text="Next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:onClick="StudentAttemptQuizObjectiveOWBackButton"
+                android:onClick="StudentAttemptPrevQuestion"
                 android:text="Back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/sub_ow_Next_button" />
@@ -154,11 +154,11 @@
         android:layout_marginEnd="14dp"
 
         android:layout_marginBottom="10dp"
-        android:onClick="StudentAttemptQuizObjectiveSANextButton"
+        android:onClick="StudentAttemptGotToLastQues"
         android:text="Go to last question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3" />
+        app:layout_constraintStart_toEndOf="@+id/button3" ></Button>
 
     <Button
         android:id="@+id/button3"
@@ -168,7 +168,7 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="10dp"
 
-        android:onClick="StudentAttemptQuizStartButton"
+        android:onClick="StudentAttemptGotToFirstQues"
         android:text="Go to First Question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button2"
