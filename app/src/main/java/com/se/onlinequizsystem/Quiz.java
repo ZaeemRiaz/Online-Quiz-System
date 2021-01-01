@@ -97,6 +97,7 @@ public class Quiz implements Serializable {
             for (Question question : quiz.listOfQuestions) {
                 Log.d(TAG, "getAllQuiz: get details for question: " + String.valueOf(question.qId));
                 question.updateQuestion(context);
+
             }
         }
 

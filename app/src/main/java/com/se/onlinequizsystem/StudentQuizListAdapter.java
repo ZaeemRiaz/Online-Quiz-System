@@ -105,6 +105,7 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
         Button attemptQuizButton;
         Button viewQuizButton;
 
+
         public QuizViewHolder(@NonNull View itemView) {
             super(itemView);
             quizName = itemView.findViewById(R.id.subject);
