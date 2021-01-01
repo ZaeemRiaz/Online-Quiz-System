@@ -15,6 +15,7 @@ public class Question implements Serializable {
     public Integer qType; // 1 MCQ single, 2 MCQ multiple, 3 TF, 4 Obj, 5 Sbj
     public String qText;
     public Integer qMarks;
+    public boolean attempted;
     public List<String> qAnsPossible = new ArrayList<String>(); // Assuming all these sizes 4, discuss with Murad
     public List<Integer> trueAnswers = new ArrayList<Integer>();
     // public List<Integer> qAnsSelected = new ArrayList<Integer>();
@@ -33,6 +34,7 @@ public class Question implements Serializable {
         this.qType = qType;
         this.qText = qText;
         this.qMarks = qMarks;
+        this.attempted = false;
         // Add possible answers incase of an MCQ/TF
     }
 
