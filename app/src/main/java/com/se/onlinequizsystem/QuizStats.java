@@ -58,6 +58,7 @@ public class QuizStats {
 
         db.close();
 
+        this.quizAttempted = idx;
 //        Connection c = null;
 //        try {
 //            Class.forName("org.sqlite.JDBC");
@@ -95,7 +96,6 @@ public class QuizStats {
 //            e.printStackTrace();
 //        }
 
-        this.quizAttempted = idx;
 
     }
 }
