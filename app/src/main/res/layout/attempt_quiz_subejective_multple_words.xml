@@ -13,12 +13,12 @@
         android:id="@+id/spinner3"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="146dp"
+        android:layout_marginTop="60dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" ></Spinner>
+        app:layout_constraintTop_toTopOf="parent"></Spinner>
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
