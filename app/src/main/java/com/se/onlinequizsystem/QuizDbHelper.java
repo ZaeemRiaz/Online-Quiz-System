@@ -47,6 +47,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 + "foreign key (QuestionID) references Questions(questionID),"
                 + "primary key (userID, quizID, questionID)" + ")";
         db.execSQL(sql);
+
+        sql = "create table studentSubmission(" +
+                "userID integer, quizID integer, submitted integer," +
+                "foreign key (userID) references users(userID)," +
+                "foreign key (quizID) references Quiz(quizID)," +
+                "primary key (userID, quizID))";
+        db.execSQL(sql);
+
         Log.i(TAG, "onCreate: created tables");
     }
 

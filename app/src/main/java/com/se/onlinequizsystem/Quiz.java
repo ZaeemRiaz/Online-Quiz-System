@@ -7,7 +7,6 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Quiz implements Serializable {
     private static final String TAG = "=== Quiz ===";
@@ -56,6 +55,7 @@ public class Quiz implements Serializable {
             Log.d(TAG, "getAllQuiz: select all from quiz");
             String query = "select * from quiz";
             Cursor cursor = db.rawQuery(query, null);
+
             while (cursor.moveToNext()) {
                 quizID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("quizID")));
                 quizName = cursor.getString(cursor.getColumnIndex("quizName"));
@@ -147,7 +147,9 @@ public class Quiz implements Serializable {
     static int getQuestionAttemptTime(Context context, int userID, int quizID, int questionID) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         int timeTaken = -1;
+
         try {
             String query = "SELECT timeTaken FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
             Cursor cursor = db.rawQuery(query, new String[]{
@@ -167,7 +169,9 @@ public class Quiz implements Serializable {
     static String getQuestionAttemptChoices(Context context, int userID, int quizID, int questionID) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         String choices = null;
+
         try {
             String query = "SELECT enteredAns FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
             Cursor cursor = db.rawQuery(query, new String[]{
@@ -187,7 +191,9 @@ public class Quiz implements Serializable {
     static int getQuestionAttemptMarks(Context context, int userID, int quizID, int questionID) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         int marks = -1;
+
         try {
             String query = "SELECT marksScored FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
             Cursor cursor = db.rawQuery(query, new String[]{
@@ -207,7 +213,9 @@ public class Quiz implements Serializable {
     static ArrayList<Integer> getQuestionAttemptList(Context context, int userID, int quizID) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         ArrayList<Integer> questionList = new ArrayList<>();
+
         try {
             String query = "SELECT QuestionID FROM studentAttempt WHERE userID=? and QuizID=?";
             Cursor cursor = db.rawQuery(query, new String[]{
@@ -221,5 +229,43 @@ public class Quiz implements Serializable {
         }
         db.close();
         return questionList;
+    }
+
+    static boolean checkQuizSubmitted(Context context, int userID, int quizID) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        boolean submitted = false;
+
+        try {
+            String query = "SELECT submitted FROM studentSubmission WHERE userID=? and quizID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID)});
+            if (cursor != null && cursor.moveToFirst()) {
+                if (Integer.parseInt(cursor.getString(cursor.getColumnIndex("QuestionID"))) == 1){
+                    submitted = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+        return submitted;
+    }
+
+    static void submitQuiz(Context context, int userID, int quizID) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            String query = "INSERT into studentSubmission values(?,?,?)";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID),
+                    String.valueOf(1)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
     }
 }
