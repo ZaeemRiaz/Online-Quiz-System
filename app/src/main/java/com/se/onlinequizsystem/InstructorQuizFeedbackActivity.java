@@ -1,9 +1,13 @@
 package com.se.onlinequizsystem;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class InstructorQuizFeedbackActivity extends AppCompatActivity {
 
@@ -25,6 +29,18 @@ public class InstructorQuizFeedbackActivity extends AppCompatActivity {
         totalStudentsTextView.setText(String.valueOf(quizStats.totalStudents));
 
         // TODO: 02-Jan-21 adapter for list view or something
+
+        // convert question time double to string
+        ArrayList<String> averageQuestionTime = new ArrayList<>();
+        int i = 1;
+        for (double val : quizStats.averageQuestionTime) {
+            averageQuestionTime.add("Question " + i + " :\t" + String.valueOf(val));
+            i++;
+        }
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.instructor_quiz_feedback_question_time_listview, averageQuestionTime);
+        ListView listView = (ListView) findViewById(R.id.instructor_quiz_feedback_question_time_list);
+        listView.setAdapter(adapter);
 
     }
 }
