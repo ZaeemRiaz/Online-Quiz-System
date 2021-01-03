@@ -214,7 +214,7 @@ public class Quiz implements Serializable {
                     String.valueOf(userID),
                     String.valueOf(quizID)});
             while (cursor.moveToNext()) {
-                questionList.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("QuestionID"))_);
+                questionList.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("QuestionID"))));
             }
         } catch (Exception e) {
             e.printStackTrace();
