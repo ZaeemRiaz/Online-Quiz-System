@@ -69,8 +69,23 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
     public void onBindViewHolder(@NonNull QuizViewHolder quizViewHolder, int position) {
         quizViewHolder.quizName.setText(quizList.get(position).quizName);
         quizViewHolder.duration.setText(String.valueOf(quizList.get(position).totalTime));
-        quizViewHolder.status.setText("TODO");
-        // TODO: 28-Dec-20 check status
+
+        // Quiz status conditions
+        boolean submitted = Quiz.checkQuizSubmitted(context, 1, quizList.get(position).quizID);
+        if (submitted){
+            quizViewHolder.status.setText("Submitted");
+        }
+        if (false){// TODO: 03-Jan-21 check if not started
+            quizViewHolder.status.setText("Not Started");
+        }
+        if (!submitted && false){// TODO: 03-Jan-21 check if within open time
+            quizViewHolder.status.setText("Open");
+        }
+        if (!submitted && false){// TODO: 03-Jan-21 check if time finished
+            quizViewHolder.status.setText("Missed");
+        }
+
+
         quizViewHolder.marks.setText(String.valueOf(quizList.get(position).totalMarks));
         quizViewHolder.timeLeft.setText(String.valueOf(quizList.get(position).totalTime));
         quizViewHolder.attemptQuizButton.setOnClickListener(new View.OnClickListener() {
