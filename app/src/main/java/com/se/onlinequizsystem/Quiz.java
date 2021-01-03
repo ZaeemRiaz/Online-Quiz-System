@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Quiz implements Serializable {
     private static final String TAG = "=== Quiz ===";
@@ -143,26 +144,82 @@ public class Quiz implements Serializable {
         db.close();
     }
 
-    static void getQuestionAttempt(Context context, int userID, int quizID, int questionID) {
+    static int getQuestionAttemptTime(Context context, int userID, int quizID, int questionID) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-
+        int timeTaken = -1;
         try {
-            String query = "SELECT enteredAns, timeTaken, marksScored FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
+            String query = "SELECT timeTaken FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
             Cursor cursor = db.rawQuery(query, new String[]{
                     String.valueOf(userID),
                     String.valueOf(quizID),
                     String.valueOf(questionID)});
             if (cursor != null && cursor.moveToFirst()) {
-                String choices = cursor.getString(cursor.getColumnIndex("enteredAns"));
-                int timeTaken = Integer.parseInt(cursor.getString(cursor.getColumnIndex("timeTaken")));
-                int marks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("marksScored")));
+                timeTaken = Integer.parseInt(cursor.getString(cursor.getColumnIndex("timeTaken")));
             }
-            } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         db.close();
+        return timeTaken;
     }
 
-    // TODO: 03-Jan-21 getQuestionAttempt()
+    static String getQuestionAttemptChoices(Context context, int userID, int quizID, int questionID) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String choices = null;
+        try {
+            String query = "SELECT enteredAns FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID),
+                    String.valueOf(questionID)});
+            if (cursor != null && cursor.moveToFirst()) {
+                choices = cursor.getString(cursor.getColumnIndex("enteredAns"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+        return choices;
+    }
+
+    static int getQuestionAttemptMarks(Context context, int userID, int quizID, int questionID) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int marks = -1;
+        try {
+            String query = "SELECT marksScored FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID),
+                    String.valueOf(questionID)});
+            if (cursor != null && cursor.moveToFirst()) {
+                marks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("marksScored")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+        return marks;
+    }
+
+    static ArrayList<Integer> getQuestionAttemptList(Context context, int userID, int quizID) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ArrayList<Integer> questionList = new ArrayList<>();
+        try {
+            String query = "SELECT QuestionID FROM studentAttempt WHERE userID=? and QuizID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID)});
+            while (cursor.moveToNext()) {
+                questionList.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("QuestionID"))_);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+        return questionList;
+    }
 }
