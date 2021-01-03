@@ -75,7 +75,7 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
         if (submitted){
             quizViewHolder.status.setText("Submitted");
         }
-        if (false){// TODO: 03-Jan-21 check if not started
+        if (true){// TODO: 03-Jan-21 check if not started
             quizViewHolder.status.setText("Not Started");
         }
         if (!submitted && false){// TODO: 03-Jan-21 check if within open time
