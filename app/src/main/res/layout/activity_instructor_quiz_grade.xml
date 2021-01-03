@@ -57,9 +57,9 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_item_instructor_grade"
             android:layout_width="match_parent"
-            android:onClick="InstructorQuizGrade1"
             android:layout_height="wrap_content"
-            android:background="@color/transparent" />
+            android:background="@color/transparent"
+            android:onClick="InstructorQuizGrade1" />
     </RelativeLayout>
 
     <RelativeLayout

@@ -188,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
- //////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
         try {
             String sql = "insert into quizQuestions(quizID, questionID)" + "values (2, 3), (3, 2), (1, 4), (1, 3)";
             db.execSQL(sql);

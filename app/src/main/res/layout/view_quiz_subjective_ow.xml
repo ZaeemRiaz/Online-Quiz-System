@@ -8,7 +8,6 @@
     android:padding="10dp"
     tools:context=".StudentViewQuiz">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
         android:layout_width="match_parent"
@@ -73,7 +72,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.208" />
 
-
             <Button
                 android:id="@+id/sub_ow_Next_button"
                 android:layout_width="100dp"
@@ -118,7 +116,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -134,7 +131,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <TextView
                 android:id="@+id/textView5"
@@ -153,6 +149,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

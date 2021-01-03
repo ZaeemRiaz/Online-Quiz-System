@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +38,6 @@ public class StudentQuizListActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, StudentViewQuiz.class);
 //        startActivity(intent);
 //    }
-
 
 
     @Override

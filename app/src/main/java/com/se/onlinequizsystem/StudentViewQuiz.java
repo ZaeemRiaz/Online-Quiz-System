@@ -21,8 +21,6 @@ public class StudentViewQuiz extends AppCompatActivity {
         questionsList = quiz.listOfQuestions;
 
         setContentView(R.layout.activity_student_view_quiz);
-
-
     }
 
     public void ViewQuizSANext(View view) {

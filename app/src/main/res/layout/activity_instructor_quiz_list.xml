@@ -62,8 +62,8 @@
             android:id="@+id/button_item_instructor_quiz_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="InstructorQuizItem1Button"
-            android:background="@color/transparent" />
+            android:background="@color/transparent"
+            android:onClick="InstructorQuizItem1Button" />
     </RelativeLayout>
 
     <RelativeLayout

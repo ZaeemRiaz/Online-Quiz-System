@@ -8,7 +8,6 @@
     android:padding="10dp"
     tools:context=".StudentViewQuiz">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -28,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
 
-
             <TextView
                 android:id="@+id/MCQ_single_question"
                 android:layout_width="wrap_content"
@@ -46,9 +44,9 @@
             <RadioGroup
                 android:id="@+id/MCQ_single_myRadioGroup"
                 android:layout_width="wrap_content"
-                android:clickable="false"
                 android:layout_height="wrap_content"
                 android:checkedButton="@+id/sound"
+                android:clickable="false"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -60,23 +58,23 @@
                 <RadioButton
                     android:id="@+id/MCQ_single_sound"
                     android:layout_width="140dp"
-                    android:clickable="false"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:text="Choice 1" />
 
                 <RadioButton
                     android:id="@+id/MCQ_single_vibration"
                     android:layout_width="match_parent"
-                    android:clickable="false"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:text="Choice 2" />
 
                 <RadioButton
                     android:id="@+id/MCQ_single_silent"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:checked="true"
                     android:clickable="false"
-                    android:layout_height="wrap_content"
                     android:text="Choice 3" />
 
             </RadioGroup>
@@ -128,16 +126,15 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginEnd="259dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 android:paddingLeft="2dp"
                 android:text="Q1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textView8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 
@@ -158,7 +155,6 @@
 
             >
 
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
@@ -175,6 +171,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

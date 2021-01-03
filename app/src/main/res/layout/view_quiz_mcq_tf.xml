@@ -8,7 +8,6 @@
     android:padding="10dp"
     tools:context=".StudentViewQuiz">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
@@ -97,8 +96,8 @@
                 <RadioButton
                     android:id="@+id/mcq_tf_vibration"
                     android:layout_width="wrap_content"
-                    android:clickable="false"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:text="False" />
 
             </RadioGroup>
@@ -117,7 +116,6 @@
 
                 app:layout_constraintVertical_bias="0.0" />
 
-
             <Button
                 android:id="@+id/mcq_tf_button4"
                 android:layout_width="wrap_content"
@@ -131,7 +129,6 @@
                 app:layout_constraintTop_toTopOf="@+id/mcq_tf_Next_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 
@@ -148,7 +145,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <TextView
                 android:id="@+id/textView4"
@@ -167,6 +163,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

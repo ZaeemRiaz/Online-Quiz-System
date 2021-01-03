@@ -3,13 +3,11 @@ package com.se.onlinequizsystem;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,44 +21,41 @@ import java.util.ArrayList;
 public class StudentAttemptQuiz extends AppCompatActivity {
 
 
-    private ArrayList<Question> questionsList;
     int Qno;
-
     Stopwatch sw[];
-    Boolean Attempted=true; //false is equal to not attempted
-    int count=0;
+    Boolean Attempted = true; //false is equal to not attempted
+    int count = 0;
     long Time_perQuestion[]; //time for each question stored here
-        @Override
+    private ArrayList<Question> questionsList;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
         Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
         questionsList = quiz.listOfQuestions;
-        Qno=-1;
-        int i=0;
-        sw= new Stopwatch[questionsList.size()];
-        for( i=0; i<questionsList.size();i++ )
-        {
-            sw[i]= new Stopwatch();
+        Qno = -1;
+        int i = 0;
+        sw = new Stopwatch[questionsList.size()];
+        for (i = 0; i < questionsList.size(); i++) {
+            sw[i] = new Stopwatch();
         }
 
-        Time_perQuestion= new long[questionsList.size()];
+        Time_perQuestion = new long[questionsList.size()];
 
-        for(i=0; i<questionsList.size(); i++)
-        {
-            Time_perQuestion[i]=0;
+        for (i = 0; i < questionsList.size(); i++) {
+            Time_perQuestion[i] = 0;
         }
 
         setContentView(R.layout.activity_student_attempt_quiz);
     }
 
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void StudentAttemptNextQuestion(View view) {
         Qno++; //next question
-       // Context context = getApplicationContext();
+        // Context context = getApplicationContext();
         //CharSequence text = "Lenght !"+ String.valueOf(questionsList.size());
         //int duration = Toast.LENGTH_SHORT;
         //Toast toast = Toast.makeText(context, text, duration);
@@ -68,47 +63,44 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
 
         ////////////////////////////////////////////////////////////////////
-        if(Qno>=questionsList.size())
-        {
+        if (Qno >= questionsList.size()) {
             setContentView(R.layout.attempt_submit);
 
             ////////////////////////////set all paused timers to stop before submitting////////////////
-            int i=0;
-            for (i=0; i<sw.length; i++)
-            {
-                if(sw[i].paused==true)
-                {
+            int i = 0;
+            for (i = 0; i < sw.length; i++) {
+                if (sw[i].paused == true) {
                     sw[i].stop();
-                    Time_perQuestion[i]= 0; //not attempted
+                    Time_perQuestion[i] = 0; //not attempted
                 }
             }
 
 
             Context context = getApplicationContext();
-            CharSequence text = "Time taken for q1 ="+ String.valueOf(Time_perQuestion[0]);
+            CharSequence text = "Time taken for q1 =" + String.valueOf(Time_perQuestion[0]);
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
             ////////////////////////////////////////////////////////////////////////////
 
-        }
-        else {
+        } else {
             Question q = questionsList.get(Qno);
             TextView QuestionTxt;
             TextView QuesNo;
 
 
-
             ///////////////////////////// time the question (try: next, next back)///////////////////////
-            if(Time_perQuestion[Qno]==0) {  //if time has already not been calculated
+            if (Time_perQuestion[Qno] == 0) {  //if time has already not been calculated
                 if (count % 2 == 0) // meaning question started
                 {
-                    if(sw[Qno].paused==false)
-                    {sw[Qno].start();}
-                    else{sw[Qno].resume();}
+                    if (sw[Qno].paused == false) {
+                        sw[Qno].start();
+                    } else {
+                        sw[Qno].resume();
+                    }
                     if (count > 1) {
                         //if question attempted, then store time
-                        if(sw[Qno-1].running==true) {
+                        if (sw[Qno - 1].running == true) {
                             if (Attempted == true) {
                                 long timetaken = sw[Qno - 1].getElapsedTimeSecs();
                                 Time_perQuestion[Qno - 1] = timetaken;
@@ -122,12 +114,14 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 } else //meaning question ended wiht next pressed
                 {
 
-                    if(sw[Qno].paused==false)
-                    {sw[Qno].start();}
-                    else{sw[Qno].resume();}
+                    if (sw[Qno].paused == false) {
+                        sw[Qno].start();
+                    } else {
+                        sw[Qno].resume();
+                    }
 
                     //TODO: if previous question is attempted, then store ellapsed time, else store
-                    if(sw[Qno-1].running==true) {
+                    if (sw[Qno - 1].running == true) {
                         if (Attempted == true) {
                             long timetaken = sw[Qno - 1].getElapsedTimeSecs();
                             Time_perQuestion[Qno - 1] = timetaken;
@@ -150,7 +144,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 //get the spinner from the xml.
                 Spinner dropdown = findViewById(R.id.spinner2);
                 //create a list of items for the spinner.
-                String[] items = new String[]{"0","1", "2", "3"};
+                String[] items = new String[]{"0", "1", "2", "3"};
                 //create an adapter to describe how the items are displayed, adapters are used in several places in android.
                 //There are multiple variations of this, but this is the basic variant.
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -161,23 +155,23 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 //dropdown.setOnItemClickListener();
 
                 dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                      @Override
-                                                      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                          String textSelected = dropdown.getSelectedItem().toString();
-                                                          int Q=Integer.parseInt(textSelected);
-                                                          Context context = getApplicationContext();
-                                                          CharSequence text = "Spinner seeleteced= "+ String.valueOf(Q);
-                                                          int duration = Toast.LENGTH_SHORT;
-                                                          Toast toast = Toast.makeText(context, text, duration);
-                                                          toast.show();
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        String textSelected = dropdown.getSelectedItem().toString();
+                        int Q = Integer.parseInt(textSelected);
+                        Context context = getApplicationContext();
+                        CharSequence text = "Spinner seeleteced= " + String.valueOf(Q);
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
 
-                                                      }
+                    }
 
-                                                      @Override
-                                                      public void onNothingSelected(AdapterView<?> parent) {
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
 
-                                                      }
-                                                  });
+                    }
+                });
 
 
                 // add question
@@ -265,13 +259,11 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 QuesNo.setText(String.valueOf(Qno + 1));
 
 
-
-
             }
 
             ///////////////////////////////////////////////////////////////
 
-            else if(q.qType==4) //ow question
+            else if (q.qType == 4) //ow question
             {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
@@ -293,9 +285,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizSubjective_ow_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
-            }
-
-            else if(q.qType==5) //mw question
+            } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
@@ -319,9 +309,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 QuesNo.setText(String.valueOf(Qno + 1));
 
 
-            }
-
-            else {
+            } else {
                 //setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
                 //get the spinner from the xml.
                 //Spinner dropdown = findViewById(R.id.spinner1);
@@ -342,9 +330,8 @@ public class StudentAttemptQuiz extends AppCompatActivity {
         Qno--; //previous question
 
 
-        Context c= getApplicationContext();
-        if(Qno<0)
-        {
+        Context c = getApplicationContext();
+        if (Qno < 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Close Quiz?");
@@ -368,8 +355,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
-        }
-        else {
+        } else {
 
 
             Question q = questionsList.get(Qno);
@@ -377,22 +363,22 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             TextView QuesNo;
 
             /////////////////////////// timer per question ///////////////////////////////////////
-           if(sw[Qno+1]!=null) {
-               if (sw[Qno + 1].running == true) //question from which back button was pressed-> Qno+1
-               {
-                   sw[Qno + 1].pause();
-                   //TODO: if question is attempted,then store time
-                   if (Attempted == true) {
-                       long timetaken = sw[Qno + 1].getElapsedTimeSecs();
-                       Time_perQuestion[Qno + 1] = timetaken;
-                       sw[Qno + 1].stop();
-                   }
-               }
-               if (sw[Qno].paused == true) //question to which back button took->Qno
-               {
-                   sw[Qno].resume();
-               }
-           }
+            if (sw[Qno + 1] != null) {
+                if (sw[Qno + 1].running == true) //question from which back button was pressed-> Qno+1
+                {
+                    sw[Qno + 1].pause();
+                    //TODO: if question is attempted,then store time
+                    if (Attempted == true) {
+                        long timetaken = sw[Qno + 1].getElapsedTimeSecs();
+                        Time_perQuestion[Qno + 1] = timetaken;
+                        sw[Qno + 1].stop();
+                    }
+                }
+                if (sw[Qno].paused == true) //question to which back button took->Qno
+                {
+                    sw[Qno].resume();
+                }
+            }
             //////////////////////////////////////////////////////////////////////////////////////
             if (q.qType == 1)// MCQ single
             {
@@ -413,7 +399,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
                 //add qno
                 QuesNo = findViewById(R.id.AttemptQuizMCQ_single_qno);
-                QuesNo.setText(String.valueOf(Qno+1));
+                QuesNo.setText(String.valueOf(Qno + 1));
 
                 //add options
                 RadioButton RB1;
@@ -449,7 +435,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
                 //add qno
                 QuesNo = findViewById(R.id.AttemptQuizMCQ_mul_qno);
-                QuesNo.setText(String.valueOf(Qno+1));
+                QuesNo.setText(String.valueOf(Qno + 1));
 
                 //add options
                 CheckBox RB1;
@@ -487,13 +473,13 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
                 //add qno
                 QuesNo = findViewById(R.id.AttemptQuizMCQ_tf_qno);
-                QuesNo.setText(String.valueOf(Qno+1));
+                QuesNo.setText(String.valueOf(Qno + 1));
 
 
             }
 
             ///////////////////////////////////////////////////////////////
-            else if(q.qType==4) //ow question
+            else if (q.qType == 4) //ow question
             {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
@@ -513,11 +499,9 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
                 //add qno
                 QuesNo = findViewById(R.id.AttemptQuizSubjective_ow_qno);
-                QuesNo.setText(String.valueOf(Qno+1));
+                QuesNo.setText(String.valueOf(Qno + 1));
 
-            }
-
-            else if(q.qType==5) //mw question
+            } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
@@ -538,11 +522,10 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
                 //add qno
                 QuesNo = findViewById(R.id.AttemptQuizsubjective_mul_qno);
-                QuesNo.setText(String.valueOf(Qno+1));
+                QuesNo.setText(String.valueOf(Qno + 1));
 
 
-            }
-            else {
+            } else {
                 //setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
                 //get the spinner from the xml.
                 //Spinner dropdown = findViewById(R.id.spinner1);
@@ -559,10 +542,9 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
     public void StudentAttemptGotToFirstQues(View view) {
 
-        Qno=0; //question no 1
-        Context c= getApplicationContext();
-        if(Qno<0)
-        {
+        Qno = 0; //question no 1
+        Context c = getApplicationContext();
+        if (Qno < 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Close Quiz?");
@@ -586,8 +568,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
-        }
-        else {
+        } else {
 
 
             Question q = questionsList.get(Qno);
@@ -698,7 +679,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             }
 
             ///////////////////////////////////////////////////////////////
-            else if(q.qType==4) //ow question
+            else if (q.qType == 4) //ow question
             {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
@@ -720,9 +701,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizSubjective_ow_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
-            }
-
-            else if(q.qType==5) //mw question
+            } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
@@ -746,8 +725,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 QuesNo.setText(String.valueOf(Qno + 1));
 
 
-            }
-            else {
+            } else {
                 //setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
                 //get the spinner from the xml.
                 //Spinner dropdown = findViewById(R.id.spinner1);
@@ -764,10 +742,9 @@ public class StudentAttemptQuiz extends AppCompatActivity {
 
     public void StudentAttemptGotToLastQues(View view) {
 
-        Qno=questionsList.size()-1 ; //last question question
-        Context c= getApplicationContext();
-        if(Qno<0)
-        {
+        Qno = questionsList.size() - 1; //last question question
+        Context c = getApplicationContext();
+        if (Qno < 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Close Quiz?");
@@ -791,8 +768,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
-        }
-        else {
+        } else {
 
 
             Question q = questionsList.get(Qno);
@@ -900,7 +876,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
             }
 
             ///////////////////////////////////////////////////////////////
-            else if(q.qType==4) //ow question
+            else if (q.qType == 4) //ow question
             {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
@@ -922,9 +898,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizSubjective_ow_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
-            }
-
-            else if(q.qType==5) //mw question
+            } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
@@ -948,8 +922,7 @@ public class StudentAttemptQuiz extends AppCompatActivity {
                 QuesNo.setText(String.valueOf(Qno + 1));
 
 
-            }
-            else {
+            } else {
                 //setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
                 //get the spinner from the xml.
                 //Spinner dropdown = findViewById(R.id.spinner1);

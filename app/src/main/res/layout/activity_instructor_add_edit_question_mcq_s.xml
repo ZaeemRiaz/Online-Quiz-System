@@ -21,15 +21,14 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/add_edit_question_statement_layout_mcq_s_title"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="Answer Options:"
         android:textColor="@color/black"
         android:textSize="18dp"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/add_edit_question_statement_layout_mcq_s" />
 
     <RelativeLayout
@@ -124,13 +123,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_instructor_add_edit_question_statement_layout_mcs_s2" />
 
-
     <com.google.android.material.button.MaterialButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
-        android:text="@string/save"
         android:onClick="InstructorAddEditQuestionMcqSSave"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintRight_toRightOf="parent" />
@@ -139,8 +137,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:text="@string/back"
         android:onClick="InstructorAddEditQuestionMcqSBack"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintLeft_toLeftOf="parent" />

@@ -8,7 +8,6 @@
     android:padding="10dp"
     tools:context=".StudentViewQuiz">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
@@ -27,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:layout_marginBottom="10dp">
+
             <TextView
                 android:id="@+id/ViewQuizMCQ_mul"
                 android:layout_width="wrap_content"
@@ -34,13 +34,14 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginEnd="259dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 android:paddingLeft="2dp"
                 android:text="Q3"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textView8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/textView8"
 
@@ -72,7 +73,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.208" />
 
-
             <Button
                 android:id="@+id/MCQ_mul_Next_button"
                 android:layout_width="100dp"
@@ -86,13 +86,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/MCQ_mul_button4" />
 
-
             <Button
                 android:id="@+id/MCQ_mul_button4"
                 android:layout_width="wrap_content"
-                android:onClick="ViewQuizMABack"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:onClick="ViewQuizMABack"
 
                 android:text="Back"
                 app:layout_constraintEnd_toStartOf="@+id/MCQ_mul_Next_button"
@@ -105,12 +104,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
-                android:clickable="false"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="246dp"
                 android:layout_marginBottom="7dp"
-                android:text="CheckBox"
                 android:checked="true"
+                android:clickable="false"
+                android:text="CheckBox"
                 app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -123,9 +122,9 @@
                 android:layout_marginStart="52dp"
                 android:layout_marginEnd="246dp"
                 android:layout_marginBottom="9dp"
-                android:text="CheckBox"
                 android:checked="true"
                 android:clickable="false"
+                android:text="CheckBox"
                 app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_checkBox3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -136,14 +135,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="51dp"
                 android:layout_marginEnd="246dp"
-                android:text="CheckBox"
                 android:clickable="false"
+                android:text="CheckBox"
                 app:layout_constraintBottom_toTopOf="@+id/MCQ_mul_button4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 
@@ -160,7 +158,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <TextView
                 android:id="@+id/textView6"
@@ -179,6 +176,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,15 +3,8 @@ package com.se.onlinequizsystem;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String TAG = "=== QuizDbHelper ===";

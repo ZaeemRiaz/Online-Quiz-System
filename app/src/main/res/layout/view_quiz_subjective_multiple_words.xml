@@ -8,7 +8,6 @@
     android:padding="10dp"
     tools:context=".StudentViewQuiz">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
         android:layout_width="match_parent"
@@ -27,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:layout_marginBottom="10dp">
+
             <TextView
                 android:id="@+id/ViewQuizMCQ_subjective_mul_words"
                 android:layout_width="wrap_content"
@@ -34,10 +34,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginEnd="259dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 android:paddingLeft="2dp"
                 android:text="Q4"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textView8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.208" />
 
-
             <Button
                 android:id="@+id/sub_words_Next_button"
                 android:layout_width="100dp"
@@ -99,25 +98,23 @@
             <EditText
                 android:id="@+id/editTextTextPersonName1"
                 android:layout_width="367dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:enabled="false"
-
-                android:gravity="top"
                 android:layout_height="158dp"
                 android:layout_marginStart="13dp"
                 android:layout_marginEnd="12dp"
+
                 android:layout_marginBottom="12dp"
+                android:clickable="false"
                 android:ems="10"
+                android:enabled="false"
+                android:focusable="false"
+                android:gravity="top"
                 android:text="Here is you answer"
 
                 app:layout_constraintBottom_toTopOf="@+id/sub_words_Next_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 
@@ -135,7 +132,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
@@ -152,6 +148,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
