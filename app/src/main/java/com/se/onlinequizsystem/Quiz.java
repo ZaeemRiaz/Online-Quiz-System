@@ -268,4 +268,25 @@ public class Quiz implements Serializable {
         }
         db.close();
     }
+
+    static int getQuizAttemptTime(Context context, int userID, int quizID){
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        int timeTaken = 0;
+
+        try {
+            String query = "SELECT timeTaken FROM studentAttempt WHERE userID=? and QuizID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID)});
+            while (cursor.moveToNext()) {
+                timeTaken += Integer.parseInt(cursor.getString(cursor.getColumnIndex("timeTaken")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+        return timeTaken;
+    }
 }
