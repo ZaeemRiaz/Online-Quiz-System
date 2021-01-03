@@ -3,6 +3,7 @@ package com.se.onlinequizsystem;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -40,20 +41,22 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 + "foreign key (QuestionID) references Questions(questionID)," + "primary key(quizID, questionID));";
         db.execSQL(sql);
 
-        sql = "create table studentAttempt(" + "userID integer," + "QuizID integer," + "QuestionID integer,"
+        sql = "create table studentAttempt(" + "userID integer," + "QuizID integer," + "QuestionID integer," + "enteredAns varchar(1000),"
                 + "timeTaken integer," + "marksScored integer," + "foreign key (userID) references users(userID),"
                 + "foreign key (quizID) references Quiz(quizID),"
                 + "foreign key (QuestionID) references Questions(questionID),"
                 + "primary key (userID, quizID, questionID)" + ")";
         db.execSQL(sql);
-//            Log.i(TAG, "onCreate: sql:" + sql);
-//        bogusEntries(db);
+        Log.i(TAG, "onCreate: created tables");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS quiz");
+        db.execSQL("DROP TABLE IF EXISTS question");
+        db.execSQL("DROP TABLE IF EXISTS quizQuestions");
+        db.execSQL("DROP TABLE IF EXISTS studentAttempt");
         onCreate(db);
     }
 

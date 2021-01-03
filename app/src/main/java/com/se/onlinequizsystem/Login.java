@@ -253,50 +253,45 @@ public class Login {
         return check;
     }
 
-    static void addQScore(Context context, Integer userID, Integer quizID, Integer questionID, Integer TimeTaken, Integer marksScored) {
-
+    static void insertQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            String query = "insert into studentAttempt values(?,?,?,?,?)";
+            String query = "insert into studentAttempt values(?,?,?,?,?,?)";
             Cursor cursor = db.rawQuery(query, new String[]{
                     String.valueOf(userID),
                     String.valueOf(quizID),
                     String.valueOf(questionID),
-                    String.valueOf(TimeTaken),
-                    String.valueOf(marksScored)});
+                    String.valueOf(choices),
+                    String.valueOf(timeTaken),
+                    String.valueOf(0)});
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         db.close();
-
-//        Connection c = null;
-//        Statement stmt = null;
-//        String sql = "insert into studentAttempt values(?,?,?,?,?);";
-//        try {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-//            c.setAutoCommit(false);
-//
-//            stmt = c.createStatement();
-//
-//            PreparedStatement prep = c.prepareStatement(sql);
-//
-//            prep.setInt(1, userID);
-//            prep.setInt(2, quizID);
-//            prep.setInt(3, questionID);
-//            prep.setInt(4, TimeTaken);
-//            prep.setInt(5, marksScored);
-//            prep.execute();
-//
-//            stmt.close();
-//            c.commit();
-//            c.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
+    static void updateQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            String query = "UPDATE studentAttempt SET enteredAns=?, timeTaken=?, marksScored=? WHERE userID=? and QuizID=? and QuestionID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(choices),
+                    String.valueOf(timeTaken),
+                    String.valueOf(0),
+                    String.valueOf(userID),
+                    String.valueOf(quizID),
+                    String.valueOf(questionID)});
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+    }
+
+    // TODO: 03-Jan-21 getQuestionAttempt()
 }

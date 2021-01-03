@@ -28,7 +28,7 @@ public class InstructorQuizFeedbackActivity extends AppCompatActivity {
         quizzesAttemptedTextView.setText(String.valueOf(quizStats.quizAttempted));
         totalStudentsTextView.setText(String.valueOf(quizStats.totalStudents));
 
-        // TODO: 02-Jan-21 adapter for list view or something
+        // TODO: 02-Jan-21 check if correct data
 
         // convert question time double to string
         ArrayList<String> averageQuestionTime = new ArrayList<>();
