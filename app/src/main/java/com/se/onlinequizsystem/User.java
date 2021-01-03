@@ -1,30 +1,30 @@
 package com.se.onlinequizsystem;
 
 public class User {
-    private Integer id;
+    private int id;
     private String username;
     private String password;
-    private Integer uType;
+    private int uType;
 
     public User() {
-        id = null;
+        id = -1;
         username = null;
         password = null;
-        uType = null;
+        uType = -1;
     }
 
-    public User(Integer id, String username, String password, Integer uType) {
+    public User(int id, String username, String password, int uType) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.uType = uType;
     }
 
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,11 +44,11 @@ public class User {
         this.password = password;
     }
 
-    public Integer getUType() {
+    public int getUType() {
         return this.uType;
     }
 
-    public void setUType(Integer uType) {
+    public void setUType(int uType) {
         this.uType = uType;
     }
 

@@ -11,14 +11,14 @@ import java.util.List;
 
 public class Question implements Serializable {
     private static final String TAG = "=== Question ===";
-    public Integer qId;
-    public Integer qType; // 1 MCQ single, 2 MCQ multiple, 3 TF, 4 Obj, 5 Sbj
+    public int qId;
+    public int qType; // 1 MCQ single, 2 MCQ multiple, 3 TF, 4 Obj, 5 Sbj
     public String qText;
-    public Integer qMarks;
+    public int qMarks;
     public boolean attempted;
     public List<String> qAnsPossible = new ArrayList<String>(); // Assuming all these sizes 4, discuss with Murad
     public List<Integer> trueAnswers = new ArrayList<Integer>();
-    // public List<Integer> qAnsSelected = new ArrayList<Integer>();
+    // public List<int> qAnsSelected = new ArrayList<int>();
     // public String qAnswer; // Subjective or Objective
 
     public Question() {
@@ -29,7 +29,7 @@ public class Question implements Serializable {
         qId = questionID;
     }
 
-    public Question(Integer qId, Integer qType, String qText, Integer qMarks) {
+    public Question(int qId, int qType, String qText, int qMarks) {
         this.qId = qId;
         this.qType = qType;
         this.qText = qText;
@@ -45,13 +45,12 @@ public class Question implements Serializable {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            Log.d(TAG, "updateQuestion: questionID: " + qId);
-            String query = "select * from Question where qID = " + qId;
+            Log.d(TAG, "updateQuestion: questionID: " + this.qId);
+            String query = "select * from Question where qID = " + this.qId;
             Cursor cursor = db.rawQuery(query, null);
 
             if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
 
-//                    this.qId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qID")));
                 this.qType = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qType")));
                 this.qText = cursor.getString(cursor.getColumnIndex("qText"));
                 this.qMarks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qMarks")));
@@ -80,14 +79,10 @@ public class Question implements Serializable {
     }
 
     public void AddOptions(List<String> temp) {
-        for (int i = 0; i < temp.size(); i++) {
-            this.qAnsPossible.add(temp.get(i));
-        }
+        this.qAnsPossible.addAll(temp);
     }
 
     public void AddAnswers(List<Integer> temp) {
-        for (int i = 0; i < temp.size(); i++) {
-            this.trueAnswers.add(temp.get(i));
-        }
+        this.trueAnswers.addAll(temp);
     }
 }

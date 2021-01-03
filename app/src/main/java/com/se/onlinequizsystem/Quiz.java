@@ -103,7 +103,7 @@ public class Quiz implements Serializable {
         return listOfQuiz;
     }
 
-    static void insertQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
+    static void insertQuestionAttempt(Context context, int userID, int quizID, int questionID, int timeTaken, String choices) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -123,7 +123,7 @@ public class Quiz implements Serializable {
         db.close();
     }
 
-    static void updateQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
+    static void updateQuestionAttempt(Context context, int userID, int quizID, int questionID, int timeTaken, String choices) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -138,6 +138,27 @@ public class Quiz implements Serializable {
                     String.valueOf(questionID)});
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+    }
+
+    static void getQuestionAttempt(Context context, int userID, int quizID, int questionID) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            String query = "SELECT enteredAns, timeTaken, marksScored FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID),
+                    String.valueOf(questionID)});
+            if (cursor != null && cursor.moveToFirst()) {
+                String choices = cursor.getString(cursor.getColumnIndex("enteredAns"));
+                int timeTaken = Integer.parseInt(cursor.getString(cursor.getColumnIndex("timeTaken")));
+                int marks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("marksScored")));
+            }
+            } catch (Exception e) {
             e.printStackTrace();
         }
         db.close();

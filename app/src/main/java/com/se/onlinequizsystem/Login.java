@@ -34,7 +34,7 @@ public class Login {
         return type;
     }
 
-    static Question fetchMCQ(Context context, Integer id) {
+    static Question fetchMCQ(Context context, int id) {
         Question q = new Question();
 
         QuizDbHelper dbHelper = new QuizDbHelper(context);
@@ -69,7 +69,7 @@ public class Login {
         return q;
     }
 
-    static boolean checkSingularMCQ(Context context, Integer qId, Integer choice) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
+    static boolean checkSingularMCQ(Context context, int qId, int choice) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
     {
         boolean check = false;
 
@@ -81,16 +81,16 @@ public class Login {
             Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(qId)});
 
             if (cursor != null && cursor.moveToFirst()) {                   // Always one row returned.
-                if (choice.equals(1) && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns1"))) == 1) {
+                if (choice==1 && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns1"))) == 1) {
                     check = true;
                 }
-                if (choice.equals(2) && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns2"))) == 1) {
+                if (choice==2 && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns2"))) == 1) {
                     check = true;
                 }
-                if (choice.equals(3) && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns3"))) == 1) {
+                if (choice==3 && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns3"))) == 1) {
                     check = true;
                 }
-                if (choice.equals(4) && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns4"))) == 1) {
+                if (choice==4 && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns4"))) == 1) {
                     check = true;
                 }
             } else {
@@ -105,7 +105,7 @@ public class Login {
         return check;
     }
 
-    static boolean checkObjective(Context context, Integer qId, int[] choices) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
+    static boolean checkObjective(Context context, int qId, int[] choices) // options 1, 2, 3, 4 selected corresond to 0, 1, 2, 3
     {
         boolean check = true;
 
