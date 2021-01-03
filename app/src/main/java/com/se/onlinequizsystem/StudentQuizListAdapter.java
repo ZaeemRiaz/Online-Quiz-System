@@ -88,6 +88,7 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
 
         quizViewHolder.marks.setText(String.valueOf(quizList.get(position).totalMarks));
         quizViewHolder.timeLeft.setText(String.valueOf(quizList.get(position).totalTime));
+        // TODO: 03/01/2021 set button visibility here 
         quizViewHolder.attemptQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
