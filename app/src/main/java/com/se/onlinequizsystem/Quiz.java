@@ -148,7 +148,7 @@ public class Quiz implements Serializable {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        int timeTaken = -1;
+        int timeTaken = 0;
 
         try {
             String query = "SELECT timeTaken FROM studentAttempt WHERE userID=? and QuizID=? and QuestionID=?";
