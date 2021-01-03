@@ -47,8 +47,9 @@ public class QuizStats {
         }
 
         try {
+            Log.d(TAG, "QuizStats: read total students");
             String query = "select COUNT(userID) as cnt from users where uType = 0;";
-            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(quizID)});
+            Cursor cursor = db.rawQuery(query, null);
             while (cursor.moveToNext()) {
                 this.totalStudents = Integer.parseInt(cursor.getString(cursor.getColumnIndex("cnt")));
             }
@@ -56,6 +57,7 @@ public class QuizStats {
             e.printStackTrace();
         }
 
+        Log.d(TAG, "QuizStats: stats read");
         db.close();
 
         this.quizAttempted = idx;

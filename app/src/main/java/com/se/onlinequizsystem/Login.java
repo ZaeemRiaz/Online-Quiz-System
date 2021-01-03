@@ -200,7 +200,6 @@ public class Login {
             if (cursor != null && cursor.moveToFirst()) {                   // Always one row returnd
                 int totalAns = choices.length;
                 for (int i = 0; i < totalAns; i++) {
-                    // TODO: 30-Dec-20 choices 1,2,3,4????
                     if (choices[i] == 1 && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns1"))) != 1) {
                         check = false;
                     } else if (choices[i] == 2 && Integer.parseInt(cursor.getString(cursor.getColumnIndex("valAns2"))) != 1) {
