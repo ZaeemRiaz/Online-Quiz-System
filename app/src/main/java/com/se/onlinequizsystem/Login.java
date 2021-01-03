@@ -30,6 +30,7 @@ public class Login {
             Log.d(TAG, "loginUser: login unsuccessful");
         }
         db.close();
+
         return type;
     }
 
@@ -65,44 +66,6 @@ public class Login {
         }
         db.close();
 
-
-//        Connection c = null;
-//        PreparedStatement stmt = null;
-//        String sql;
-//        try {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-//            c.setAutoCommit(false);
-////         System.out.println("Opened database successfully");
-//
-//            sql = "select * from Question where qID=?";
-//            stmt = c.prepareStatement(sql);
-//            // Parameters
-//            stmt.setInt(1, id);
-//            // Execute
-//            ResultSet res = stmt.executeQuery();
-//
-//            if (res.next()) {
-//                q.qId = res.getInt("qID");
-//                q.qType = res.getInt("qType");
-//                q.qText = res.getString("qText");
-//                q.qMarks = res.getInt("qMarks");
-//                q.qAnsPossible.add(res.getString("posAns1"));
-//                q.qAnsPossible.add(res.getString("posAns2"));
-//                q.qAnsPossible.add(res.getString("posAns3"));
-//                q.qAnsPossible.add(res.getString("posAns4"));
-//                q.trueAnswers.add(res.getInt("valAns1"));
-//                q.trueAnswers.add(res.getInt("valAns2"));
-//                q.trueAnswers.add(res.getInt("valAns3"));
-//                q.trueAnswers.add(res.getInt("valAns4"));
-//
-//            }
-//            stmt.close();
-//            c.commit();
-//            c.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         return q;
     }
 
@@ -139,44 +102,6 @@ public class Login {
         }
         db.close();
 
-
-//        Connection c = null;
-//        PreparedStatement stmt = null;
-//        String sql;
-//        try {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-//            c.setAutoCommit(false);
-////         System.out.println("Opened database successfully");
-//
-//            sql = "select * from Question where qID=?";
-//            stmt = c.prepareStatement(sql);
-//            // Parameters
-//            stmt.setInt(1, qId);
-//            // Execute
-//            ResultSet res = stmt.executeQuery();
-//
-//            if (res.next()) // Question fetched
-//            {
-//                if (choice.equals(1) && res.getInt("valAns1") == 1) {
-//                    check = true;
-//                }
-//                if (choice.equals(2) && res.getInt("valAns2") == 1) {
-//                    check = true;
-//                }
-//                if (choice.equals(3) && res.getInt("valAns3") == 1) {
-//                    check = true;
-//                }
-//                if (choice.equals(4) && res.getInt("valAns4") == 1) {
-//                    check = true;
-//                }
-//            }
-//            stmt.close();
-//            c.commit();
-//            c.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         return check;
     }
 
@@ -213,85 +138,8 @@ public class Login {
         }
         db.close();
 
-//        Connection c = null;
-//        PreparedStatement stmt = null;
-//        String sql;
-//        try {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-//            c.setAutoCommit(false);
-////         System.out.println("Opened database successfully");
-//
-//            sql = "select * from Question where qID=?";
-//            stmt = c.prepareStatement(sql);
-//            // Parameters
-//            stmt.setInt(1, qId);
-//            // Execute
-//            ResultSet res = stmt.executeQuery();
-//
-//            if (res.next()) // Question fetched
-//            {
-//                int totalAns = choices.length;
-//                for (int i = 0; i < totalAns; i++) {
-//                    if (choices[i] == 1 && res.getInt("valAns1") != 1) {
-//                        check = false;
-//                    } else if (choices[i] == 2 && res.getInt("valAns2") != 1) {
-//                        check = false;
-//                    } else if (choices[i] == 3 && res.getInt("valAns3") != 1) {
-//                        check = false;
-//                    } else if (choices[i] == 4 && res.getInt("valAns4") != 1) {
-//                        check = false;
-//                    }
-//                }
-//            }
-//            stmt.close();
-//            c.commit();
-//            c.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         return check;
     }
 
-    static void insertQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
-        QuizDbHelper dbHelper = new QuizDbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        try {
-            String query = "insert into studentAttempt values(?,?,?,?,?,?)";
-            Cursor cursor = db.rawQuery(query, new String[]{
-                    String.valueOf(userID),
-                    String.valueOf(quizID),
-                    String.valueOf(questionID),
-                    String.valueOf(choices),
-                    String.valueOf(timeTaken),
-                    String.valueOf(0)});
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        db.close();
-    }
-
-    static void updateQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
-        QuizDbHelper dbHelper = new QuizDbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        try {
-            String query = "UPDATE studentAttempt SET enteredAns=?, timeTaken=?, marksScored=? WHERE userID=? and QuizID=? and QuestionID=?";
-            Cursor cursor = db.rawQuery(query, new String[]{
-                    String.valueOf(choices),
-                    String.valueOf(timeTaken),
-                    String.valueOf(0),
-                    String.valueOf(userID),
-                    String.valueOf(quizID),
-                    String.valueOf(questionID)});
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        db.close();
-    }
-
-    // TODO: 03-Jan-21 getQuestionAttempt()
 }

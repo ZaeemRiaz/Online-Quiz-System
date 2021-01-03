@@ -81,12 +81,10 @@ public class Quiz implements Serializable {
                 Log.d(TAG, "getAllQuiz: get questions for quiz: " + String.valueOf(quiz.quizID));
                 String query = "select * from quizQuestions where quizID = " + quiz.quizID;
                 Cursor cursor = db.rawQuery(query, null);
-//                if (cursor != null && cursor.moveToFirst()) {// Always one row returned.
                 while (cursor.moveToNext()) {
                     questionID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("questionID")));
                     quiz.listOfQuestions.add(new Question(questionID));
                 }
-//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,4 +102,46 @@ public class Quiz implements Serializable {
         Log.d(TAG, "getAllQuiz: quiz list generated ");
         return listOfQuiz;
     }
+
+    static void insertQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            String query = "insert into studentAttempt values(?,?,?,?,?,?)";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(userID),
+                    String.valueOf(quizID),
+                    String.valueOf(questionID),
+                    String.valueOf(choices),
+                    String.valueOf(timeTaken),
+                    String.valueOf(0)});
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+    }
+
+    static void updateQuestionAttempt(Context context, Integer userID, Integer quizID, Integer questionID, Integer timeTaken, String choices) {
+        QuizDbHelper dbHelper = new QuizDbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            String query = "UPDATE studentAttempt SET enteredAns=?, timeTaken=?, marksScored=? WHERE userID=? and QuizID=? and QuestionID=?";
+            Cursor cursor = db.rawQuery(query, new String[]{
+                    String.valueOf(choices),
+                    String.valueOf(timeTaken),
+                    String.valueOf(0),
+                    String.valueOf(userID),
+                    String.valueOf(quizID),
+                    String.valueOf(questionID)});
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+    }
+
+    // TODO: 03-Jan-21 getQuestionAttempt()
 }
