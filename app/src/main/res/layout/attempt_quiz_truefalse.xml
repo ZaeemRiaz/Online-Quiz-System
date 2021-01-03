@@ -120,32 +120,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/mcq_tf_myRadioGroup"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/MCQ_single_timer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="16dp"
-                android:text="00:01:00"
-                android:textColor="@color/purple_200"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="238dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
-                android:text="Time Left"
-                app:layout_constraintEnd_toStartOf="@+id/MCQ_single_timer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <Button
                 android:id="@+id/mcq_tf_button4"
                 android:layout_width="wrap_content"

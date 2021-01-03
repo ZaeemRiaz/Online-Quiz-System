@@ -6,11 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
-public class StudentViewQuiz extends AppCompatActivity {
-    private static final String TAG = "View_Quiz_Mcq_single_an";
-    private ArrayList<Question> questionsList;
+public class StudentViewQuizActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +14,6 @@ public class StudentViewQuiz extends AppCompatActivity {
 
         Intent intent = getIntent();
         Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
-        questionsList = quiz.listOfQuestions;
 
         setContentView(R.layout.activity_student_view_quiz);
     }
@@ -62,6 +57,4 @@ public class StudentViewQuiz extends AppCompatActivity {
     public void ViewQuizOWBack(View view) {
         setContentView(R.layout.view_quiz_subjective_multiple_words);
     }
-
-
 }

@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,19 +17,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class StudentAttemptQuizActivity extends AppCompatActivity {
-
-
+    private static final String TAG = "=== StudentAttemptQuizActivity ===";
     int Qno;
-    Stopwatch sw[];
+    Stopwatch[] sw;
     Boolean Attempted = true; //false is equal to not attempted
     int count = 0;
-    long Time_perQuestion[]; //time for each question stored here
+    long[] Time_perQuestion; //time for each question stored here
     private ArrayList<Question> questionsList;
 
     @Override
@@ -36,23 +42,27 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
         questionsList = quiz.listOfQuestions;
         Qno = -1;
-        int i = 0;
+
         sw = new Stopwatch[questionsList.size()];
+        int i;
         for (i = 0; i < questionsList.size(); i++) {
             sw[i] = new Stopwatch();
         }
 
         Time_perQuestion = new long[questionsList.size()];
-
         for (i = 0; i < questionsList.size(); i++) {
             Time_perQuestion[i] = 0;
         }
 
+        // Time Left Functionality
+        // Get Current Time
+        Calendar currentCalender = Calendar.getInstance();
+        Date currentTime = currentCalender.getTime();
+        Log.d(TAG, "onCreate: time rn: " + currentTime);
+
         setContentView(R.layout.activity_student_attempt_quiz);
     }
 
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void StudentAttemptNextQuestion(View view) {
         Qno++; //next question
         // Context context = getApplicationContext();
@@ -61,20 +71,17 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         //Toast toast = Toast.makeText(context, text, duration);
         //toast.show();
 
-
-        ////////////////////////////////////////////////////////////////////
         if (Qno >= questionsList.size()) {
             setContentView(R.layout.attempt_submit);
 
             ////////////////////////////set all paused timers to stop before submitting////////////////
-            int i = 0;
+            int i;
             for (i = 0; i < sw.length; i++) {
-                if (sw[i].paused == true) {
+                if (sw[i].paused) {
                     sw[i].stop();
                     Time_perQuestion[i] = 0; //not attempted
                 }
             }
-
 
             Context context = getApplicationContext();
             CharSequence text = "Time taken for q1 =" + String.valueOf(Time_perQuestion[0]);
@@ -93,15 +100,15 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             if (Time_perQuestion[Qno] == 0) {  //if time has already not been calculated
                 if (count % 2 == 0) // meaning question started
                 {
-                    if (sw[Qno].paused == false) {
+                    if (!sw[Qno].paused) {
                         sw[Qno].start();
                     } else {
                         sw[Qno].resume();
                     }
                     if (count > 1) {
                         //if question attempted, then store time
-                        if (sw[Qno - 1].running == true) {
-                            if (Attempted == true) {
+                        if (sw[Qno - 1].running) {
+                            if (Attempted) {
                                 long timetaken = sw[Qno - 1].getElapsedTimeSecs();
                                 Time_perQuestion[Qno - 1] = timetaken;
                                 sw[Qno - 1].stop();
@@ -114,15 +121,15 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 } else //meaning question ended wiht next pressed
                 {
 
-                    if (sw[Qno].paused == false) {
+                    if (!sw[Qno].paused) {
                         sw[Qno].start();
                     } else {
                         sw[Qno].resume();
                     }
 
-                    //TODO: if previous question is attempted, then store ellapsed time, else store
-                    if (sw[Qno - 1].running == true) {
-                        if (Attempted == true) {
+                    //TODO: if previous question is attempted, then store elapsed time, else store
+                    if (sw[Qno - 1].running) {
+                        if (Attempted) {
                             long timetaken = sw[Qno - 1].getElapsedTimeSecs();
                             Time_perQuestion[Qno - 1] = timetaken;
                             sw[Qno - 1].stop();
@@ -134,11 +141,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 }
                 count++;
             }
-            /////////////////////////////////////////////////////////////////////
 
-
-            //////////////////////////////////////////////////////////////////
-            if (q.qType == 1)// MCQ single
+            if (q.qType == 1) // MCQ single
             {
                 setContentView(R.layout.attempt_quiz_mcq_single_ans);
                 //get the spinner from the xml.
@@ -935,8 +939,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //dropdown.setAdapter(adapter);
             }
         }
-
-
     }
 
     public void QuizSubmitButton(View view) {
@@ -948,8 +950,27 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_attempt_quiz, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Handle item selection
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.student_ql_log_out:
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 

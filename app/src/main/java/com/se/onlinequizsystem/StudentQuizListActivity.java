@@ -1,6 +1,5 @@
 package com.se.onlinequizsystem;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,17 +27,6 @@ public class StudentQuizListActivity extends AppCompatActivity {
         // super.onBackPressed();
         // Not calling super, disables back button in current screen.
     }
-//
-//    public void AttemptListener(View view) {
-//        Intent intent = new Intent(this, StudentAttemptQuiz.class);
-//        startActivity(intent);
-//    }
-//
-//    public void ViewQuiztListener(View view) {
-//        Intent intent = new Intent(this, StudentViewQuiz.class);
-//        startActivity(intent);
-//    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,16 +37,10 @@ public class StudentQuizListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Handle item selection
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.student_ql_log_out:
-                intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.quiz_time_left) {
+            // do nothing
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
-
 }

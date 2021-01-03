@@ -99,7 +99,7 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
         quizViewHolder.viewQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, StudentViewQuiz.class);
+                Intent intent = new Intent(context, StudentViewQuizActivity.class);
                 intent.putExtra("quizViewIntent", quizList.get(position));
                 context.startActivity(intent);
             }

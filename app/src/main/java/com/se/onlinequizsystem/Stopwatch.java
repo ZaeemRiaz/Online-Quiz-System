@@ -28,7 +28,7 @@ public class Stopwatch {
         this.startTime = System.currentTimeMillis() - currentTime;
     }
 
-    //elaspsed time in milliseconds
+    //elapsed time in milliseconds
     public long getElapsedTimeMili() {
         long elapsed = 0;
         if (running) {
@@ -68,6 +68,4 @@ public class Stopwatch {
         return getElapsedTimeHour() + ":" + getElapsedTimeMin() + ":"
                 + getElapsedTimeSecs() + "." + getElapsedTimeMili();
     }
-
-
 }
