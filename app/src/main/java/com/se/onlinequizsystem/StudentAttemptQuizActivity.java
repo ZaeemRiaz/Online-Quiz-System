@@ -430,34 +430,36 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
 
             /////////////////////////// timer per question ///////////////////////////////////////
-            if (sw[Qno + 1] != null) {
-                if (sw[Qno + 1].running == true) //question from which back button was pressed-> Qno+1
-                {
-                    sw[Qno + 1].pause();
-                    //TODO: if question is attempted,then store time
-                    ArrayList<Integer> Attempted_Questions= Quiz.getQuestionAttemptList(getApplicationContext(), 1,quiz.quizID);
-                    int i=0;
-                    for(i=0; i<Attempted_Questions.size();i++)
-                    {
-                        if(Attempted_Questions.get(i)==(Qno+1))
-                        {
-                            Attempted=true;
-                        }
-                        else{
-                            Attempted= false;
-                        }
-                    }
-                    if (Attempted == true) {
-                        long timetaken = sw[Qno + 1].getElapsedTimeSecs();
-                        Time_perQuestion[Qno + 1] = timetaken;
-                        sw[Qno + 1].stop();
-                    }
-                }
-                if (sw[Qno].paused == true) //question to which back button took->Qno
-                {
-                    sw[Qno].resume();
-                }
-            }
+            // TODO: 04/01/2021 ABIA
+            // COMMENTED THIS CODE BECAUSE IT WAS CAUSING OUT OF BOUND EXCEPTION ON LINE 396 for sw[Qno + 1]
+//            if (sw[Qno + 1] != null) {
+//                if (sw[Qno + 1].running == true) //question from which back button was pressed-> Qno+1
+//                {
+//                    sw[Qno + 1].pause();
+//                    //TODO: if question is attempted,then store time
+//                    ArrayList<Integer> Attempted_Questions= Quiz.getQuestionAttemptList(getApplicationContext(), 1,quiz.quizID);
+//                    int i=0;
+//                    for(i=0; i<Attempted_Questions.size();i++)
+//                    {
+//                        if(Attempted_Questions.get(i)==(Qno+1))
+//                        {
+//                            Attempted=true;
+//                        }
+//                        else{
+//                            Attempted= false;
+//                        }
+//                    }
+//                    if (Attempted == true) {
+//                        long timetaken = sw[Qno + 1].getElapsedTimeSecs();
+//                        Time_perQuestion[Qno + 1] = timetaken;
+//                        sw[Qno + 1].stop();
+//                    }
+//                }
+//                if (sw[Qno].paused == true) //question to which back button took->Qno
+//                {
+//                    sw[Qno].resume();
+//                }
+//            }
             //////////////////////////////////////////////////////////////////////////////////////
             if (q.qType == 1)// MCQ single
             {
