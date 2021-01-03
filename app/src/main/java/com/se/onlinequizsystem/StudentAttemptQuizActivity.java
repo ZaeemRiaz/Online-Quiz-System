@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class StudentAttemptQuiz extends AppCompatActivity {
+public class StudentAttemptQuizActivity extends AppCompatActivity {
 
 
     int Qno;
