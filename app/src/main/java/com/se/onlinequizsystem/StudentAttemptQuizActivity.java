@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class StudentAttemptQuizActivity extends AppCompatActivity {
     private static final String TAG = "=== StudentAttemptQuizActivity ===";
@@ -32,6 +32,10 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     Boolean Attempted = true; //false is equal to not attempted
     int count = 0;
     long[] Time_perQuestion; //time for each question stored here
+    CountDownTimer timeLeftTimer;
+    private Quiz quiz;
+    private Menu menu;
+    private long timeLeft;
     private ArrayList<Question> questionsList;
 
     @Override
@@ -39,7 +43,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+        quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
         questionsList = quiz.listOfQuestions;
         Qno = -1;
 
@@ -55,11 +59,30 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         }
 
         // Time Left Functionality
-        // Get Current Time
         Calendar currentCalender = Calendar.getInstance();
-        Date currentTime = currentCalender.getTime();
-        Log.d(TAG, "onCreate: time rn: " + currentTime);
+        long currentTimeEpoch = currentCalender.getTimeInMillis();
+        long timeLeftToClose = (quiz.closeTime * 1000L) - currentTimeEpoch;
+        timeLeft = quiz.totalTime * 1000L; // convert quiz duration from seconds to milliseconds
+        timeLeft -= Quiz.getQuizAttemptTime(this, 1, quiz.quizID);
+        if (timeLeft > timeLeftToClose) {
+            timeLeft = timeLeftToClose;
+        }
 
+        timeLeftTimer = new CountDownTimer(timeLeft, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millisUntilFinished), TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+                MenuItem timeLeftItem = menu.findItem(R.id.quiz_time_left);
+                timeLeftItem.setTitle("Time Left: " + hms);
+            }
+
+            @Override
+            public void onFinish() {
+                Quiz.submitQuiz(getApplicationContext(), 1, quiz.quizID);
+                Intent intent = new Intent(getApplicationContext(), StudentQuizListActivity.class);
+                startActivity(intent);
+            }
+        };
         setContentView(R.layout.activity_student_attempt_quiz);
     }
 
@@ -72,6 +95,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         //toast.show();
 
         if (Qno >= questionsList.size()) {
+            MenuItem quizTimeLeft = menu.findItem(R.id.quiz_time_left);
+            quizTimeLeft.setVisible(false);
             setContentView(R.layout.attempt_submit);
 
             ////////////////////////////set all paused timers to stop before submitting////////////////
@@ -84,7 +109,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             }
 
             Context context = getApplicationContext();
-            CharSequence text = "Time taken for q1 =" + String.valueOf(Time_perQuestion[0]);
+            CharSequence text = "Time taken for q1 =" + Time_perQuestion[0];
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
@@ -164,7 +189,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                         String textSelected = dropdown.getSelectedItem().toString();
                         int Q = Integer.parseInt(textSelected);
                         Context context = getApplicationContext();
-                        CharSequence text = "Spinner seeleteced= " + String.valueOf(Q);
+                        CharSequence text = "Spinner seeleteced= " + Q;
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
@@ -344,9 +369,9 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            timeLeftTimer.cancel();
                             Intent intent = new Intent(c, StudentQuizListActivity.class);
                             startActivity(intent);
-
                         }
                     });
             builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -942,35 +967,43 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     }
 
     public void QuizSubmitButton(View view) {
-        //update Status of quiz to submitted
+        timeLeftTimer.cancel();
+        Quiz.submitQuiz(this, 1, quiz.quizID);
         Intent intent = new Intent(this, StudentQuizListActivity.class);
         startActivity(intent);
-        Context context = getApplicationContext();
-        CharSequence text = "Quiz Submitted";
-        int duration = Toast.LENGTH_LONG;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_attempt_quiz, menu);
+        MenuItem quizTimeLeft = menu.findItem(R.id.quiz_time_left);
+        quizTimeLeft.setVisible(false);
+        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Handle item selection
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.student_ql_log_out:
-                intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.quiz_time_left) {
+            // do nothing
+            return true;
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        // Not calling super, disables back button in current screen.
+    }
+
+    public void StartQuizButton(View view) {
+        MenuItem timeLeftItem = menu.findItem(R.id.quiz_time_left);
+        timeLeftItem.setVisible(true);
+        String hmsTimeLeft = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(timeLeft), TimeUnit.MILLISECONDS.toMinutes(timeLeft) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(timeLeft)), TimeUnit.MILLISECONDS.toSeconds(timeLeft) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeLeft)));
+        timeLeftItem.setTitle("Time Left: " + hmsTimeLeft);
+        timeLeftTimer.start();
+        StudentAttemptNextQuestion(view);
     }
 }
-
