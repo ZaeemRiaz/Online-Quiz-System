@@ -1,35 +1,35 @@
-package com.se.onlinequizsystem;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+        package com.se.onlinequizsystem;
+        import android.content.Context;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.os.CountDownTimer;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
+        import android.widget.CheckBox;
+        import android.widget.RadioButton;
+        import android.widget.Spinner;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+        import androidx.annotation.NonNull;
+        import androidx.appcompat.app.AlertDialog;
+        import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
+        import java.util.ArrayList;
+        import java.util.Calendar;
+        import java.util.concurrent.TimeUnit;
 
 public class StudentAttemptQuizActivity extends AppCompatActivity {
     private static final String TAG = "=== StudentAttemptQuizActivity ===";
     int Qno;
     Stopwatch[] sw;
-    Boolean Attempted = true; //false is equal to not attempted
+    Boolean Attempted = false; //false is equal to not attempted
     int count = 0;
     long[] Time_perQuestion; //time for each question stored here
     CountDownTimer timeLeftTimer;
@@ -43,7 +43,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
         questionsList = quiz.listOfQuestions;
         Qno = -1;
 
@@ -119,12 +119,15 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             Question q = questionsList.get(Qno);
             TextView QuestionTxt;
             TextView QuesNo;
+            Intent intent = getIntent();
+            Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
 
 
             ///////////////////////////// time the question (try: next, next back)///////////////////////
             if (Time_perQuestion[Qno] == 0) {  //if time has already not been calculated
                 if (count % 2 == 0) // meaning question started
                 {
+
                     if (!sw[Qno].paused) {
                         sw[Qno].start();
                     } else {
@@ -133,7 +136,21 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                     if (count > 1) {
                         //if question attempted, then store time
                         if (sw[Qno - 1].running) {
-                            if (Attempted) {
+
+                            ArrayList<Integer> Attempted_Questions= Quiz.getQuestionAttemptList(getApplicationContext(), 1,quiz.quizID);
+
+                            int i=0;
+                            for(i=0; i<Attempted_Questions.size();i++)
+                            {
+                                if(Attempted_Questions.get(i)==(Qno-1))
+                                {
+                                    Attempted=true;
+                                }
+                                else{
+                                    Attempted= false;
+                                }
+                            }
+                            if (Attempted== true) {
                                 long timetaken = sw[Qno - 1].getElapsedTimeSecs();
                                 Time_perQuestion[Qno - 1] = timetaken;
                                 sw[Qno - 1].stop();
@@ -146,6 +163,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 } else //meaning question ended wiht next pressed
                 {
 
+
                     if (!sw[Qno].paused) {
                         sw[Qno].start();
                     } else {
@@ -154,6 +172,18 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                     //TODO: if previous question is attempted, then store elapsed time, else store
                     if (sw[Qno - 1].running) {
+                        ArrayList<Integer> Attempted_Questions= Quiz.getQuestionAttemptList(getApplicationContext(), 1,quiz.quizID);
+                        int i=0;
+                        for(i=0; i<Attempted_Questions.size();i++)
+                        {
+                            if(Attempted_Questions.get(i)==(Qno-1))
+                            {
+                                Attempted=true;
+                            }
+                            else{
+                                Attempted= false;
+                            }
+                        }
                         if (Attempted) {
                             long timetaken = sw[Qno - 1].getElapsedTimeSecs();
                             Time_perQuestion[Qno - 1] = timetaken;
@@ -166,6 +196,10 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 }
                 count++;
             }
+
+            /////update in DB//////////
+
+
 
             if (q.qType == 1) // MCQ single
             {
@@ -189,7 +223,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                         String textSelected = dropdown.getSelectedItem().toString();
                         int Q = Integer.parseInt(textSelected);
                         Context context = getApplicationContext();
-                        CharSequence text = "Spinner seeleteced= " + Q;
+                        CharSequence text = "Spinner seeleteced= " + String.valueOf(Q);
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
@@ -391,25 +425,39 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             TextView QuestionTxt;
             TextView QuesNo;
 
+            Intent intent = getIntent();
+            Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+
+
             /////////////////////////// timer per question ///////////////////////////////////////
-            // TODO: 04/01/2021 ABIA 
-            // COMMENTED THIS CODE BECAUSE IT WAS CAUSING OUT OF BOUND EXCEPTION ON LINE 396 for sw[Qno + 1]
-//            if (sw[Qno + 1] != null) {
-//                if (sw[Qno + 1].running == true) //question from which back button was pressed-> Qno+1
-//                {
-//                    sw[Qno + 1].pause();
-//                    //TODO: if question is attempted,then store time
-//                    if (Attempted == true) {
-//                        long timetaken = sw[Qno + 1].getElapsedTimeSecs();
-//                        Time_perQuestion[Qno + 1] = timetaken;
-//                        sw[Qno + 1].stop();
-//                    }
-//                }
-//                if (sw[Qno].paused == true) //question to which back button took->Qno
-//                {
-//                    sw[Qno].resume();
-//                }
-//            }
+            if (sw[Qno + 1] != null) {
+                if (sw[Qno + 1].running == true) //question from which back button was pressed-> Qno+1
+                {
+                    sw[Qno + 1].pause();
+                    //TODO: if question is attempted,then store time
+                    ArrayList<Integer> Attempted_Questions= Quiz.getQuestionAttemptList(getApplicationContext(), 1,quiz.quizID);
+                    int i=0;
+                    for(i=0; i<Attempted_Questions.size();i++)
+                    {
+                        if(Attempted_Questions.get(i)==(Qno+1))
+                        {
+                            Attempted=true;
+                        }
+                        else{
+                            Attempted= false;
+                        }
+                    }
+                    if (Attempted == true) {
+                        long timetaken = sw[Qno + 1].getElapsedTimeSecs();
+                        Time_perQuestion[Qno + 1] = timetaken;
+                        sw[Qno + 1].stop();
+                    }
+                }
+                if (sw[Qno].paused == true) //question to which back button took->Qno
+                {
+                    sw[Qno].resume();
+                }
+            }
             //////////////////////////////////////////////////////////////////////////////////////
             if (q.qType == 1)// MCQ single
             {
@@ -606,7 +654,30 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             TextView QuestionTxt;
             TextView QuesNo;
 
-            //////////////////////////////////////////////////////////////////
+            Intent intent = getIntent();
+            Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+
+            //timer per question part
+                 ////////////////
+                    int j;
+                    ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+                    for(j=1; j<AttemptedQuestions.size();j++)
+                    {
+                        if(AttemptedQuestions.get(j)==j) {
+                            Attempted = true;
+                            if (sw[j].running) {
+                                if (Attempted) {
+                                    Time_perQuestion[j] = sw[j].getElapsedTimeSecs();
+                                    sw[j].stop();
+                                }
+                            }
+                        }
+                        else{Attempted=false;}
+                    }
+            if(sw[Qno].paused) //if current question was paused, resume it
+            {
+                sw[Qno].resume();
+            }
 
             if (q.qType == 1)// MCQ single
             {
@@ -805,6 +876,29 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             Question q = questionsList.get(Qno);
             TextView QuestionTxt;
             TextView QuesNo;
+            Intent intent = getIntent();
+            Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+
+            //timer per question part
+            int j;
+            ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+            for(j=0; j<AttemptedQuestions.size()-1;j++)
+            {
+                if(AttemptedQuestions.get(j)==j) {
+                    Attempted = true;
+                    if (sw[j].running) {
+                        if (Attempted) {
+                            Time_perQuestion[j] = sw[j].getElapsedTimeSecs();
+                            sw[j].stop();
+                        }
+                    }
+                }
+                else{Attempted=false;}
+            }
+            if(sw[Qno].paused) //if current question was paused, resume it
+            {
+                sw[Qno].resume();
+            }
 
             //////////////////////////////////////////////////////////////////
 
