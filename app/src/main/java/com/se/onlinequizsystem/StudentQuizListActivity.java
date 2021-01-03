@@ -1,5 +1,6 @@
 package com.se.onlinequizsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,8 +38,10 @@ public class StudentQuizListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.quiz_time_left) {
-            // do nothing
+        if (item.getItemId() == R.id.student_ql_log_out) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+
             return true;
         }
         return super.onOptionsItemSelected(item);

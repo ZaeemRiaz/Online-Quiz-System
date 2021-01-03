@@ -262,7 +262,7 @@ public class Quiz implements Serializable {
             Cursor cursor = db.rawQuery(query, new String[]{
                     String.valueOf(userID),
                     String.valueOf(quizID),
-                    String.valueOf(1)});
+                    String.valueOf(true)});
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -2,6 +2,7 @@ package com.se.onlinequizsystem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //class AttemptRow {
 //    String course;
@@ -34,6 +36,7 @@ import java.util.ArrayList;
 
 public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizListAdapter.QuizViewHolder> {
     //    protected ArrayList<AttemptRow> quizList;
+    private static final String TAG = "=== StudentQuizListAdapter ===";
     protected ArrayList<Quiz> quizList;
     Context context;
     private QuizViewHolder holder;
@@ -69,26 +72,31 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
     public void onBindViewHolder(@NonNull QuizViewHolder quizViewHolder, int position) {
         quizViewHolder.quizName.setText(quizList.get(position).quizName);
         quizViewHolder.duration.setText(String.valueOf(quizList.get(position).totalTime));
+        quizViewHolder.marks.setText(String.valueOf(quizList.get(position).totalMarks));
+        quizViewHolder.timeLeft.setText(String.valueOf(quizList.get(position).totalTime));
 
         // Quiz status conditions
         boolean submitted = Quiz.checkQuizSubmitted(context, 1, quizList.get(position).quizID);
+        // TODO: 04/01/2021 ZAEEM: checkQuizSubmitted or SubmitQuiz not working correctly
+//        Log.d(TAG, "onBindViewHolder: submitted: " + submitted);
+//        Log.d(TAG, "onBindViewHolder: position: " + position);
+        Calendar currentCalender = Calendar.getInstance();
+        long currentTime = currentCalender.getTimeInMillis();
         if (submitted){
             quizViewHolder.status.setText("Submitted");
         }
-        if (true){// TODO: 03-Jan-21 check if not started
+        if (currentTime < (quizList.get(position).openTime)*1000L){
             quizViewHolder.status.setText("Not Started");
         }
-        if (!submitted && false){// TODO: 03-Jan-21 check if within open time
+        if (!submitted && (currentTime >= (quizList.get(position).openTime)*1000L)){
             quizViewHolder.status.setText("Open");
         }
-        if (!submitted && false){// TODO: 03-Jan-21 check if time finished
+        if (!submitted && currentTime >= (quizList.get(position).closeTime)*1000L){
             quizViewHolder.status.setText("Missed");
         }
-
-
-        quizViewHolder.marks.setText(String.valueOf(quizList.get(position).totalMarks));
-        quizViewHolder.timeLeft.setText(String.valueOf(quizList.get(position).totalTime));
-        // TODO: 03/01/2021 set button visibility here 
+        if (quizViewHolder.status.getText() != "Open") {
+            quizViewHolder.attemptQuizButton.setEnabled(false);
+        }
         quizViewHolder.attemptQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +105,9 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
                 context.startActivity(intent);
             }
         });
+        if ((!submitted || (currentTime < (quizList.get(position).closeTime)*1000L))) {
+            quizViewHolder.viewQuizButton.setEnabled(false);
+        }
         quizViewHolder.viewQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
