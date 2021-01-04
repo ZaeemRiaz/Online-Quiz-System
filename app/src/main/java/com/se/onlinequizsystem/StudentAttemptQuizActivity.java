@@ -123,11 +123,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 }
             }
 
-            Context context = getApplicationContext();
-            CharSequence text = "Time taken for q1 =" + Time_perQuestion[0];
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
             ////////////////////////////////////////////////////////////////////////////
 
         } else {
@@ -158,7 +153,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                             int i = 0;
                             for (i = 0; i < Attempted_Questions.size(); i++) {
                                 if (Attempted_Questions.get(i) == (Qno - 1)) {
-                                    Toast.makeText(this, "Attempted true", Toast.LENGTH_SHORT).show();
                                     Attempted = true;
                                 } else {
                                     Attempted = false;
@@ -214,38 +208,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             if (q.qType == 1) // MCQ single
             {
                 setContentView(R.layout.attempt_quiz_mcq_single_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner2);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"0", "1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
-
-                ////////////////////////////////////////////////////////////////////////////
-                //dropdown.setOnItemClickListener();
-
-                dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String textSelected = dropdown.getSelectedItem().toString();
-                        int Q = Integer.parseInt(textSelected);
-                        Context context = getApplicationContext();
-                        CharSequence text = "Spinner seeleteced= " + String.valueOf(Q);
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
 
                 // add question
                 QuestionTxt = findViewById(R.id.MCQ_single_question);
@@ -269,40 +231,37 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 RB3 = findViewById(R.id.MCQ_single_silent);
                 RB3.setText(q.qAnsPossible.get(2));
 
-                //////////////////////////////////////////////////////
-                RadioGroup radioGroup = (RadioGroup) findViewById(R.id.MCQ_single_myRadioGroup);
-                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        // get selected radio button from radioGroup
-                        int selectedId = radioGroup.getCheckedRadioButtonId();
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                        // find the radiobutton by returned id
-                        RadioButton radioButton = (RadioButton) findViewById(selectedId);
+                if(CHeckifAttempted(Qno+1))
+                {
 
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
 
-                        Toast.makeText(getApplicationContext(),
-                                radioButton.getText(), Toast.LENGTH_SHORT).show();
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else if(choicesInt.get(k)==2)
+                        {
+                            RB2.setChecked(true);
+                        }
+                        else{
+                            RB3.setChecked(true);
+                        }
 
                     }
-                });
 
-
+                }
                 //////////////////////////////////////////////////////////
 
             } else if (q.qType == 2) //MCQ multiple
             {
                 setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner1);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
-
 
                 // add question
                 QuestionTxt = findViewById(R.id.MCQ_mul_question);
@@ -325,21 +284,38 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 RB3 = findViewById(R.id.MCQ_mul_checkBox3);
                 RB3.setText(q.qAnsPossible.get(2));
+                if(CHeckifAttempted(Qno+1))
+                {
+
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else if(choicesInt.get(k)==2)
+                        {
+                            RB2.setChecked(true);
+                        }
+                        else{
+                            RB3.setChecked(true);
+                        }
+
+                    }
+
+                }
+                //////////////////////////////////////////////////////////
+
 
 
             } else if (q.qType == 3) //true false
             {
                 setContentView(R.layout.attempt_quiz_truefalse);
 
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner5);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -360,14 +336,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
                 //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner4);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
                 // add question
                 QuestionTxt = findViewById(R.id.sub_ow_question);
@@ -381,15 +349,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner3);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -417,11 +376,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
                 String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-                Toast.makeText(this, "choices"+ choices+ String.valueOf(opt1Checked)+String.valueOf(opt2Checked)+String.valueOf(opt3Checked), Toast.LENGTH_SHORT).show();
                 if(questionsList.get(Qno).hasbeenInserted==false) {
-                    Toast.makeText(this, "Inserted Attempted QU", Toast.LENGTH_SHORT).show();
                     quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                    Toast.makeText(this, "Inserted Attemptedddd", Toast.LENGTH_SHORT).show();
 
                     questionsList.get(Qno).hasbeenInserted = true;
                 }
@@ -513,15 +469,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             if (q.qType == 1)// MCQ single
             {
                 setContentView(R.layout.attempt_quiz_mcq_single_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner2);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
                 // add question
                 QuestionTxt = findViewById(R.id.MCQ_single_question);
@@ -545,18 +492,36 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 RB3 = findViewById(R.id.MCQ_single_silent);
                 RB3.setText(q.qAnsPossible.get(2));
 
+
+                if(CHeckifAttempted(Qno+1))
+                {
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else if(choicesInt.get(k)==2)
+                        {
+                            RB2.setChecked(true);
+                        }
+                        else{
+                            RB3.setChecked(true);
+                        }
+
+                    }
+
+                }
+
+
             } else if (q.qType == 2) //MCQ multiple
             {
                 setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner1);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
+
 
 
                 // add question
@@ -581,20 +546,34 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 RB3 = findViewById(R.id.MCQ_mul_checkBox3);
                 RB3.setText(q.qAnsPossible.get(2));
 
+                if(CHeckifAttempted(Qno+1))
+                {
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else if(choicesInt.get(k)==2)
+                        {
+                            RB2.setChecked(true);
+                        }
+                        else{
+                            RB3.setChecked(true);
+                        }
+
+                    }
+
+                }
+
 
             } else if (q.qType == 3) //true false
             {
                 setContentView(R.layout.attempt_quiz_truefalse);
-
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner5);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -613,15 +592,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner4);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
                 // add question
                 QuestionTxt = findViewById(R.id.sub_ow_question);
@@ -634,16 +604,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
-
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner3);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -667,6 +627,21 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //set the spinners adapter to the previously created one.
                 //dropdown.setAdapter(adapter);
             }
+            if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
+                String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+
+                if(questionsList.get(Qno).hasbeenInserted==false) {
+                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+
+                    questionsList.get(Qno).hasbeenInserted = true;
+                }
+                else{
+                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                }
+            }
+            opt1Checked=0;
+            opt2Checked=0;
+            opt3Checked=0;
         }
     }
 
@@ -739,17 +714,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             if (q.qType == 1)// MCQ single
             {
                 setContentView(R.layout.attempt_quiz_mcq_single_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner2);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
-
-                //String text = dropdown.getSelectedItem().toString();
 
 
                 // add question
@@ -773,20 +737,33 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 RB3 = findViewById(R.id.MCQ_single_silent);
                 RB3.setText(q.qAnsPossible.get(2));
+                if(CHeckifAttempted(Qno+1))
+                {
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else if(choicesInt.get(k)==2)
+                        {
+                            RB2.setChecked(true);
+                        }
+                        else{
+                            RB3.setChecked(true);
+                        }
+
+                    }
+
+                }
 
             } else if (q.qType == 2) //MCQ multiple
             {
                 setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner1);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
-
 
                 // add question
                 QuestionTxt = findViewById(R.id.MCQ_mul_question);
@@ -810,20 +787,33 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 RB3 = findViewById(R.id.MCQ_mul_checkBox3);
                 RB3.setText(q.qAnsPossible.get(2));
 
+                if(CHeckifAttempted(Qno+1))
+                {
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else if(choicesInt.get(k)==2)
+                        {
+                            RB2.setChecked(true);
+                        }
+                        else{
+                            RB3.setChecked(true);
+                        }
+
+                    }
+
+                }
 
             } else if (q.qType == 3) //true false
             {
                 setContentView(R.layout.attempt_quiz_truefalse);
-
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner5);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -842,15 +832,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner4);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
+
 
                 // add question
                 QuestionTxt = findViewById(R.id.sub_ow_question);
@@ -863,16 +845,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
-
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner3);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -898,6 +870,21 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             }
         }
         FromSpinner=false;
+        if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
+            String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+
+            if(questionsList.get(Qno).hasbeenInserted==false) {
+                quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+
+                questionsList.get(Qno).hasbeenInserted = true;
+            }
+            else{
+                quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+            }
+        }
+        opt1Checked=0;
+        opt2Checked=0;
+        opt3Checked=0;
     }
 
     public void StudentAttemptGotToLastQues(View view) {
@@ -963,15 +950,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             if (q.qType == 1)// MCQ single
             {
                 setContentView(R.layout.attempt_quiz_mcq_single_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner2);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
                 // add question
                 QuestionTxt = findViewById(R.id.MCQ_single_question);
@@ -995,18 +973,11 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 RB3 = findViewById(R.id.MCQ_single_silent);
                 RB3.setText(q.qAnsPossible.get(2));
 
+
+
             } else if (q.qType == 2) //MCQ multiple
             {
                 setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner1);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -1036,15 +1007,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 setContentView(R.layout.attempt_quiz_truefalse);
 
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner5);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -1063,15 +1025,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 //sub_ow_question
                 setContentView(R.layout.attempt_quiz_subjective_ow);
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner4);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
                 // add question
                 QuestionTxt = findViewById(R.id.sub_ow_question);
@@ -1085,15 +1038,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
-                //get the spinner from the xml.
-                Spinner dropdown = findViewById(R.id.spinner3);
-                //create a list of items for the spinner.
-                String[] items = new String[]{"1", "2", "3"};
-                //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-                //There are multiple variations of this, but this is the basic variant.
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-                //set the spinners adapter to the previously created one.
-                dropdown.setAdapter(adapter);
 
 
                 // add question
@@ -1118,6 +1062,21 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //dropdown.setAdapter(adapter);
             }
         }
+        if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
+            String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+
+            if(questionsList.get(Qno).hasbeenInserted==false) {
+                quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+
+                questionsList.get(Qno).hasbeenInserted = true;
+            }
+            else{
+                quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+            }
+        }
+        opt1Checked=0;
+        opt2Checked=0;
+        opt3Checked=0;
     }
 
     @Override
@@ -1135,11 +1094,20 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
         ArrayList<String> items= new ArrayList<>();
         int i=0;
-        for(i=0; i<Attempted_Questions.size();i++)
-        {
-            items.add(String.valueOf(Attempted_Questions.get(i)));
+        int j=0;
+        for(j=0; j<questionsList.size();j++) {
+            Boolean found = false;
+            for (i = 0; i < Attempted_Questions.size(); i++) {
+                if (Attempted_Questions.get(i)==(j+1) )
+                {
+                    found=true;
+                }
+            }
+            if(found==false)
+            {
+                items.add(String.valueOf(j+1));
+            }
         }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
         spinner.setAdapter(adapter);
@@ -1149,7 +1117,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
                 if(nullifyFIrstSelction!=0) {
-                    Toast.makeText(StudentAttemptQuizActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     int GotoQuestion = Integer.parseInt(spinner.getSelectedItem().toString());
                     FromSpinner = true;
                     FromSpinnerQ = GotoQuestion;
@@ -1233,5 +1200,71 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
     }
 
+
+    public void MCQSingleAnsStore(View view) {
+
+         RadioButton b= findViewById(R.id.MCQ_single_sound);
+        if(b.isChecked())
+        {
+            opt1Checked=1;
+        }
+        else{
+            opt1Checked=0;
+        }
+        RadioButton b1= findViewById(R.id.MCQ_single_vibration);
+        if(b1.isChecked())
+        {
+            opt2Checked=1;
+        }
+        else{
+            opt2Checked=0;
+        }
+
+        RadioButton b2= findViewById(R.id.MCQ_single_silent);
+        if(b2.isChecked())
+        {
+            opt3Checked=1;
+        }
+        else{
+            opt3Checked=0;
+        }
+
+    }
+
+    public void TFMCQSore(View view) {
+        RadioButton b= findViewById(R.id.mcq_tf_sound);
+        if(b.isChecked())
+        {
+            opt1Checked=1;
+        }
+        else{
+            opt1Checked=0;
+        }
+        RadioButton b1= findViewById(R.id.mcq_tf_vibration);
+        if(b1.isChecked())
+        {
+            opt2Checked=1;
+        }
+        else{
+            opt2Checked=0;
+        }
+    }
+
+    public Boolean  CHeckifAttempted(int Qestuonno)
+    {
+        Intent intent = getIntent();
+        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+        ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+
+        int j=0;
+        for(j=0; j<AttemptedQuestions.size();j++)
+        {
+            if(Qestuonno== (AttemptedQuestions.get(j)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

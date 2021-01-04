@@ -306,17 +306,26 @@ public class Quiz implements Serializable {
         //will return a formatted string to store MCQs into the DB
         String ret = "";
         if (option1 == 1){
-            ret = ret + "1,";
+            ret = ret + "1.";
         }
         if (option2 == 1){
-            ret = ret + "2,";
+            ret = ret + "2.";
         }
         if (option3 == 1){
-            ret = ret + "3,";
+            ret = ret + "3.";
         }
         if (option4 == 1){
-            ret = ret + "4,";
+            ret = ret + "4.";
         }
         return ret.substring(0, ret.length() - 1);
+    }
+    static ArrayList<Integer> getMCQArrayfromSubmissionString(String input){
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+        String[] las = input.split("\\.");
+        for (int i = 0; i<las.length;i++){
+            System.out.println(las[i]);
+            ret.add(Integer.valueOf(las[i]));
+        }
+        return ret;
     }
 }

@@ -7,18 +7,6 @@
     android:orientation="horizontal"
     tools:context=".StudentAttemptQuizActivity">
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -147,22 +135,10 @@
         android:layout_marginBottom="10dp"
         android:onClick="StudentAttemptGotToFirstQues"
         android:text="Go to First Question"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="230dp"
-        android:layout_marginBottom="10dp"
-        android:paddingLeft="5dp"
-        android:text="Jump to question:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
