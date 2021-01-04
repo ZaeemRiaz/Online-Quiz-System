@@ -43,7 +43,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+        quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
         questionsList = quiz.listOfQuestions;
         Qno = -1;
 

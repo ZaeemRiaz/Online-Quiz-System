@@ -109,15 +109,19 @@ public class Quiz implements Serializable {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            String query = "insert into studentAttempt values(?,?,?,?,?,?)";
-            Cursor cursor = db.rawQuery(query, new String[]{
-                    String.valueOf(userID),
-                    String.valueOf(quizID),
-                    String.valueOf(questionID),
-                    String.valueOf(choices),
-                    String.valueOf(timeTaken),
-                    String.valueOf(0)});
+            String sql = "insert into studentAttempt " +
+                    "values(" + userID + "," + quizID + "," + questionID +
+                    "," + choices + "," + timeTaken + "," + 0 + ")";
+            db.execSQL(sql);
 
+//            String query = "insert into studentAttempt values(?,?,?,?,?,?)";
+//            Cursor cursor = db.rawQuery(query, new String[]{
+//                    String.valueOf(userID),
+//                    String.valueOf(quizID),
+//                    String.valueOf(questionID),
+//                    String.valueOf(choices),
+//                    String.valueOf(timeTaken),
+//                    String.valueOf(0)});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,14 +133,19 @@ public class Quiz implements Serializable {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            String query = "UPDATE studentAttempt SET enteredAns=?, timeTaken=?, marksScored=? WHERE userID=? and QuizID=? and QuestionID=?";
-            Cursor cursor = db.rawQuery(query, new String[]{
-                    String.valueOf(choices),
-                    String.valueOf(timeTaken),
-                    String.valueOf(0),
-                    String.valueOf(userID),
-                    String.valueOf(quizID),
-                    String.valueOf(questionID)});
+            String sql = "UPDATE studentAttempt " +
+                    "SET enteredAns=" + choices + ", timeTaken=" + timeTaken + ", marksScored=" + 0 +
+                    " WHERE userID=" + userID + " and QuizID=" + quizID +
+                    " and QuestionID=" + questionID;
+            db.execSQL(sql);
+//            String query = "UPDATE studentAttempt SET enteredAns=?, timeTaken=?, marksScored=? WHERE userID=? and QuizID=? and QuestionID=?";
+//            Cursor cursor = db.rawQuery(query, new String[]{
+//                    String.valueOf(choices),
+//                    String.valueOf(timeTaken),
+//                    String.valueOf(0),
+//                    String.valueOf(userID),
+//                    String.valueOf(quizID),
+//                    String.valueOf(questionID)});
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -242,7 +251,7 @@ public class Quiz implements Serializable {
                     String.valueOf(userID),
                     String.valueOf(quizID)});
             if (cursor != null && cursor.moveToFirst()) {
-                if (Integer.parseInt(cursor.getString(cursor.getColumnIndex("QuestionID"))) == 1){
+                if (Integer.parseInt(cursor.getString(cursor.getColumnIndex("submitted"))) == 1) {
                     submitted = true;
                 }
             }
@@ -258,18 +267,21 @@ public class Quiz implements Serializable {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            String query = "INSERT into studentSubmission values(?,?,?)";
-            Cursor cursor = db.rawQuery(query, new String[]{
-                    String.valueOf(userID),
-                    String.valueOf(quizID),
-                    String.valueOf(true)});
+            String sql = "INSERT into studentSubmission values(" + userID + "," + quizID + "," + 1 + ")";
+            db.execSQL(sql);
+            Log.d(TAG, "submitQuiz: inserted");
+//            String query = "INSERT into studentSubmission values(?,?,?)";
+//            Cursor cursor = db.rawQuery(query, new String[]{
+//                    String.valueOf(userID),
+//                    String.valueOf(quizID),
+//                    String.valueOf(1)});
         } catch (Exception e) {
             e.printStackTrace();
         }
         db.close();
     }
 
-    static int getQuizAttemptTime(Context context, int userID, int quizID){
+    static int getQuizAttemptTime(Context context, int userID, int quizID) {
         QuizDbHelper dbHelper = new QuizDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
