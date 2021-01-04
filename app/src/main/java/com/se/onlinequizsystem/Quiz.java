@@ -301,4 +301,22 @@ public class Quiz implements Serializable {
         db.close();
         return timeTaken;
     }
+
+    static String generateMCQsubmissionString(int option1, int option2, int option3, int option4){
+        //will return a formatted string to store MCQs into the DB
+        String ret = "";
+        if (option1 == 1){
+            ret = ret + "1,";
+        }
+        if (option2 == 1){
+            ret = ret + "2,";
+        }
+        if (option3 == 1){
+            ret = ret + "3,";
+        }
+        if (option4 == 1){
+            ret = ret + "4,";
+        }
+        return ret.substring(0, ret.length() - 1);
+    }
 }

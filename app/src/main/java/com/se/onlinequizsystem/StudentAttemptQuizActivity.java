@@ -43,9 +43,16 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     int FromSpinnerQ=0;
     int nullifyFIrstSelction=0;
 
+    int opt1Checked=0;
+    int opt2Checked=0;
+    int opt3Checked=0;
+    Context c;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        c=getApplicationContext();
 
         Intent intent = getIntent();
         quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
@@ -93,6 +100,9 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
     public void StudentAttemptNextQuestion(View view) {
         Qno++; //next question
+        Intent intent = getIntent();
+        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+
         // Context context = getApplicationContext();
         //CharSequence text = "Lenght !"+ String.valueOf(questionsList.size());
         //int duration = Toast.LENGTH_SHORT;
@@ -124,8 +134,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             Question q = questionsList.get(Qno);
             TextView QuestionTxt;
             TextView QuesNo;
-            Intent intent = getIntent();
-            Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
 
 
             ///////////////////////////// time the question (try: next, next back)///////////////////////
@@ -405,7 +413,27 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //set the spinners adapter to the previously created one.
                 //dropdown.setAdapter(adapter);
             }
+
+            if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
+                String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+
+                Toast.makeText(this, "choices"+ choices+ String.valueOf(opt1Checked)+String.valueOf(opt2Checked)+String.valueOf(opt3Checked), Toast.LENGTH_SHORT).show();
+                if(questionsList.get(Qno).hasbeenInserted==false) {
+                    Toast.makeText(this, "Inserted Attempted QU", Toast.LENGTH_SHORT).show();
+                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    Toast.makeText(this, "Inserted Attemptedddd", Toast.LENGTH_SHORT).show();
+
+                    questionsList.get(Qno).hasbeenInserted = true;
+                }
+                else{
+                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                }
+            }
+            opt1Checked=0;
+            opt2Checked=0;
+            opt3Checked=0;
         }
+
 
     }
 
@@ -1174,6 +1202,36 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public void CHeckBox1Clicked(View view) {
+
+        CheckBox c= findViewById(R.id.MCQ_mul_checkBox);
+        if(c.isChecked())
+        {
+            opt1Checked=1;
+        }
+        else{
+            opt1Checked=0;
+        }
+        CheckBox c2= findViewById(R.id.MCQ_mul_checkBox2);
+        if(c2.isChecked())
+        {
+            opt2Checked=1;
+        }
+        else{
+            opt2Checked=0;
+        }
+
+        CheckBox c3= findViewById(R.id.MCQ_mul_checkBox3);
+        if(c3.isChecked())
+        {
+            opt3Checked=1;
+        }
+        else{
+            opt3Checked=0;
+        }
+
+    }
 
 
 }

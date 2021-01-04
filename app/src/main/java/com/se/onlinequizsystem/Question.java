@@ -16,6 +16,7 @@ public class Question implements Serializable {
     public String qText;
     public int qMarks;
     public boolean attempted;
+    public boolean hasbeenInserted;
     public List<String> qAnsPossible = new ArrayList<String>(); // Assuming all these sizes 4, discuss with Murad
     public List<Integer> trueAnswers = new ArrayList<Integer>();
     // public List<int> qAnsSelected = new ArrayList<int>();
@@ -35,6 +36,7 @@ public class Question implements Serializable {
         this.qText = qText;
         this.qMarks = qMarks;
         this.attempted = false;
+        this.hasbeenInserted=false;
         // Add possible answers incase of an MCQ/TF
     }
 
@@ -54,6 +56,7 @@ public class Question implements Serializable {
                 this.qType = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qType")));
                 this.qText = cursor.getString(cursor.getColumnIndex("qText"));
                 this.qMarks = Integer.parseInt(cursor.getString(cursor.getColumnIndex("qMarks")));
+                this.hasbeenInserted= false;
 
                 if (this.qType == 1 || this.qType == 2) {
                     this.qAnsPossible.add(cursor.getString(cursor.getColumnIndex("posAns1")));
