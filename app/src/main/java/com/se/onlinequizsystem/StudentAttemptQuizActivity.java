@@ -13,6 +13,7 @@
         import android.widget.ArrayAdapter;
         import android.widget.CheckBox;
         import android.widget.RadioButton;
+        import android.widget.RadioGroup;
         import android.widget.Spinner;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -37,6 +38,10 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     private Menu menu;
     private long timeLeft;
     private ArrayList<Question> questionsList;
+    View v;
+    Boolean FromSpinner= false;
+    int FromSpinnerQ=0;
+    int nullifyFIrstSelction=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,48 +134,45 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 {
 
                     if (!sw[Qno].paused) {
+
                         sw[Qno].start();
                     } else {
                         sw[Qno].resume();
                     }
-                    if (count > 1) {
-                        //if question attempted, then store time
-                        if ((Qno - 1) >= 0)
-                        {
-                            if (sw[Qno - 1].running) {
+                }
+                    if (count >= 1) {
 
-                                ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
 
-                                int i = 0;
-                                for (i = 0; i < Attempted_Questions.size(); i++) {
-                                    if (Attempted_Questions.get(i) == (Qno - 1)) {
-                                        Attempted = true;
-                                    } else {
-                                        Attempted = false;
-                                    }
-                                }
-                                if (Attempted == true) {
-                                    long timetaken = sw[Qno - 1].getElapsedTimeSecs();
-                                    Time_perQuestion[Qno - 1] = timetaken;
-                                    sw[Qno - 1].stop();
+                        if (sw[Qno - 1].running) {
+
+                            ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
+
+                            int i = 0;
+                            for (i = 0; i < Attempted_Questions.size(); i++) {
+                                if (Attempted_Questions.get(i) == (Qno - 1)) {
+                                    Toast.makeText(this, "Attempted true", Toast.LENGTH_SHORT).show();
+                                    Attempted = true;
                                 } else {
-                                    sw[Qno - 1].pause(); // pause prev question if not attempted
+                                    Attempted = false;
                                 }
                             }
+                            if (Attempted == true) {
+                                long timetaken = sw[Qno - 1].getElapsedTimeSecs();
+                                Time_perQuestion[Qno - 1] = timetaken;
+                                sw[Qno - 1].stop();
+                            } else {
+                                sw[Qno - 1].pause(); // pause prev question if not attempted
+                            }
+                        }
                     }
-
-                    }
-                } else //meaning question ended wiht next pressed
-                {
-
-
+                    else //meaning question ended wiht next pressed
+                    {
                     if (!sw[Qno].paused) {
                         sw[Qno].start();
                     } else {
                         sw[Qno].resume();
                     }
 
-                    //TODO: if previous question is attempted, then store elapsed time, else store
                     if ((Qno - 1) >= 0){
                         if (sw[Qno - 1].running) {
                             ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
@@ -191,8 +193,10 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                             }
                         }
                 }
+
                 }
                 count++;
+
             }
 
             /////update in DB//////////
@@ -256,6 +260,25 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 RB3 = findViewById(R.id.MCQ_single_silent);
                 RB3.setText(q.qAnsPossible.get(2));
+
+                //////////////////////////////////////////////////////
+                RadioGroup radioGroup = (RadioGroup) findViewById(R.id.MCQ_single_myRadioGroup);
+                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        // get selected radio button from radioGroup
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                        // find the radiobutton by returned id
+                        RadioButton radioButton = (RadioButton) findViewById(selectedId);
+
+
+                        Toast.makeText(getApplicationContext(),
+                                radioButton.getText(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
 
                 //////////////////////////////////////////////////////////
 
@@ -621,6 +644,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
     public void StudentAttemptGotToFirstQues(View view) {
 
+        v=view;
         Qno = 0; //question no 1
         Context c = getApplicationContext();
         if (Qno < 0) {
@@ -649,6 +673,11 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
         } else {
 
+            if(FromSpinner== true)
+            {
+                if(FromSpinnerQ>=0 && FromSpinnerQ<questionsList.size())
+                Qno= FromSpinnerQ-1;
+            }
 
             Question q = questionsList.get(Qno);
             TextView QuestionTxt;
@@ -840,6 +869,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //dropdown.setAdapter(adapter);
             }
         }
+        FromSpinner=false;
     }
 
     public void StudentAttemptGotToLastQues(View view) {
@@ -1068,6 +1098,47 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_attempt_quiz, menu);
         MenuItem quizTimeLeft = menu.findItem(R.id.quiz_time_left);
         quizTimeLeft.setVisible(false);
+
+        /////////////////////////////////////////////////
+        MenuItem item = menu.findItem(R.id.spinner);
+        Spinner spinner = (Spinner) item.getActionView();
+
+        ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
+
+        ArrayList<String> items= new ArrayList<>();
+        int i=0;
+        for(i=0; i<Attempted_Questions.size();i++)
+        {
+            items.add(String.valueOf(Attempted_Questions.get(i)));
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if(nullifyFIrstSelction!=0) {
+                    Toast.makeText(StudentAttemptQuizActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                    int GotoQuestion = Integer.parseInt(spinner.getSelectedItem().toString());
+                    FromSpinner = true;
+                    FromSpinnerQ = GotoQuestion;
+                    StudentAttemptGotToFirstQues(v);
+                }
+                nullifyFIrstSelction++;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+
+        /////////////////////////////////////////
         this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
@@ -1102,5 +1173,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StudentQuizListActivity.class);
         startActivity(intent);
     }
+
+
 
 }
