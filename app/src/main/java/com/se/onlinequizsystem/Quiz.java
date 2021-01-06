@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -80,7 +79,7 @@ public class Quiz implements Serializable {
 
         try {
             for (Quiz quiz : listOfQuiz) {
-                Log.d(TAG, "getAllQuiz: get questions for quiz: " + String.valueOf(quiz.quizID));
+                Log.d(TAG, "getAllQuiz: get questions for quiz: " + quiz.quizID);
                 String query = "select * from quizQuestions where quizID = " + quiz.quizID;
                 Cursor cursor = db.rawQuery(query, null);
                 while (cursor.moveToNext()) {
@@ -93,9 +92,9 @@ public class Quiz implements Serializable {
         }
         db.close();
         for (Quiz quiz : listOfQuiz) {
-            Log.d(TAG, "getAllQuiz: get details for quiz: " + String.valueOf(quiz.quizID));
+            Log.d(TAG, "getAllQuiz: get details for quiz: " + quiz.quizID);
             for (Question question : quiz.listOfQuestions) {
-                Log.d(TAG, "getAllQuiz: get details for question: " + String.valueOf(question.qId));
+                Log.d(TAG, "getAllQuiz: get details for question: " + question.qId);
                 question.updateQuestion(context);
 
             }
@@ -113,6 +112,7 @@ public class Quiz implements Serializable {
             String sql = "insert into studentAttempt " +
                     "values(" + userID + "," + quizID + "," + questionID +
                     "," + choices + "," + timeTaken + "," + 0 + ")";
+            Log.d(TAG, "insertQuestionAttempt: sql: " + sql);
             db.execSQL(sql);
 
 //            String query = "insert into studentAttempt values(?,?,?,?,?,?)";
@@ -138,6 +138,7 @@ public class Quiz implements Serializable {
                     "SET enteredAns=" + choices + ", timeTaken=" + timeTaken + ", marksScored=" + 0 +
                     " WHERE userID=" + userID + " and QuizID=" + quizID +
                     " and QuestionID=" + questionID;
+            Log.d(TAG, "updateQuestionAttempt: sql: " + sql);
             db.execSQL(sql);
 //            String query = "UPDATE studentAttempt SET enteredAns=?, timeTaken=?, marksScored=? WHERE userID=? and QuizID=? and QuestionID=?";
 //            Cursor cursor = db.rawQuery(query, new String[]{
@@ -303,27 +304,28 @@ public class Quiz implements Serializable {
         return timeTaken;
     }
 
-    static String generateMCQsubmissionString(int option1, int option2, int option3, int option4){
+    static String generateMCQsubmissionString(int option1, int option2, int option3, int option4) {
         //will return a formatted string to store MCQs into the DB
         String ret = "";
-        if (option1 == 1){
+        if (option1 == 1) {
             ret = ret + "1.";
         }
-        if (option2 == 1){
+        if (option2 == 1) {
             ret = ret + "2.";
         }
-        if (option3 == 1){
+        if (option3 == 1) {
             ret = ret + "3.";
         }
-        if (option4 == 1){
+        if (option4 == 1) {
             ret = ret + "4.";
         }
         return ret.substring(0, ret.length() - 1);
     }
-    static ArrayList<Integer> getMCQArrayfromSubmissionString(String input){
+
+    static ArrayList<Integer> getMCQArrayfromSubmissionString(String input) {
         ArrayList<Integer> ret = new ArrayList<Integer>();
         String[] las = input.split("\\.");
-        for (int i = 0; i<las.length;i++){
+        for (int i = 0; i < las.length; i++) {
             System.out.println(las[i]);
             ret.add(Integer.valueOf(las[i]));
         }
