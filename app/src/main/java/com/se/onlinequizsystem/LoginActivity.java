@@ -19,8 +19,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.deleteDatabase("QuizDB.db");
-        bogusEntries();
+//        this.deleteDatabase("QuizDB.db");
+//        bogusEntries();
     }
 
     @Override
@@ -200,5 +200,10 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         db.close();
+    }
+
+    public void ResetDBButton(View view) {
+        this.deleteDatabase("QuizDB.db");
+        bogusEntries();
     }
 }

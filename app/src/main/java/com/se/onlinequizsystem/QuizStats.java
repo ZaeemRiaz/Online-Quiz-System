@@ -16,6 +16,7 @@ public class QuizStats {
 
     public QuizStats(Context context, int quizID) {
         int idx = 0;
+        this.averageTime = 0.0;
         this.averageQuestionTime = new ArrayList<Double>();
 
 
@@ -29,14 +30,25 @@ public class QuizStats {
                     "AVG(timeTaken) as avgTimeQuestion, " +
                     "AVG(marksScored) as avgMarks " +
                     "from studentAttempt " +
-                    "where quizID = ? " +
+                    "where quizID = " + quizID +
                     " GROUP by quizID, questionID;";
-            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(quizID)});
+
+            Cursor cursor = db.rawQuery(query, null);
+//            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(quizID)});
 
             while (cursor.moveToNext()) {
+                Log.d(TAG, "QuizStats: inside time sql reader");
+                
                 idx += 1;
-                this.averageTime += Double.parseDouble(cursor.getString(cursor.getColumnIndex("avgTimeQuestion")));
-                this.averageQuestionTime.add(Double.parseDouble(cursor.getString(cursor.getColumnIndex("avgTimeQuestion"))));
+                Double tempAverageTime = Double.parseDouble(cursor.getString(cursor.getColumnIndex("avgTimeQuestion")));
+                Log.d(TAG, "QuizStats: average time: " + tempAverageTime);
+
+                this.averageTime += tempAverageTime;
+                Log.d(TAG, "QuizStats: quiz average time: " + String.valueOf(this.averageTime));
+
+                this.averageQuestionTime.add(tempAverageTime);
+                Log.d(TAG, "QuizStats: average question time: " + String.valueOf(this.averageQuestionTime));
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,8 +58,10 @@ public class QuizStats {
             Log.d(TAG, "QuizStats: read total students");
             String query = "select COUNT(userID) as cnt from users where uType = 0;";
             Cursor cursor = db.rawQuery(query, null);
-            while (cursor.moveToNext()) {
+            if (cursor != null && cursor.moveToFirst()) {
                 this.totalStudents = Integer.parseInt(cursor.getString(cursor.getColumnIndex("cnt")));
+
+                Log.d(TAG, "QuizStats: total student count: " + this.totalStudents);
             }
         } catch (Exception e) {
             e.printStackTrace();
