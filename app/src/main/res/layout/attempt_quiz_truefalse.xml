@@ -73,7 +73,6 @@
                     android:id="@+id/mcq_tf_sound"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="false"
                     android:onClick="TFMCQSore"
                     android:text="True" />
 
@@ -81,6 +80,7 @@
                     android:id="@+id/mcq_tf_vibration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="TFMCQSore"
                     android:text="False" />
             </RadioGroup>
 
