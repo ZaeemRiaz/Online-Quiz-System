@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             String sql = "insert into quiz (quizID, quizName, difficulty, openTime, closeTime, totalTimeInSeconds, totalQuestions, totalMarks, instructions)" +
-                    "values (1, 'sample quiz 1', 3, 1609030194, 1609943738, 3600, 3, 3, 'Attempt all questions')";
+                    "values (1, 'sample quiz 1', 3, 1609030194, 1610293020, 3600, 3, 3, 'Attempt all questions')";
             db.execSQL(sql);
             Log.d(TAG, "bogusEntries: statement 3");
 
@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
             String sql = "insert into question (qID, qType, qText, qMarks, posAns1, posAns2, posAns3, posAns4, valAns1, valAns2, valAns3, valAns4) "
                     + "values (5, 4, 'Is 49 a squre number?', 10, '2','3','5','6 leaves',0,0,0,1);";
             db.execSQL(sql);
-            Log.d(TAG, "bogusEntries: statement 10");
+            Log.d(TAG, "bogusEntries: statement 11");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
         try {
             String sql = "insert into quizQuestions(quizID, questionID)" + "values (1, 5)";
             db.execSQL(sql);
-            Log.d(TAG, "bogusEntries: statement 4");
+            Log.d(TAG, "bogusEntries: statement 12");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
             String sql = "insert into question (qID, qType, qText, qMarks, posAns1, posAns2, posAns3, posAns4, valAns1, valAns2, valAns3, valAns4) "
                     + "values (6, 5, 'Explain what is a square number.', 10, '2','3','5','6 leaves',0,0,0,1);";
             db.execSQL(sql);
-            Log.d(TAG, "bogusEntries: statement 10");
+            Log.d(TAG, "bogusEntries: statement 13");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
         try {
             String sql = "insert into quizQuestions(quizID, questionID)" + "values (1, 6)";
             db.execSQL(sql);
-            Log.d(TAG, "bogusEntries: statement 4");
+            Log.d(TAG, "bogusEntries: statement 14");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -193,7 +193,7 @@ public class LoginActivity extends AppCompatActivity {
         try {
             String sql = "insert into quizQuestions(quizID, questionID)" + "values (2, 3), (3, 2), (1, 4), (1, 3)";
             db.execSQL(sql);
-            Log.d(TAG, "bogusEntries: statement 11");
+            Log.d(TAG, "bogusEntries: statement 15");
 
         } catch (Exception e) {
             e.printStackTrace();
