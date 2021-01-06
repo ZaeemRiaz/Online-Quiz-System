@@ -1477,4 +1477,14 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    public void BackFromSubmitButton(View view) {
+        MenuItem timeLeftItem = menu.findItem(R.id.quiz_time_left);
+        timeLeftItem.setVisible(true);
+        MenuItem item2 = menu.findItem(R.id.unatttemped);
+        item2.setVisible(true);
+        MenuItem item = menu.findItem(R.id.spinner);
+        item.setVisible(true);
+        StudentAttemptPrevQuestion(view);
+    }
 }
