@@ -111,7 +111,7 @@ public class Quiz implements Serializable {
         try {
             String sql = "insert into studentAttempt " +
                     "values(" + userID + "," + quizID + "," + questionID +
-                    "," + choices + "," + timeTaken + "," + 0 + ")";
+                    ",\"" + choices + "\"," + timeTaken + "," + 0 + ")";
             Log.d(TAG, "insertQuestionAttempt: sql: " + sql);
             db.execSQL(sql);
 
