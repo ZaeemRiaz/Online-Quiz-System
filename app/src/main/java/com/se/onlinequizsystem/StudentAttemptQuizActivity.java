@@ -118,6 +118,10 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         if (Qno >= questionsList.size()) {
             MenuItem quizTimeLeft = menu.findItem(R.id.quiz_time_left);
             quizTimeLeft.setVisible(false);
+            MenuItem item2 = menu.findItem(R.id.unatttemped);
+            item2.setVisible(false);
+            MenuItem item = menu.findItem(R.id.spinner);
+            item.setVisible(false);
             setContentView(R.layout.attempt_submit);
 
             ////////////////////////////set all paused timers to stop before submitting////////////////
@@ -1223,8 +1227,12 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         MenuItem quizTimeLeft = menu.findItem(R.id.quiz_time_left);
         quizTimeLeft.setVisible(false);
 
+        MenuItem item2 = menu.findItem(R.id.unatttemped);
+        item2.setVisible(false);
+
         /////////////////////////////////////////////////
         MenuItem item = menu.findItem(R.id.spinner);
+        item.setVisible(false);
         Spinner spinner = (Spinner) item.getActionView();
 
         ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
@@ -1293,6 +1301,10 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     public void StartQuizButton(View view) {
         MenuItem timeLeftItem = menu.findItem(R.id.quiz_time_left);
         timeLeftItem.setVisible(true);
+        MenuItem item2 = menu.findItem(R.id.unatttemped);
+        item2.setVisible(true);
+        MenuItem item = menu.findItem(R.id.spinner);
+        item.setVisible(true);
         String hmsTimeLeft = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(timeLeft), TimeUnit.MILLISECONDS.toMinutes(timeLeft) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(timeLeft)), TimeUnit.MILLISECONDS.toSeconds(timeLeft) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeLeft)));
         timeLeftItem.setTitle("Time Left: " + hmsTimeLeft);
         timeLeftTimer.start();
