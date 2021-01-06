@@ -116,12 +116,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         //toast.show();
 
         if (Qno >= questionsList.size()) {
-            MenuItem quizTimeLeft = menu.findItem(R.id.quiz_time_left);
-            quizTimeLeft.setVisible(false);
-            MenuItem item2 = menu.findItem(R.id.unatttemped);
-            item2.setVisible(false);
-            MenuItem item = menu.findItem(R.id.spinner);
-            item.setVisible(false);
+            HideMenuItems();
             setContentView(R.layout.attempt_submit);
 
             ////////////////////////////set all paused timers to stop before submitting////////////////
@@ -1299,12 +1294,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     }
 
     public void StartQuizButton(View view) {
+        ShowMenuItems();
         MenuItem timeLeftItem = menu.findItem(R.id.quiz_time_left);
-        timeLeftItem.setVisible(true);
-        MenuItem item2 = menu.findItem(R.id.unatttemped);
-        item2.setVisible(true);
-        MenuItem item = menu.findItem(R.id.spinner);
-        item.setVisible(true);
         String hmsTimeLeft = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(timeLeft), TimeUnit.MILLISECONDS.toMinutes(timeLeft) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(timeLeft)), TimeUnit.MILLISECONDS.toSeconds(timeLeft) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeLeft)));
         timeLeftItem.setTitle("Time Left: " + hmsTimeLeft);
         timeLeftTimer.start();
@@ -1479,12 +1470,25 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     }
 
     public void BackFromSubmitButton(View view) {
+        ShowMenuItems();
+        StudentAttemptPrevQuestion(view);
+    }
+
+    public void HideMenuItems(){
+        MenuItem timeLeftItem = menu.findItem(R.id.quiz_time_left);
+        timeLeftItem.setVisible(false);
+        MenuItem item2 = menu.findItem(R.id.unatttemped);
+        item2.setVisible(false);
+        MenuItem item = menu.findItem(R.id.spinner);
+        item.setVisible(false);
+    }
+
+    public void ShowMenuItems(){
         MenuItem timeLeftItem = menu.findItem(R.id.quiz_time_left);
         timeLeftItem.setVisible(true);
         MenuItem item2 = menu.findItem(R.id.unatttemped);
         item2.setVisible(true);
         MenuItem item = menu.findItem(R.id.spinner);
         item.setVisible(true);
-        StudentAttemptPrevQuestion(view);
     }
 }
