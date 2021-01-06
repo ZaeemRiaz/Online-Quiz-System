@@ -5,6 +5,8 @@
         import android.content.Intent;
         import android.os.Bundle;
         import android.os.CountDownTimer;
+        import android.text.Editable;
+        import android.text.TextWatcher;
         import android.view.Menu;
         import android.view.MenuInflater;
         import android.view.MenuItem;
@@ -12,6 +14,7 @@
         import android.widget.AdapterView;
         import android.widget.ArrayAdapter;
         import android.widget.CheckBox;
+        import android.widget.EditText;
         import android.widget.RadioButton;
         import android.widget.RadioGroup;
         import android.widget.Spinner;
@@ -47,6 +50,9 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     int opt2Checked=0;
     int opt3Checked=0;
     Context c;
+
+    String Answer="";
+    String Answer2="";
 
 
     @Override
@@ -326,7 +332,37 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizMCQ_tf_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
+                RadioButton RB1;
+                RadioButton RB2;
 
+                RB1= findViewById(R.id.mcq_tf_sound);
+                RB2= findViewById(R.id.mcq_tf_vibration);
+                RB1.setChecked(false);
+                RB2.setChecked(false);
+
+                if(CHeckifAttempted(Qno+1))
+                {
+
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else
+                        {
+                            RB2.setChecked(true);
+                        }
+
+
+                    }
+
+                }
+////////////////////////////////////
             }
 
             ///////////////////////////////////////////////////////////////
@@ -345,11 +381,19 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizSubjective_ow_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
-            } else if (q.qType == 5) //mw question
+                EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
+                saveAnswerObjective();
+                if(CHeckifAttempted1(Qno+1))
+                {
+                    OW.setText(Answer);
+                }
+
+
+
+
+                } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
-
-
 
                 // add question
                 QuestionTxt = findViewById(R.id.sub_words_question);
@@ -358,6 +402,13 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //add qno
                 QuesNo = findViewById(R.id.AttemptQuizsubjective_mul_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
+
+                EditText OW= findViewById(R.id.editTextTextPersonName);
+                saveAnswerSubjective();
+                if(CHeckifAttempted1(Qno+1))
+                {
+                    OW.setText(Answer2);
+                }
 
 
             } else {
@@ -373,21 +424,43 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //dropdown.setAdapter(adapter);
             }
 
-            if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
-                String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+            if(q.qType==1 || q.qType==2|| q.qType==3 || q.qType==4) {
+                if (opt1Checked == 1 || opt2Checked == 1 || opt3Checked == 1) {
+                    String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-                if(questionsList.get(Qno).hasbeenInserted==false) {
-                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    if (questionsList.get(Qno).hasbeenInserted == false) {
+                        Time_perQuestion[1]= 3;
+                        Time_perQuestion[2]= 5;
+                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
 
-                    questionsList.get(Qno).hasbeenInserted = true;
+                        questionsList.get(Qno).hasbeenInserted = true;
+                    } else {
+                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    }
+                }
+                opt1Checked = 0;
+                opt2Checked = 0;
+                opt3Checked = 0;
+            }
+            else if(q.qType==4|| q.qType==5)
+            {
+
+                if(Answer.matches("0"))
+                {
+                    //Do nothing
                 }
                 else{
-                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    String choices=Answer;
+                    if (questionsList.get(Qno).hasbeenInserted == false) {
+
+                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                        questionsList.get(Qno).hasbeenInserted = true;
+                    } else {
+                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    }
                 }
+
             }
-            opt1Checked=0;
-            opt2Checked=0;
-            opt3Checked=0;
         }
 
 
@@ -584,6 +657,37 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizMCQ_tf_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
+                RadioButton RB1;
+                RadioButton RB2;
+
+                RB1= findViewById(R.id.mcq_tf_sound);
+                RB2= findViewById(R.id.mcq_tf_vibration);
+                RB1.setChecked(false);
+                RB2.setChecked(false);
+
+                if(CHeckifAttempted(Qno+1))
+                {
+
+                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+
+                    int k=0;
+                    for(k=0; k<choicesInt.size();k++)
+                    {
+                        if(choicesInt.get(k)==1)
+                        {
+                            RB1.setChecked(true);
+                        }
+                        else
+                        {
+                            RB2.setChecked(true);
+                        }
+
+
+                    }
+
+                }
+
 
             }
 
@@ -601,6 +705,13 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizSubjective_ow_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
+                EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
+                saveAnswerObjective();
+                if(CHeckifAttempted1(Qno+1))
+                {
+                    OW.setText(Answer);
+                }
+
             } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
@@ -613,6 +724,15 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //add qno
                 QuesNo = findViewById(R.id.AttemptQuizsubjective_mul_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
+
+                EditText OW= findViewById(R.id.editTextTextPersonName);
+                saveAnswerSubjective();
+                if(CHeckifAttempted1(Qno+1))
+                {
+                    OW.setText(Answer2);
+                }
+
+
 
 
             } else {
@@ -1034,6 +1154,14 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizSubjective_ow_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
+
+                EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
+                saveAnswerObjective();
+                if(CHeckifAttempted1(Qno+1))
+                {
+                    OW.setText(Answer);
+                }
+
             } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
@@ -1048,6 +1176,12 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 QuesNo = findViewById(R.id.AttemptQuizsubjective_mul_qno);
                 QuesNo.setText(String.valueOf(Qno + 1));
 
+                EditText OW= findViewById(R.id.editTextTextPersonName);
+                saveAnswerSubjective();
+                if(CHeckifAttempted1(Qno+1))
+                {
+                    OW.setText(Answer2);
+                }
 
             } else {
                 //setContentView(R.layout.attempt_quiz_mcq_multiple_ans);
@@ -1062,6 +1196,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //dropdown.setAdapter(adapter);
             }
         }
+
+
         if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
             String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
@@ -1077,6 +1213,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         opt1Checked=0;
         opt2Checked=0;
         opt3Checked=0;
+
     }
 
     @Override
@@ -1250,6 +1387,50 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         }
     }
 
+    public void saveAnswerObjective()
+    {
+        EditText ow= findViewById(R.id.sub_ow_editTextTextPersonName);
+        if(ow.getText().toString().matches(""))
+        {
+        }
+
+        ow.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void afterTextChanged(Editable mEdit)
+            {
+                String text = mEdit.toString();
+                Answer= text;
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+            }
+        });
+    }
+    public void saveAnswerSubjective()
+    {
+        EditText sub= findViewById(R.id.editTextTextPersonName);
+        if(sub.getText().toString().matches(""))
+        {
+        }
+
+        sub.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void afterTextChanged(Editable mEdit)
+            {
+                String text = mEdit.toString();
+                Answer2= text;
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+            }
+        });
+    }
     public Boolean  CHeckifAttempted(int Qestuonno)
     {
         Intent intent = getIntent();
@@ -1267,4 +1448,21 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         return false;
     }
 
+    public Boolean  CHeckifAttempted1(int Qestuonno)
+    {
+        Intent intent = getIntent();
+        Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
+        ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+        AttemptedQuestions.add(4);
+        AttemptedQuestions.add(5);
+        int j=0;
+        for(j=0; j<AttemptedQuestions.size();j++)
+        {
+            if(Qestuonno== (AttemptedQuestions.get(j)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
