@@ -2,7 +2,7 @@ package com.se.onlinequizsystem;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 //class AttemptRow {
 //    String course;
@@ -70,28 +71,33 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
 
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder quizViewHolder, int position) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy h:mm a");
+
         quizViewHolder.quizName.setText(quizList.get(position).quizName);
-        quizViewHolder.duration.setText(String.valueOf(quizList.get(position).totalTime));
+        quizViewHolder.openTime.setText(String.valueOf(sdf.format(
+                new Date((quizList.get(position).openTime) * 1000L))));
+        quizViewHolder.closeTime.setText(String.valueOf(sdf.format(
+                new Date((quizList.get(position).closeTime) * 1000L))));
         quizViewHolder.marks.setText(String.valueOf(quizList.get(position).totalMarks));
-        quizViewHolder.timeLeft.setText(String.valueOf(quizList.get(position).totalTime));
+        quizViewHolder.duration.setText(String.valueOf(quizList.get(position).totalTime -
+                Quiz.getQuizAttemptTime(context, 1, quizList.get(position).quizID)));
 
         // Quiz status conditions
-        boolean submitted = Quiz.checkQuizSubmitted(context, 1, quizList.get(position).quizID);
-        // TODO: 04/01/2021 ZAEEM: checkQuizSubmitted or SubmitQuiz not working correctly
-//        Log.d(TAG, "onBindViewHolder: submitted: " + submitted);
-//        Log.d(TAG, "onBindViewHolder: position: " + position);
+        boolean submitted = Quiz.checkQuizSubmitted(
+                context, 1, quizList.get(position).quizID);
+
         Calendar currentCalender = Calendar.getInstance();
         long currentTime = currentCalender.getTimeInMillis();
-        if (submitted){
+        if (submitted) {
             quizViewHolder.status.setText("Submitted");
         }
-        if (currentTime < (quizList.get(position).openTime)*1000L){
+        if (currentTime < (quizList.get(position).openTime) * 1000L) {
             quizViewHolder.status.setText("Not Started");
         }
-        if (!submitted && (currentTime >= (quizList.get(position).openTime)*1000L)){
+        if (!submitted && (currentTime >= (quizList.get(position).openTime) * 1000L)) {
             quizViewHolder.status.setText("Open");
         }
-        if (!submitted && currentTime >= (quizList.get(position).closeTime)*1000L){
+        if (!submitted && currentTime >= (quizList.get(position).closeTime) * 1000L) {
             quizViewHolder.status.setText("Missed");
         }
         if (quizViewHolder.status.getText() != "Open") {
@@ -105,7 +111,7 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
                 context.startActivity(intent);
             }
         });
-        if ((!submitted || (currentTime < (quizList.get(position).closeTime)*1000L))) {
+        if ((!submitted || (currentTime < (quizList.get(position).closeTime) * 1000L))) {
             quizViewHolder.viewQuizButton.setEnabled(false);
         }
         quizViewHolder.viewQuizButton.setOnClickListener(new View.OnClickListener() {
@@ -125,10 +131,11 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
 
     public class QuizViewHolder extends RecyclerView.ViewHolder {
         TextView quizName;
-        TextView duration;
+        TextView openTime;
+        TextView closeTime;
         TextView status;
         TextView marks;
-        TextView timeLeft;
+        TextView duration;
         Button attemptQuizButton;
         Button viewQuizButton;
 
@@ -136,10 +143,11 @@ public class StudentQuizListAdapter extends RecyclerView.Adapter<StudentQuizList
         public QuizViewHolder(@NonNull View itemView) {
             super(itemView);
             quizName = itemView.findViewById(R.id.subject);
-            duration = itemView.findViewById(R.id.duration);
+            openTime = itemView.findViewById(R.id.open_time);
+            closeTime = itemView.findViewById(R.id.close_time);
             status = itemView.findViewById(R.id.status);
             marks = itemView.findViewById(R.id.marks);
-            timeLeft = itemView.findViewById(R.id.time_left);
+            duration = itemView.findViewById(R.id.duration);
             attemptQuizButton = itemView.findViewById(R.id.student_attempt_quiz_button);
             viewQuizButton = itemView.findViewById(R.id.student_view_quiz_button);
         }

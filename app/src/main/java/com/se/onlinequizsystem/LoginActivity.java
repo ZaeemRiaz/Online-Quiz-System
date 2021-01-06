@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             String sql = "insert into quiz (quizID, quizName, difficulty, openTime, closeTime, totalTimeInSeconds, totalQuestions, totalMarks, instructions)" +
-                    "values (1, 'sample quiz 1', 3, 1609030194, 1610293020, 3600, 3, 3, 'Attempt all questions')";
+                    "values (1, 'sample quiz 1', 3, 1609030194, 1611157020, 3600, 3, 3, 'Attempt all questions')";
             db.execSQL(sql);
             Log.d(TAG, "bogusEntries: statement 3");
 

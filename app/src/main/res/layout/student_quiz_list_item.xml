@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="222dp">
+            android:layout_height="230dp">
 
             <TextView
                 android:id="@+id/sub"
@@ -32,41 +32,55 @@
                 app:layout_constraintVertical_bias="0.147" />
 
             <TextView
-                android:id="@+id/Active_duration"
+                android:id="@+id/open_time_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Open time: "
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.048"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sub"
+                />
+            <TextView
+                android:id="@+id/close_time_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Active Duration: "
+                android:text="Close time: "
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.048"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subject"
+                app:layout_constraintTop_toBottomOf="@+id/open_time_id"
                 app:layout_constraintVertical_bias="0.046" />
 
             <Button
                 android:id="@+id/student_attempt_quiz_button"
                 android:layout_width="130dp"
                 android:layout_height="43dp"
-                android:layout_marginStart="17dp"
-                android:layout_marginEnd="244dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginBottom="16dp"
                 android:text="Attempt"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/marks_id"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/left"
+                android:id="@+id/duration_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="87dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="18dp"
                 android:text="Time left"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/time_left"
+                app:layout_constraintEnd_toStartOf="@+id/duration"
+                app:layout_constraintHorizontal_bias="0.476"
                 app:layout_constraintStart_toEndOf="@+id/subject"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,7 +96,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/status"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Active_duration" />
+                app:layout_constraintTop_toBottomOf="@+id/close_time_id" />
 
             <TextView
 
@@ -99,7 +113,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/orderdate"
+                android:id="@+id/marks_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Marks:"
@@ -112,29 +126,42 @@
                 app:layout_constraintVertical_bias="0.142" />
 
             <TextView
-                android:id="@+id/duration"
+                android:id="@+id/open_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="62dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="200dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintStart_toEndOf="@+id/open_time_id"
+                app:layout_constraintTop_toBottomOf="@+id/sub" />
+
+            <TextView
+                android:id="@+id/close_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="9dp"
                 android:layout_marginEnd="200dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/Active_duration"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/close_time_id"
+                app:layout_constraintTop_toBottomOf="@+id/open_time_id" />
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="97dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="9dp"
                 android:layout_marginBottom="5dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/marks"
                 app:layout_constraintStart_toEndOf="@+id/total_time"
-                app:layout_constraintTop_toBottomOf="@+id/Active_duration"
+                app:layout_constraintTop_toBottomOf="@+id/close_time_id"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -142,18 +169,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="19dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="256dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="252dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/orderdate"
-                app:layout_constraintTop_toBottomOf="@+id/status" />
+                app:layout_constraintTop_toBottomOf="@+id/total_time" />
 
             <TextView
-                android:id="@+id/time_left"
+                android:id="@+id/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="16dp"
                 android:text="01:34:00"
                 app:layout_constraintEnd_toEndOf="parent"
