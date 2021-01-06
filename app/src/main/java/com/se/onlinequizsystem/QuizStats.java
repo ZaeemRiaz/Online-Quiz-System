@@ -39,7 +39,7 @@ public class QuizStats {
             while (cursor.moveToNext()) {
                 Log.d(TAG, "QuizStats: inside time sql reader");
                 
-                idx += 1;
+//                idx += 1;
                 Double tempAverageTime = Double.parseDouble(cursor.getString(cursor.getColumnIndex("avgTimeQuestion")));
                 Log.d(TAG, "QuizStats: average time: " + tempAverageTime);
 
@@ -49,6 +49,24 @@ public class QuizStats {
                 this.averageQuestionTime.add(tempAverageTime);
                 Log.d(TAG, "QuizStats: average question time: " + String.valueOf(this.averageQuestionTime));
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            Log.d(TAG, "QuizStats: read quiz stats");
+
+            String query = "select COUNT(DISTINCT userID) as cnt from studentAttempt where quizID = " + quizID;
+
+            Cursor cursor = db.rawQuery(query, null);
+//            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(quizID)});
+
+            if (cursor != null && cursor.moveToFirst()) {
+                this.quizAttempted = Integer.parseInt(cursor.getString(cursor.getColumnIndex("cnt")));
+
+                Log.d(TAG, "QuizStats: total quizzes attempted count: " + this.quizAttempted);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,6 +88,6 @@ public class QuizStats {
         Log.d(TAG, "QuizStats: stats read");
         db.close();
 
-        this.quizAttempted = idx;
+//        this.quizAttempted = idx;
     }
 }

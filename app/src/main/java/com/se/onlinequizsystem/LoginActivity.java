@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 //        this.deleteDatabase("QuizDB.db");
-//        bogusEntries();
+        bogusEntries();
     }
 
     @Override

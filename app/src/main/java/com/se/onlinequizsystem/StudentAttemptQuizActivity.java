@@ -342,6 +342,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 if(CHeckifAttempted(Qno+1))
                 {
+
                     String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
                     ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
 
@@ -382,10 +383,11 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
                 saveAnswerObjective();
-                if(CHeckifAttempted(Qno+1))
+                if(CHeckifAttempted1(Qno+1))
                 {
                     OW.setText(Answer);
                 }
+
 
 
 
@@ -430,7 +432,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                         Time_perQuestion[1]= 3;
                         Time_perQuestion[2]= 5;
                         quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                        RefreshAdapter();
+
                         questionsList.get(Qno).hasbeenInserted = true;
                     } else {
                         quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
@@ -443,7 +445,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             else if(q.qType==4|| q.qType==5)
             {
 
-                if(Answer.matches(""))
+                if(Answer.matches("0"))
                 {
                     //Do nothing
                 }
@@ -452,7 +454,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                     if (questionsList.get(Qno).hasbeenInserted == false) {
 
                         quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                        RefreshAdapter();
                         questionsList.get(Qno).hasbeenInserted = true;
                     } else {
                         quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
@@ -460,7 +461,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 }
 
             }
-            //////////////////////////////////////////////////////////////////
         }
 
 
@@ -707,7 +707,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
                 saveAnswerObjective();
-                if(CHeckifAttempted(Qno+1))
+                if(CHeckifAttempted1(Qno+1))
                 {
                     OW.setText(Answer);
                 }
@@ -746,45 +746,22 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
                 //set the spinners adapter to the previously created one.
                 //dropdown.setAdapter(adapter);
-            } if(q.qType==1 || q.qType==2|| q.qType==3 || q.qType==4) {
-                if (opt1Checked == 1 || opt2Checked == 1 || opt3Checked == 1) {
-                    String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
-
-                    if (questionsList.get(Qno).hasbeenInserted == false) {
-                        Time_perQuestion[1]= 3;
-                        Time_perQuestion[2]= 5;
-                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                        RefreshAdapter();
-                        questionsList.get(Qno).hasbeenInserted = true;
-                    } else {
-                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                    }
-                }
-                opt1Checked = 0;
-                opt2Checked = 0;
-                opt3Checked = 0;
             }
-            else if(q.qType==4|| q.qType==5)
-            {
+            if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
+                String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-                if(Answer.matches(""))
-                {
-                    //Do nothing
+                if(questionsList.get(Qno).hasbeenInserted==false) {
+                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+
+                    questionsList.get(Qno).hasbeenInserted = true;
                 }
                 else{
-                    String choices=Answer;
-                    if (questionsList.get(Qno).hasbeenInserted == false) {
-
-                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                        RefreshAdapter();
-                        questionsList.get(Qno).hasbeenInserted = true;
-                    } else {
-                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                    }
+                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
                 }
-
             }
-            //////////////////////////////////////////////////////////////////
+            opt1Checked=0;
+            opt2Checked=0;
+            opt3Checked=0;
         }
     }
 
@@ -821,12 +798,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
             if(FromSpinner== true)
             {
-
-                if(FromSpinnerQ>=0 && FromSpinnerQ<=questionsList.size())
-                {
-                    Qno= FromSpinnerQ-1;
-                }
-
+                if(FromSpinnerQ>=0 && FromSpinnerQ<questionsList.size())
+                Qno= FromSpinnerQ-1;
             }
 
             Question q = questionsList.get(Qno);
@@ -1016,46 +989,22 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //dropdown.setAdapter(adapter);
             }
         }
+        FromSpinner=false;
+        if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
+            String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-        if(FromSpinner==false) {
-            Question q = questionsList.get(Qno);
-            if (q.qType == 1 || q.qType == 2 || q.qType == 3 || q.qType == 4) {
-                if (opt1Checked == 1 || opt2Checked == 1 || opt3Checked == 1) {
-                    String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+            if(questionsList.get(Qno).hasbeenInserted==false) {
+                quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
 
-                    if (questionsList.get(Qno).hasbeenInserted == false) {
-                        Time_perQuestion[1] = 3;
-                        Time_perQuestion[2] = 5;
-                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                        RefreshAdapter();
-                        questionsList.get(Qno).hasbeenInserted = true;
-                    } else {
-                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                    }
-                }
-                opt1Checked = 0;
-                opt2Checked = 0;
-                opt3Checked = 0;
-            } else if (q.qType == 4 || q.qType == 5) {
-
-                if (Answer.matches("")) {
-                    //Do nothing
-                } else {
-                    String choices = Answer;
-                    if (questionsList.get(Qno).hasbeenInserted == false) {
-
-                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                        RefreshAdapter();
-                        questionsList.get(Qno).hasbeenInserted = true;
-                    } else {
-                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                    }
-                }
-
+                questionsList.get(Qno).hasbeenInserted = true;
+            }
+            else{
+                quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
             }
         }
-        FromSpinner=false;
-        //////////////////////////////////////////////////////////////////
+        opt1Checked=0;
+        opt2Checked=0;
+        opt3Checked=0;
     }
 
     public void StudentAttemptGotToLastQues(View view) {
@@ -1178,6 +1127,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 setContentView(R.layout.attempt_quiz_truefalse);
 
+
+
                 // add question
                 QuestionTxt = findViewById(R.id.mcq_tf_question);
                 QuestionTxt.setText(q.qText);
@@ -1206,7 +1157,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
                 saveAnswerObjective();
-                if(CHeckifAttempted(Qno+1))
+                if(CHeckifAttempted1(Qno+1))
                 {
                     OW.setText(Answer);
                 }
@@ -1214,6 +1165,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
+
+
 
                 // add question
                 QuestionTxt = findViewById(R.id.sub_words_question);
@@ -1244,41 +1197,22 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             }
         }
 
-        Question q = questionsList.get(Qno);
-        if (q.qType == 1 || q.qType == 2 || q.qType == 3 || q.qType == 4) {
-            if (opt1Checked == 1 || opt2Checked == 1 || opt3Checked == 1) {
-                String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-                if (questionsList.get(Qno).hasbeenInserted == false) {
-                    Time_perQuestion[1] = 3;
-                    Time_perQuestion[2] = 5;
-                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                    RefreshAdapter();
-                    questionsList.get(Qno).hasbeenInserted = true;
-                } else {
-                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                }
+        if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
+            String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+
+            if(questionsList.get(Qno).hasbeenInserted==false) {
+                quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+
+                questionsList.get(Qno).hasbeenInserted = true;
             }
-            opt1Checked = 0;
-            opt2Checked = 0;
-            opt3Checked = 0;
-        } else if (q.qType == 4 || q.qType == 5) {
-
-            if (Answer.matches("")) {
-                //Do nothing
-            } else {
-                String choices = Answer;
-                if (questionsList.get(Qno).hasbeenInserted == false) {
-
-                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                    RefreshAdapter();
-                    questionsList.get(Qno).hasbeenInserted = true;
-                } else {
-                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-                }
+            else{
+                quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
             }
-
         }
+        opt1Checked=0;
+        opt2Checked=0;
+        opt3Checked=0;
 
     }
 
@@ -1295,9 +1229,9 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         /////////////////////////////////////////////////
         MenuItem item = menu.findItem(R.id.spinner);
         item.setVisible(false);
-        spinner = (Spinner) item.getActionView();
+        Spinner spinner = (Spinner) item.getActionView();
 
-        ArrayList<Integer> Attempted_Questions = quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
+        ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
 
         ArrayList<String> items= new ArrayList<>();
         int i=0;
@@ -1318,7 +1252,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
         spinner.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1345,54 +1278,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
-
-    public void RefreshAdapter()
-    {
-        ArrayList<Integer> Attempted_Questions = quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
-
-        ArrayList<String> items= new ArrayList<>();
-        int i=0;
-        int j=0;
-        for(j=0; j<questionsList.size();j++) {
-            Boolean found = false;
-            for (i = 0; i < Attempted_Questions.size(); i++) {
-                if (Attempted_Questions.get(i)==(j+1) )
-                {
-                    found=true;
-                }
-            }
-            if(found==false)
-            {
-                items.add(String.valueOf(j+1));
-            }
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-
-        spinner.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // your code here
-                if(nullifyFIrstSelction!=0) {
-                    int GotoQuestion = Integer.parseInt(spinner.getSelectedItem().toString());
-                    FromSpinner = true;
-                    FromSpinnerQ = GotoQuestion;
-                    StudentAttemptGotToFirstQues(v);
-                }
-                nullifyFIrstSelction++;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-
-        });
-
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
