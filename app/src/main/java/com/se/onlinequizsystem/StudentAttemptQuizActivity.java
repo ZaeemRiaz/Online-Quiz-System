@@ -241,8 +241,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 if(CHeckifAttempted(Qno+1))
                 {
 
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -292,8 +292,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 if(CHeckifAttempted(Qno+1))
                 {
 
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -342,8 +342,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 if(CHeckifAttempted(Qno+1))
                 {
 
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -567,8 +567,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 if(CHeckifAttempted(Qno+1))
                 {
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -620,8 +620,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 if(CHeckifAttempted(Qno+1))
                 {
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -667,8 +667,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 if(CHeckifAttempted(Qno+1))
                 {
 
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -811,7 +811,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             //timer per question part
                  ////////////////
                     int j;
-                    ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+                    ArrayList<Integer> AttemptedQuestions=Quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
                     for(j=1; j<AttemptedQuestions.size();j++)
                     {
                         if(AttemptedQuestions.get(j)==j) {
@@ -858,8 +858,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 RB3.setText(q.qAnsPossible.get(2));
                 if(CHeckifAttempted(Qno+1))
                 {
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -908,8 +908,8 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 if(CHeckifAttempted(Qno+1))
                 {
-                    String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
-                    ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
+                    String choices= Quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
+                    ArrayList<Integer> choicesInt=Quiz.getMCQArrayfromSubmissionString(choices);
 
                     int k=0;
                     for(k=0; k<choicesInt.size();k++)
@@ -1045,7 +1045,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
             //timer per question part
             int j;
-            ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+            ArrayList<Integer> AttemptedQuestions=Quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
             for(j=0; j<AttemptedQuestions.size()-1;j++)
             {
                 if(AttemptedQuestions.get(j)==j) {
@@ -1438,7 +1438,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     {
         Intent intent = getIntent();
         Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
-        ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+        ArrayList<Integer> AttemptedQuestions=Quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
 
         int j=0;
         for(j=0; j<AttemptedQuestions.size();j++)
@@ -1455,7 +1455,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
     {
         Intent intent = getIntent();
         Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
-        ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+        ArrayList<Integer> AttemptedQuestions=Quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
         AttemptedQuestions.add(4);
         AttemptedQuestions.add(5);
         int j=0;
