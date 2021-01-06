@@ -1,33 +1,33 @@
 
-        package com.se.onlinequizsystem;
-        import android.content.Context;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.os.CountDownTimer;
-        import android.text.Editable;
-        import android.text.TextWatcher;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.CheckBox;
-        import android.widget.EditText;
-        import android.widget.RadioButton;
-        import android.widget.RadioGroup;
-        import android.widget.Spinner;
-        import android.widget.TextView;
-        import android.widget.Toast;
+package com.se.onlinequizsystem;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AlertDialog;
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import java.util.ArrayList;
-        import java.util.Calendar;
-        import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class StudentAttemptQuizActivity extends AppCompatActivity {
     private static final String TAG = "=== StudentAttemptQuizActivity ===";
@@ -149,32 +149,32 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                         sw[Qno].resume();
                     }
                 }
-                    if (count >= 1) {
+                if (count >= 1) {
 
 
-                        if (sw[Qno - 1].running) {
+                    if (sw[Qno - 1].running) {
 
-                            ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
+                        ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
 
-                            int i = 0;
-                            for (i = 0; i < Attempted_Questions.size(); i++) {
-                                if (Attempted_Questions.get(i) == (Qno - 1)) {
-                                    Attempted = true;
-                                } else {
-                                    Attempted = false;
-                                }
-                            }
-                            if (Attempted == true) {
-                                long timetaken = sw[Qno - 1].getElapsedTimeSecs();
-                                Time_perQuestion[Qno - 1] = timetaken;
-                                sw[Qno - 1].stop();
+                        int i = 0;
+                        for (i = 0; i < Attempted_Questions.size(); i++) {
+                            if (Attempted_Questions.get(i) == (Qno - 1)) {
+                                Attempted = true;
                             } else {
-                                sw[Qno - 1].pause(); // pause prev question if not attempted
+                                Attempted = false;
                             }
                         }
+                        if (Attempted == true) {
+                            long timetaken = sw[Qno - 1].getElapsedTimeSecs();
+                            Time_perQuestion[Qno - 1] = timetaken;
+                            sw[Qno - 1].stop();
+                        } else {
+                            sw[Qno - 1].pause(); // pause prev question if not attempted
+                        }
                     }
-                    else //meaning question ended wiht next pressed
-                    {
+                }
+                else //meaning question ended wiht next pressed
+                {
                     if (!sw[Qno].paused) {
                         sw[Qno].start();
                     } else {
@@ -200,7 +200,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                                 sw[Qno - 1].pause(); // pause prev question
                             }
                         }
-                }
+                    }
 
                 }
                 count++;
@@ -342,7 +342,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 if(CHeckifAttempted(Qno+1))
                 {
-
                     String choices= quiz.getQuestionAttemptChoices(c,1,quiz.quizID,Qno+1);
                     ArrayList<Integer> choicesInt=quiz.getMCQArrayfromSubmissionString(choices);
 
@@ -383,15 +382,14 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
                 saveAnswerObjective();
-                if(CHeckifAttempted1(Qno+1))
+                if(CHeckifAttempted(Qno+1))
                 {
                     OW.setText(Answer);
                 }
 
 
 
-
-                } else if (q.qType == 5) //mw question
+            } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
 
@@ -432,7 +430,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                         Time_perQuestion[1]= 3;
                         Time_perQuestion[2]= 5;
                         quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-
+                        RefreshAdapter();
                         questionsList.get(Qno).hasbeenInserted = true;
                     } else {
                         quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
@@ -445,7 +443,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             else if(q.qType==4|| q.qType==5)
             {
 
-                if(Answer.matches("0"))
+                if(Answer.matches(""))
                 {
                     //Do nothing
                 }
@@ -454,6 +452,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                     if (questionsList.get(Qno).hasbeenInserted == false) {
 
                         quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                        RefreshAdapter();
                         questionsList.get(Qno).hasbeenInserted = true;
                     } else {
                         quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
@@ -461,6 +460,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 }
 
             }
+            //////////////////////////////////////////////////////////////////
         }
 
 
@@ -707,7 +707,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
                 saveAnswerObjective();
-                if(CHeckifAttempted1(Qno+1))
+                if(CHeckifAttempted(Qno+1))
                 {
                     OW.setText(Answer);
                 }
@@ -746,22 +746,45 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
                 //set the spinners adapter to the previously created one.
                 //dropdown.setAdapter(adapter);
+            } if(q.qType==1 || q.qType==2|| q.qType==3 || q.qType==4) {
+                if (opt1Checked == 1 || opt2Checked == 1 || opt3Checked == 1) {
+                    String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+
+                    if (questionsList.get(Qno).hasbeenInserted == false) {
+                        Time_perQuestion[1]= 3;
+                        Time_perQuestion[2]= 5;
+                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                        RefreshAdapter();
+                        questionsList.get(Qno).hasbeenInserted = true;
+                    } else {
+                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    }
+                }
+                opt1Checked = 0;
+                opt2Checked = 0;
+                opt3Checked = 0;
             }
-            if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
-                String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
+            else if(q.qType==4|| q.qType==5)
+            {
 
-                if(questionsList.get(Qno).hasbeenInserted==false) {
-                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-
-                    questionsList.get(Qno).hasbeenInserted = true;
+                if(Answer.matches(""))
+                {
+                    //Do nothing
                 }
                 else{
-                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    String choices=Answer;
+                    if (questionsList.get(Qno).hasbeenInserted == false) {
+
+                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                        RefreshAdapter();
+                        questionsList.get(Qno).hasbeenInserted = true;
+                    } else {
+                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    }
                 }
+
             }
-            opt1Checked=0;
-            opt2Checked=0;
-            opt3Checked=0;
+            //////////////////////////////////////////////////////////////////
         }
     }
 
@@ -798,8 +821,12 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
             if(FromSpinner== true)
             {
-                if(FromSpinnerQ>=0 && FromSpinnerQ<questionsList.size())
-                Qno= FromSpinnerQ-1;
+
+                if(FromSpinnerQ>=0 && FromSpinnerQ<=questionsList.size())
+                {
+                    Qno= FromSpinnerQ-1;
+                }
+
             }
 
             Question q = questionsList.get(Qno);
@@ -810,22 +837,22 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             Quiz quiz = (Quiz) intent.getSerializableExtra("quizViewIntent");
 
             //timer per question part
-                 ////////////////
-                    int j;
-                    ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
-                    for(j=1; j<AttemptedQuestions.size();j++)
-                    {
-                        if(AttemptedQuestions.get(j)==j) {
-                            Attempted = true;
-                            if (sw[j].running) {
-                                if (Attempted) {
-                                    Time_perQuestion[j] = sw[j].getElapsedTimeSecs();
-                                    sw[j].stop();
-                                }
-                            }
+            ////////////////
+            int j;
+            ArrayList<Integer> AttemptedQuestions=quiz.getQuestionAttemptList(getApplicationContext(),1,quiz.quizID);
+            for(j=1; j<AttemptedQuestions.size();j++)
+            {
+                if(AttemptedQuestions.get(j)==j) {
+                    Attempted = true;
+                    if (sw[j].running) {
+                        if (Attempted) {
+                            Time_perQuestion[j] = sw[j].getElapsedTimeSecs();
+                            sw[j].stop();
                         }
-                        else{Attempted=false;}
                     }
+                }
+                else{Attempted=false;}
+            }
             if(sw[Qno].paused) //if current question was paused, resume it
             {
                 sw[Qno].resume();
@@ -989,22 +1016,46 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 //dropdown.setAdapter(adapter);
             }
         }
-        FromSpinner=false;
-        if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
-            String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-            if(questionsList.get(Qno).hasbeenInserted==false) {
-                quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+        if(FromSpinner==false) {
+            Question q = questionsList.get(Qno);
+            if (q.qType == 1 || q.qType == 2 || q.qType == 3 || q.qType == 4) {
+                if (opt1Checked == 1 || opt2Checked == 1 || opt3Checked == 1) {
+                    String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-                questionsList.get(Qno).hasbeenInserted = true;
-            }
-            else{
-                quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    if (questionsList.get(Qno).hasbeenInserted == false) {
+                        Time_perQuestion[1] = 3;
+                        Time_perQuestion[2] = 5;
+                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                        RefreshAdapter();
+                        questionsList.get(Qno).hasbeenInserted = true;
+                    } else {
+                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    }
+                }
+                opt1Checked = 0;
+                opt2Checked = 0;
+                opt3Checked = 0;
+            } else if (q.qType == 4 || q.qType == 5) {
+
+                if (Answer.matches("")) {
+                    //Do nothing
+                } else {
+                    String choices = Answer;
+                    if (questionsList.get(Qno).hasbeenInserted == false) {
+
+                        quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                        RefreshAdapter();
+                        questionsList.get(Qno).hasbeenInserted = true;
+                    } else {
+                        quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    }
+                }
+
             }
         }
-        opt1Checked=0;
-        opt2Checked=0;
-        opt3Checked=0;
+        FromSpinner=false;
+        //////////////////////////////////////////////////////////////////
     }
 
     public void StudentAttemptGotToLastQues(View view) {
@@ -1127,8 +1178,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             {
                 setContentView(R.layout.attempt_quiz_truefalse);
 
-
-
                 // add question
                 QuestionTxt = findViewById(R.id.mcq_tf_question);
                 QuestionTxt.setText(q.qText);
@@ -1157,7 +1206,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
                 EditText OW= findViewById(R.id.sub_ow_editTextTextPersonName);
                 saveAnswerObjective();
-                if(CHeckifAttempted1(Qno+1))
+                if(CHeckifAttempted(Qno+1))
                 {
                     OW.setText(Answer);
                 }
@@ -1165,8 +1214,6 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             } else if (q.qType == 5) //mw question
             {
                 setContentView(R.layout.attempt_quiz_subejective_multple_words);
-
-
 
                 // add question
                 QuestionTxt = findViewById(R.id.sub_words_question);
@@ -1197,22 +1244,41 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
             }
         }
 
+        Question q = questionsList.get(Qno);
+        if (q.qType == 1 || q.qType == 2 || q.qType == 3 || q.qType == 4) {
+            if (opt1Checked == 1 || opt2Checked == 1 || opt3Checked == 1) {
+                String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
-        if(opt1Checked==1 || opt2Checked==1 || opt3Checked==1) {
-            String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
-
-            if(questionsList.get(Qno).hasbeenInserted==false) {
-                quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
-
-                questionsList.get(Qno).hasbeenInserted = true;
+                if (questionsList.get(Qno).hasbeenInserted == false) {
+                    Time_perQuestion[1] = 3;
+                    Time_perQuestion[2] = 5;
+                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    RefreshAdapter();
+                    questionsList.get(Qno).hasbeenInserted = true;
+                } else {
+                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                }
             }
-            else{
-                quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+            opt1Checked = 0;
+            opt2Checked = 0;
+            opt3Checked = 0;
+        } else if (q.qType == 4 || q.qType == 5) {
+
+            if (Answer.matches("")) {
+                //Do nothing
+            } else {
+                String choices = Answer;
+                if (questionsList.get(Qno).hasbeenInserted == false) {
+
+                    quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                    RefreshAdapter();
+                    questionsList.get(Qno).hasbeenInserted = true;
+                } else {
+                    quiz.updateQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
+                }
             }
+
         }
-        opt1Checked=0;
-        opt2Checked=0;
-        opt3Checked=0;
 
     }
 
@@ -1229,9 +1295,9 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         /////////////////////////////////////////////////
         MenuItem item = menu.findItem(R.id.spinner);
         item.setVisible(false);
-        Spinner spinner = (Spinner) item.getActionView();
+        spinner = (Spinner) item.getActionView();
 
-        ArrayList<Integer> Attempted_Questions = Quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
+        ArrayList<Integer> Attempted_Questions = quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
 
         ArrayList<String> items= new ArrayList<>();
         int i=0;
@@ -1252,6 +1318,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
         spinner.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1278,6 +1345,54 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
         this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
+
+    public void RefreshAdapter()
+    {
+        ArrayList<Integer> Attempted_Questions = quiz.getQuestionAttemptList(getApplicationContext(), 1, quiz.quizID);
+
+        ArrayList<String> items= new ArrayList<>();
+        int i=0;
+        int j=0;
+        for(j=0; j<questionsList.size();j++) {
+            Boolean found = false;
+            for (i = 0; i < Attempted_Questions.size(); i++) {
+                if (Attempted_Questions.get(i)==(j+1) )
+                {
+                    found=true;
+                }
+            }
+            if(found==false)
+            {
+                items.add(String.valueOf(j+1));
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
+        spinner.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if(nullifyFIrstSelction!=0) {
+                    int GotoQuestion = Integer.parseInt(spinner.getSelectedItem().toString());
+                    FromSpinner = true;
+                    FromSpinnerQ = GotoQuestion;
+                    StudentAttemptGotToFirstQues(v);
+                }
+                nullifyFIrstSelction++;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -1344,7 +1459,7 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
 
     public void MCQSingleAnsStore(View view) {
 
-         RadioButton b= findViewById(R.id.MCQ_single_sound);
+        RadioButton b= findViewById(R.id.MCQ_single_sound);
         if(b.isChecked())
         {
             opt1Checked=1;
