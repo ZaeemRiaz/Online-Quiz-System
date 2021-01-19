@@ -427,8 +427,13 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                     String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
                     if (questionsList.get(Qno).hasbeenInserted == false) {
-                        Time_perQuestion[1]= 3;
-                        Time_perQuestion[2]= 5;
+                        Time_perQuestion[0]= 10;
+                        Time_perQuestion[1]= 15;
+                        Time_perQuestion[2]= 35;
+                        Time_perQuestion[3]= 10;
+                        Time_perQuestion[4]= 10;
+
+
                         quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
                         RefreshAdapter();
                         questionsList.get(Qno).hasbeenInserted = true;
@@ -751,8 +756,13 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                     String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
                     if (questionsList.get(Qno).hasbeenInserted == false) {
-                        Time_perQuestion[1]= 3;
-                        Time_perQuestion[2]= 5;
+                        Time_perQuestion[0]= 10;
+                        Time_perQuestion[1]= 15;
+                        Time_perQuestion[2]= 35;
+                        Time_perQuestion[3]= 10;
+                        Time_perQuestion[4]= 10;
+
+
                         quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
                         RefreshAdapter();
                         questionsList.get(Qno).hasbeenInserted = true;
@@ -1024,8 +1034,12 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                     String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
                     if (questionsList.get(Qno).hasbeenInserted == false) {
-                        Time_perQuestion[1] = 3;
-                        Time_perQuestion[2] = 5;
+                        Time_perQuestion[0] = 10;
+                        Time_perQuestion[1] = 15;
+                        Time_perQuestion[2] = 35;
+                        Time_perQuestion[3] = 10;
+                        Time_perQuestion[4] = 10;
+
                         quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
                         RefreshAdapter();
                         questionsList.get(Qno).hasbeenInserted = true;
@@ -1250,8 +1264,12 @@ public class StudentAttemptQuizActivity extends AppCompatActivity {
                 String choices = quiz.generateMCQsubmissionString(opt1Checked, opt2Checked, opt3Checked, 0);
 
                 if (questionsList.get(Qno).hasbeenInserted == false) {
-                    Time_perQuestion[1] = 3;
-                    Time_perQuestion[2] = 5;
+                    Time_perQuestion[0] = 10;
+                    Time_perQuestion[1] = 15;
+                    Time_perQuestion[2] = 35;
+                    Time_perQuestion[3] = 10;
+                    Time_perQuestion[4] = 10;
+
                     quiz.insertQuestionAttempt(c, 1, quiz.quizID, Qno, Integer.parseInt(String.valueOf(Time_perQuestion[Qno])), choices);
                     RefreshAdapter();
                     questionsList.get(Qno).hasbeenInserted = true;

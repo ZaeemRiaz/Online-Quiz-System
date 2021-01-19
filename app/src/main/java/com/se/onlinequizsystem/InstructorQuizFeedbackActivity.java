@@ -24,7 +24,7 @@ public class InstructorQuizFeedbackActivity extends AppCompatActivity {
 
         QuizStats quizStats = new QuizStats(this, 1);
 
-        averageTimeTakenTextView.setText(String.valueOf(quizStats.averageTime));
+        averageTimeTakenTextView.setText(String.valueOf((quizStats.averageTime)/3));
         quizzesAttemptedTextView.setText(String.valueOf(quizStats.quizAttempted));
         totalStudentsTextView.setText(String.valueOf(quizStats.totalStudents));
 
